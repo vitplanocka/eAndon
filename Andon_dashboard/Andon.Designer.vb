@@ -198,7 +198,7 @@ Partial Class Andon
         Me.Label1.Location = New System.Drawing.Point(18, 49)
         Me.Label1.MinimumSize = New System.Drawing.Size(350, 28)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(350, 29)
+        Me.Label1.Size = New System.Drawing.Size(350, 28)
         Me.Label1.TabIndex = 2
         Me.Label1.Text = "Label1"
         Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -356,7 +356,6 @@ Partial Class Andon
         Me.watcher2.EnableRaisingEvents = True
         Me.watcher2.Filter = "*.txt"
         Me.watcher2.NotifyFilter = System.IO.NotifyFilters.LastWrite
-        Me.watcher2.Path = "X:\ZEB\QA_BT\12_Andon\Data"
         Me.watcher2.SynchronizingObject = Me
         '
         'TBox11
@@ -1286,7 +1285,7 @@ Partial Class Andon
         Me.Label2.Location = New System.Drawing.Point(18, 77)
         Me.Label2.MinimumSize = New System.Drawing.Size(350, 28)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(350, 29)
+        Me.Label2.Size = New System.Drawing.Size(350, 28)
         Me.Label2.TabIndex = 2
         Me.Label2.Text = "Label1"
         Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -1298,7 +1297,7 @@ Partial Class Andon
         Me.Label3.Location = New System.Drawing.Point(18, 103)
         Me.Label3.MinimumSize = New System.Drawing.Size(350, 28)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(350, 29)
+        Me.Label3.Size = New System.Drawing.Size(350, 28)
         Me.Label3.TabIndex = 2
         Me.Label3.Text = "Label1"
         Me.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -1310,7 +1309,7 @@ Partial Class Andon
         Me.Label4.Location = New System.Drawing.Point(18, 130)
         Me.Label4.MinimumSize = New System.Drawing.Size(350, 28)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(350, 29)
+        Me.Label4.Size = New System.Drawing.Size(350, 28)
         Me.Label4.TabIndex = 2
         Me.Label4.Text = "Label1"
         Me.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -1322,7 +1321,7 @@ Partial Class Andon
         Me.Label5.Location = New System.Drawing.Point(18, 157)
         Me.Label5.MinimumSize = New System.Drawing.Size(350, 28)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(350, 29)
+        Me.Label5.Size = New System.Drawing.Size(350, 28)
         Me.Label5.TabIndex = 2
         Me.Label5.Text = "Label1"
         Me.Label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -1334,7 +1333,7 @@ Partial Class Andon
         Me.Label6.Location = New System.Drawing.Point(18, 227)
         Me.Label6.MinimumSize = New System.Drawing.Size(350, 28)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(350, 29)
+        Me.Label6.Size = New System.Drawing.Size(350, 28)
         Me.Label6.TabIndex = 2
         Me.Label6.Text = "Label1"
         Me.Label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -1346,7 +1345,7 @@ Partial Class Andon
         Me.Label7.Location = New System.Drawing.Point(18, 255)
         Me.Label7.MinimumSize = New System.Drawing.Size(350, 28)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(350, 29)
+        Me.Label7.Size = New System.Drawing.Size(350, 28)
         Me.Label7.TabIndex = 2
         Me.Label7.Text = "Label1"
         Me.Label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -1358,7 +1357,7 @@ Partial Class Andon
         Me.Label8.Location = New System.Drawing.Point(18, 282)
         Me.Label8.MinimumSize = New System.Drawing.Size(350, 28)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(350, 29)
+        Me.Label8.Size = New System.Drawing.Size(350, 28)
         Me.Label8.TabIndex = 2
         Me.Label8.Text = "Label1"
         Me.Label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -1370,7 +1369,7 @@ Partial Class Andon
         Me.Label9.Location = New System.Drawing.Point(18, 308)
         Me.Label9.MinimumSize = New System.Drawing.Size(350, 28)
         Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(350, 29)
+        Me.Label9.Size = New System.Drawing.Size(350, 28)
         Me.Label9.TabIndex = 2
         Me.Label9.Text = "Label1"
         Me.Label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -1382,7 +1381,7 @@ Partial Class Andon
         Me.Label10.Location = New System.Drawing.Point(18, 335)
         Me.Label10.MinimumSize = New System.Drawing.Size(350, 28)
         Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(350, 29)
+        Me.Label10.Size = New System.Drawing.Size(350, 28)
         Me.Label10.TabIndex = 2
         Me.Label10.Text = "Label1"
         Me.Label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -1394,7 +1393,7 @@ Partial Class Andon
         Me.Label11.Location = New System.Drawing.Point(18, 402)
         Me.Label11.MinimumSize = New System.Drawing.Size(350, 28)
         Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(350, 29)
+        Me.Label11.Size = New System.Drawing.Size(350, 28)
         Me.Label11.TabIndex = 2
         Me.Label11.Text = "Label1"
         Me.Label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -1406,7 +1405,7 @@ Partial Class Andon
         Me.Label12.Location = New System.Drawing.Point(18, 430)
         Me.Label12.MinimumSize = New System.Drawing.Size(350, 28)
         Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(350, 29)
+        Me.Label12.Size = New System.Drawing.Size(350, 28)
         Me.Label12.TabIndex = 2
         Me.Label12.Text = "Label1"
         Me.Label12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -1418,7 +1417,7 @@ Partial Class Andon
         Me.Label13.Location = New System.Drawing.Point(18, 457)
         Me.Label13.MinimumSize = New System.Drawing.Size(350, 28)
         Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(350, 29)
+        Me.Label13.Size = New System.Drawing.Size(350, 28)
         Me.Label13.TabIndex = 2
         Me.Label13.Text = "Label1"
         Me.Label13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -1430,7 +1429,7 @@ Partial Class Andon
         Me.Label14.Location = New System.Drawing.Point(18, 484)
         Me.Label14.MinimumSize = New System.Drawing.Size(350, 28)
         Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(350, 29)
+        Me.Label14.Size = New System.Drawing.Size(350, 28)
         Me.Label14.TabIndex = 2
         Me.Label14.Text = "Label1"
         Me.Label14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -1442,7 +1441,7 @@ Partial Class Andon
         Me.Label15.Location = New System.Drawing.Point(18, 510)
         Me.Label15.MinimumSize = New System.Drawing.Size(350, 28)
         Me.Label15.Name = "Label15"
-        Me.Label15.Size = New System.Drawing.Size(350, 29)
+        Me.Label15.Size = New System.Drawing.Size(350, 28)
         Me.Label15.TabIndex = 2
         Me.Label15.Text = "Label1"
         Me.Label15.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -1465,7 +1464,7 @@ Partial Class Andon
         Me.Label64.Location = New System.Drawing.Point(660, 21)
         Me.Label64.MinimumSize = New System.Drawing.Size(0, 28)
         Me.Label64.Name = "Label64"
-        Me.Label64.Size = New System.Drawing.Size(127, 28)
+        Me.Label64.Size = New System.Drawing.Size(103, 28)
         Me.Label64.TabIndex = 2
         Me.Label64.Text = "Standard line"
         Me.Label64.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -1477,7 +1476,7 @@ Partial Class Andon
         Me.Label67.Location = New System.Drawing.Point(669, 110)
         Me.Label67.MinimumSize = New System.Drawing.Size(0, 28)
         Me.Label67.Name = "Label67"
-        Me.Label67.Size = New System.Drawing.Size(157, 28)
+        Me.Label67.Size = New System.Drawing.Size(127, 28)
         Me.Label67.TabIndex = 2
         Me.Label67.Text = "Normal condition"
         Me.Label67.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -1489,7 +1488,7 @@ Partial Class Andon
         Me.Label68.Location = New System.Drawing.Point(669, 136)
         Me.Label68.MinimumSize = New System.Drawing.Size(0, 28)
         Me.Label68.Name = "Label68"
-        Me.Label68.Size = New System.Drawing.Size(113, 28)
+        Me.Label68.Size = New System.Drawing.Size(92, 28)
         Me.Label68.TabIndex = 2
         Me.Label68.Text = "Line trouble"
         Me.Label68.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -1501,7 +1500,7 @@ Partial Class Andon
         Me.Label69.Location = New System.Drawing.Point(669, 164)
         Me.Label69.MinimumSize = New System.Drawing.Size(0, 28)
         Me.Label69.Name = "Label69"
-        Me.Label69.Size = New System.Drawing.Size(143, 28)
+        Me.Label69.Size = New System.Drawing.Size(116, 28)
         Me.Label69.TabIndex = 2
         Me.Label69.Text = "Line is stopped"
         Me.Label69.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -1513,7 +1512,7 @@ Partial Class Andon
         Me.Label65.Location = New System.Drawing.Point(660, 63)
         Me.Label65.MinimumSize = New System.Drawing.Size(0, 28)
         Me.Label65.Name = "Label65"
-        Me.Label65.Size = New System.Drawing.Size(106, 28)
+        Me.Label65.Size = New System.Drawing.Size(84, 28)
         Me.Label65.TabIndex = 2
         Me.Label65.Text = "Priority line"
         Me.Label65.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -1571,7 +1570,7 @@ Partial Class Andon
         Me.Label66.Location = New System.Drawing.Point(35, 64)
         Me.Label66.MinimumSize = New System.Drawing.Size(0, 28)
         Me.Label66.Name = "Label66"
-        Me.Label66.Size = New System.Drawing.Size(102, 28)
+        Me.Label66.Size = New System.Drawing.Size(83, 28)
         Me.Label66.TabIndex = 2
         Me.Label66.Text = "Last alarm"
         Me.Label66.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -1831,7 +1830,7 @@ Partial Class Andon
         Me.Label16.Location = New System.Drawing.Point(18, 16)
         Me.Label16.MinimumSize = New System.Drawing.Size(350, 28)
         Me.Label16.Name = "Label16"
-        Me.Label16.Size = New System.Drawing.Size(350, 29)
+        Me.Label16.Size = New System.Drawing.Size(350, 28)
         Me.Label16.TabIndex = 2
         Me.Label16.Text = "Line nr."
         Me.Label16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -1843,7 +1842,7 @@ Partial Class Andon
         Me.Label17.Location = New System.Drawing.Point(18, 196)
         Me.Label17.MinimumSize = New System.Drawing.Size(350, 28)
         Me.Label17.Name = "Label17"
-        Me.Label17.Size = New System.Drawing.Size(350, 29)
+        Me.Label17.Size = New System.Drawing.Size(350, 28)
         Me.Label17.TabIndex = 2
         Me.Label17.Text = "Line nr."
         Me.Label17.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -1855,14 +1854,14 @@ Partial Class Andon
         Me.Label18.Location = New System.Drawing.Point(18, 373)
         Me.Label18.MinimumSize = New System.Drawing.Size(350, 28)
         Me.Label18.Name = "Label18"
-        Me.Label18.Size = New System.Drawing.Size(350, 29)
+        Me.Label18.Size = New System.Drawing.Size(350, 28)
         Me.Label18.TabIndex = 2
         Me.Label18.Text = "Line nr."
         Me.Label18.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'Andon
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.ButtonHighlight
         Me.ClientSize = New System.Drawing.Size(1290, 686)

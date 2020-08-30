@@ -9,3 +9,15 @@ C:\Users\planockav\source\repos\eAndon\Andon_dashboard\bin\Release\Andon_dashboa
 C:\Users\planockav\source\repos\eAndon\Andon_dashboard\obj\Release\Andon_dashboard.exe
 C:\Users\planockav\source\repos\eAndon\Andon_dashboard\obj\Release\Andon_dashboard.xml
 C:\Users\planockav\source\repos\eAndon\Andon_dashboard\obj\Release\Andon_dashboard.pdb
+C:\Users\Vit\source\repos\vitplanocka\eAndon\Andon_dashboard\bin\Release\Andon_dashboard.exe.config
+C:\Users\Vit\source\repos\vitplanocka\eAndon\Andon_dashboard\bin\Release\Andon_dashboard.exe
+C:\Users\Vit\source\repos\vitplanocka\eAndon\Andon_dashboard\bin\Release\Andon_dashboard.pdb
+C:\Users\Vit\source\repos\vitplanocka\eAndon\Andon_dashboard\bin\Release\Andon_dashboard.xml
+C:\Users\Vit\source\repos\vitplanocka\eAndon\Andon_dashboard\obj\Release\Andon_dashboard.vbprojAssemblyReference.cache
+C:\Users\Vit\source\repos\vitplanocka\eAndon\Andon_dashboard\obj\Release\Andon_dashboard.Andon.resources
+C:\Users\Vit\source\repos\vitplanocka\eAndon\Andon_dashboard\obj\Release\Andon_dashboard.Resources.resources
+C:\Users\Vit\source\repos\vitplanocka\eAndon\Andon_dashboard\obj\Release\Andon_dashboard.vbproj.GenerateResource.cache
+C:\Users\Vit\source\repos\vitplanocka\eAndon\Andon_dashboard\obj\Release\Andon_dashboard.vbproj.CoreCompileInputs.cache
+C:\Users\Vit\source\repos\vitplanocka\eAndon\Andon_dashboard\obj\Release\Andon_dashboard.exe
+C:\Users\Vit\source\repos\vitplanocka\eAndon\Andon_dashboard\obj\Release\Andon_dashboard.xml
+C:\Users\Vit\source\repos\vitplanocka\eAndon\Andon_dashboard\obj\Release\Andon_dashboard.pdb

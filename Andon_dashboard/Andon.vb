@@ -108,21 +108,14 @@ Public Class Andon
 
         ' Set everything to green
         For i = 0 To nOfLines - 1
-            lineStatusStr(i, 0) = "Green"
-            previousLineStatusStr(i, 0) = "Green"
-            lineStatusStr(i, 1) = "Green"
-            previousLineStatusStr(i, 1) = "Green"
-            lineStatusStr(i, 2) = "Green"
-            previousLineStatusStr(i, 2) = "Green"
-            lineStatusStr(i, 3) = "Green"
-            previousLineStatusStr(i, 3) = "Green"
-            lineStatusStr(i, 4) = "Green"
-            previousLineStatusStr(i, 4) = "Green"
-
+            For j = 0 To 4
+                lineStatusStr(i, j) = "Green"
+                previousLineStatusStr(i, j) = "Green"
+            Next
         Next
 
-        ' Ignore old files. If it's a current file, trigger update of alert fields
-        Dim di As New DirectoryInfo("Data/")
+            ' Ignore old files. If it's a current file, trigger update of alert fields
+            Dim di As New DirectoryInfo("Data/")
         ' Get a reference to each file in that directory.
         Dim fiArr As FileInfo() = di.GetFiles()
         ' Display the names of the files.
