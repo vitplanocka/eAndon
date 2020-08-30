@@ -1,0 +1,11 @@
+C:\Users\planockav\source\repos\eAndon\terminal03\bin\Release\terminal03.exe.config
+C:\Users\planockav\source\repos\eAndon\terminal03\bin\Release\terminal03.exe
+C:\Users\planockav\source\repos\eAndon\terminal03\bin\Release\terminal03.pdb
+C:\Users\planockav\source\repos\eAndon\terminal03\bin\Release\terminal03.xml
+C:\Users\planockav\source\repos\eAndon\terminal03\obj\Release\terminal03.Form1.resources
+C:\Users\planockav\source\repos\eAndon\terminal03\obj\Release\terminal03.Resources.resources
+C:\Users\planockav\source\repos\eAndon\terminal03\obj\Release\terminal03.vbproj.GenerateResource.cache
+C:\Users\planockav\source\repos\eAndon\terminal03\obj\Release\terminal03.vbproj.CoreCompileInputs.cache
+C:\Users\planockav\source\repos\eAndon\terminal03\obj\Release\terminal03.exe
+C:\Users\planockav\source\repos\eAndon\terminal03\obj\Release\terminal03.xml
+C:\Users\planockav\source\repos\eAndon\terminal03\obj\Release\terminal03.pdb
