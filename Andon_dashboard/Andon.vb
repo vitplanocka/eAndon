@@ -106,6 +106,7 @@ Public Class Andon
             Next
         Next
 
+        ' Set everything to green
         For i = 0 To nOfLines - 1
             lineStatusStr(i, 0) = "Green"
             previousLineStatusStr(i, 0) = "Green"
