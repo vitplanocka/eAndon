@@ -155,16 +155,14 @@ Public Class Andon
         ' Copy initial lineStatus state to be able to find out later which lines were updated
         Dim i As Integer
         For i = 0 To nOfLines - 1
-            previousLineStatusStr(i, 0) = lineStatusStr(i, 0)
-            previousLineStatusStr(i, 1) = lineStatusStr(i, 1)
-            previousLineStatusStr(i, 2) = lineStatusStr(i, 2)
-            previousLineStatusStr(i, 3) = lineStatusStr(i, 3)
-            previousLineStatusStr(i, 4) = lineStatusStr(i, 4)
+            For j = 0 To 4
+                previousLineStatusStr(i, j) = lineStatusStr(i, j)
+            Next
         Next
 
-        '-----------------------------------------------------------------------
-        ' Read updated text file and update relevant fields
-        Dim lineNumber As String
+            '-----------------------------------------------------------------------
+            ' Read updated text file and update relevant fields
+            Dim lineNumber As String
         Try
             Using inputFile As New StreamReader(e.FullPath)
                 oldFile = DateDiff(DateInterval.Minute, Convert.ToDateTime(System.IO.File.GetLastWriteTime(e.FullPath)), DateTime.Now) > maxDelay
