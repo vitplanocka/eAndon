@@ -33,4 +33,5 @@ Email: planocka@gmail.com
 Location: Prague, Czech Republic
 
 GitHub: https://github.com/vitplanocka
+
 LinkedIn: https://www.linkedin.com/in/vitplanocka/
