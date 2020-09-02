@@ -9,3 +9,15 @@ C:\Users\planockav\source\repos\eAndon\terminal01\obj\Release\terminal01.vbproj.
 C:\Users\planockav\source\repos\eAndon\terminal01\obj\Release\terminal01.exe
 C:\Users\planockav\source\repos\eAndon\terminal01\obj\Release\terminal01.xml
 C:\Users\planockav\source\repos\eAndon\terminal01\obj\Release\terminal01.pdb
+C:\Users\Vit\source\repos\vitplanocka\eAndon\terminal01\bin\Release\terminal01.exe.config
+C:\Users\Vit\source\repos\vitplanocka\eAndon\terminal01\bin\Release\terminal01.exe
+C:\Users\Vit\source\repos\vitplanocka\eAndon\terminal01\bin\Release\terminal01.pdb
+C:\Users\Vit\source\repos\vitplanocka\eAndon\terminal01\bin\Release\terminal01.xml
+C:\Users\Vit\source\repos\vitplanocka\eAndon\terminal01\obj\Release\terminal01.vbprojAssemblyReference.cache
+C:\Users\Vit\source\repos\vitplanocka\eAndon\terminal01\obj\Release\terminal01.Form1.resources
+C:\Users\Vit\source\repos\vitplanocka\eAndon\terminal01\obj\Release\terminal01.Resources.resources
+C:\Users\Vit\source\repos\vitplanocka\eAndon\terminal01\obj\Release\terminal01.vbproj.GenerateResource.cache
+C:\Users\Vit\source\repos\vitplanocka\eAndon\terminal01\obj\Release\terminal01.vbproj.CoreCompileInputs.cache
+C:\Users\Vit\source\repos\vitplanocka\eAndon\terminal01\obj\Release\terminal01.exe
+C:\Users\Vit\source\repos\vitplanocka\eAndon\terminal01\obj\Release\terminal01.xml
+C:\Users\Vit\source\repos\vitplanocka\eAndon\terminal01\obj\Release\terminal01.pdb
