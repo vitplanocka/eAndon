@@ -1,0 +1,12 @@
+C:\Users\planockav\Source\Repos\eAndon\Andon_dashboard\bin\Debug\Andon_dashboard.exe.config
+C:\Users\planockav\Source\Repos\eAndon\Andon_dashboard\bin\Debug\Andon_dashboard.exe
+C:\Users\planockav\Source\Repos\eAndon\Andon_dashboard\bin\Debug\Andon_dashboard.pdb
+C:\Users\planockav\Source\Repos\eAndon\Andon_dashboard\bin\Debug\Andon_dashboard.xml
+C:\Users\planockav\Source\Repos\eAndon\Andon_dashboard\obj\Debug\Andon_dashboard.vbprojAssemblyReference.cache
+C:\Users\planockav\Source\Repos\eAndon\Andon_dashboard\obj\Debug\Andon_dashboard.Andon.resources
+C:\Users\planockav\Source\Repos\eAndon\Andon_dashboard\obj\Debug\Andon_dashboard.Resources.resources
+C:\Users\planockav\Source\Repos\eAndon\Andon_dashboard\obj\Debug\Andon_dashboard.vbproj.GenerateResource.cache
+C:\Users\planockav\Source\Repos\eAndon\Andon_dashboard\obj\Debug\Andon_dashboard.vbproj.CoreCompileInputs.cache
+C:\Users\planockav\Source\Repos\eAndon\Andon_dashboard\obj\Debug\Andon_dashboard.exe
+C:\Users\planockav\Source\Repos\eAndon\Andon_dashboard\obj\Debug\Andon_dashboard.xml
+C:\Users\planockav\Source\Repos\eAndon\Andon_dashboard\obj\Debug\Andon_dashboard.pdb

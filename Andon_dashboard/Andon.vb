@@ -1,5 +1,11 @@
 ﻿Imports System.IO
 
+'TODO:  
+' - replace 4/5 by AlarmTypes
+' - read out AlarmTypes from configuration file
+' - create variables for positioning of nameLabels and lineLabels
+
+
 Public Class Andon
 
     Public nOfLines As Integer = 0 ' number of displayed lines
@@ -10,7 +16,8 @@ Public Class Andon
     Public previousLineStatusStr(nOfLines - 1, 4) As String
     Public alarmStartTime(100, 4) As Date
     Public oldFile As Boolean
-    Public maxDelay As Integer = 10   'text files older than x minutes are ignored
+    Public maxDelay As Integer = 10   ' text files older than x minutes are ignored
+    Public alarmTypes As Integer = 5  ' number of displayed alarm types
     Public soundOn As Boolean = False
     Public priorityLines(nOfLines) As Integer
 
@@ -84,17 +91,47 @@ Public Class Andon
             End While
         End Using
 
+        ' Alarm labels
+        Dim newbox As Label
+        For i As Integer = 0 To nOfLines * alarmTypes - 1 'Create labels and set properties
+            newbox = New Label With {
+                .Size = New Drawing.Size(40, 20),
+                .Location = New Point(100 + (i Mod alarmTypes) * 53, 55 + (i - (i Mod alarmTypes)) * 5),
+                .Font = New Font("Arial", 8),
+                .TextAlign = ContentAlignment.MiddleCenter
+                 }
+            ' Draw alarm labels
+            newbox.Name = "lineLabel" & i
+            newbox.Text = ""
+            newbox.BorderStyle = BorderStyle.FixedSingle
+            newbox.BackColor = Color.White
+            Controls.Add(newbox)
+        Next
+
+        'Line Labels
+        For i As Integer = 0 To nOfLines - 1 'Create labels and set properties
+            newbox = New Label With {
+                .Size = New Drawing.Size(350, 29),
+                .Location = New Point(20, 50 + (i * 25)),
+                .Font = New Font("Arial", 14),
+                .TextAlign = ContentAlignment.MiddleLeft
+                 }
+            ' Draw alarm labels
+            newbox.Name = "nameLabel" & i
+            newbox.Text = lineLabels(i, 1)
+            newbox.BorderStyle = BorderStyle.None
+            newbox.BackColor = Color.White
+            Controls.Add(newbox)
+        Next
+
+
+
+
         ' Set tooltips for line nubmers
         Dim toolTip1 As New ToolTip()
         For i = 0 To nOfLines - 1
-            Dim myLabel As Label = CType(Me.Controls("Label" & i + 1), Label)
+            Dim myLabel As Label = CType(Controls("nameLabel" & i), Label)
             toolTip1.SetToolTip(myLabel, lineLabels(i, 2))
-        Next
-
-        ' Set line number labels
-        For i = 0 To nOfLines - 1
-            Dim myLabel As Label = CType(Me.Controls("Label" & i + 1), Label)
-            myLabel.Text = lineLabels(i, 1)
         Next
 
         nOfAlarms = 0
@@ -114,8 +151,8 @@ Public Class Andon
             Next
         Next
 
-            ' Ignore old files. If it's a current file, trigger update of alert fields
-            Dim di As New DirectoryInfo("Data/")
+        ' Ignore old files. If it's a current file, trigger update of alert fields
+        Dim di As New DirectoryInfo("Data/")
         ' Get a reference to each file in that directory.
         Dim fiArr As FileInfo() = di.GetFiles()
         ' Display the names of the files.
@@ -133,20 +170,10 @@ Public Class Andon
     Private Sub PopulateAutoInfo()    ' Load labels and descriptions from the settings file
         PictureBoxLogo.ImageLocation = logofile
         PictureBox1.ImageLocation = icon1imgfile
-        PictureBox6.ImageLocation = icon1imgfile
-        PictureBox11.ImageLocation = icon1imgfile
         PictureBox2.ImageLocation = icon2imgfile
-        PictureBox7.ImageLocation = icon2imgfile
-        PictureBox12.ImageLocation = icon2imgfile
         PictureBox3.ImageLocation = icon3imgfile
-        PictureBox8.ImageLocation = icon3imgfile
-        PictureBox13.ImageLocation = icon3imgfile
         PictureBox4.ImageLocation = icon4imgfile
-        PictureBox9.ImageLocation = icon4imgfile
-        PictureBox14.ImageLocation = icon4imgfile
         PictureBox5.ImageLocation = icon5imgfile
-        PictureBox10.ImageLocation = icon5imgfile
-        PictureBox15.ImageLocation = icon5imgfile
     End Sub
 
     Private Sub UpdateFields(sender As Object, e As FileSystemEventArgs)
@@ -178,32 +205,33 @@ Public Class Andon
                     Next
                     Try
                         For i = 1 To 5
-                            Dim myBox As TextBox = CType(Me.Controls("TBox" & lineNumber + 1 & i), TextBox)
+                            Dim myLabel As Label = CType(Me.Controls("LineLabel" & lineNumber * alarmTypes + i - 1), Label)
                             If lineStatusStr(CInt(lineNumber), i - 1) = "Green" Then
-                                myBox.BackColor = Color.FromArgb(0, 255, 0)
+                                myLabel.BackColor = Color.FromArgb(0, 255, 0)
 
                             ElseIf lineStatusStr(CInt(lineNumber), i - 1) = "Yellow" Then
-                                myBox.BackColor = Color.FromArgb(255, 192, 0)
+                                myLabel.BackColor = Color.FromArgb(255, 192, 0)
                             ElseIf lineStatusStr(CInt(lineNumber), i - 1) = "Red" Then
-                                myBox.BackColor = Color.FromArgb(255, 0, 0)
-
+                                myLabel.BackColor = Color.FromArgb(255, 0, 0)
                             End If
+
+
                             'Display time since last alarm
                             If (lineStatusStr(CInt(lineNumber), i - 1) = "Yellow") And (previousLineStatusStr(CInt(lineNumber), i - 1) = "Green") Then   ' it's a new alarm
                                 alarmStartTime(CInt(lineNumber), i - 1) = Date.Now
-                                myBox.Text = "0 min"
-                                myBox.ForeColor = Color.Black
+                                myLabel.Text = "0 min"
+                                myLabel.ForeColor = Color.Black
                                 PictureBox1.Select() ' Remove the cursor from updated field
                             ElseIf (lineStatusStr(CInt(lineNumber), i - 1) = "Red") And (previousLineStatusStr(CInt(lineNumber), i - 1) = "Yellow") Then   ' it's a new alarm
                                 alarmStartTime(CInt(lineNumber), i - 1) = Date.Now
-                                myBox.Text = "0 min"
-                                myBox.ForeColor = Color.White
+                                myLabel.Text = "0 min"
+                                myLabel.ForeColor = Color.White
                                 PictureBox1.Select() ' Remove the cursor from updated field
                             ElseIf (lineStatusStr(CInt(lineNumber), i - 1) = "Green" And previousLineStatusStr(CInt(lineNumber), i - 1) = "Red") Then  ' we're going from red to green
-                                myBox.Text = ""
+                                myLabel.Text = ""
                                 PictureBox1.Select() ' Remove the cursor from updated field
                             ElseIf (lineStatusStr(CInt(lineNumber), i - 1) = "Green" And previousLineStatusStr(CInt(lineNumber), i - 1) = "Green") Then  ' in case of initialization on startup, we musts remove all labels
-                                myBox.Text = ""
+                                myLabel.Text = ""
                                 PictureBox1.Select() ' Remove the cursor from updated field
                             End If
 
@@ -239,28 +267,28 @@ Public Class Andon
             Next
             For i = 0 To nOfLines - 1
                 ' Remove previous marking of last alarm 
-                Dim myLabel As Label = CType(Me.Controls("Label" & i + 1), Label)
+                Dim myLabel As Label = CType(Controls("nameLabel" & i), Label)
                 myLabel.ForeColor = Color.FromArgb(0, 0, 0)
             Next
             ' Mark last alarm
-            Dim myLabel2 As Label = CType(Me.Controls("Label" & lastAlarmLineNr + 1), Label)
+            Dim myLabel2 As Label = CType(Controls("nameLabel" & lastAlarmLineNr), Label)
             myLabel2.ForeColor = Color.FromArgb(255, 0, 0)
         End If
 
         ' Remove last alarm label if all alarms have been solved
         For i = 0 To nOfLines - 1
-            Dim myLabel As Label = CType(Me.Controls("Label" & i + 1), Label)
+            Dim myLabel As Label = CType(Controls("nameLabel" & i), Label)
             If (lineStatusStr(i, 0) = "Green") And (lineStatusStr(i, 1) = "Green") And (lineStatusStr(i, 2) = "Green") And (lineStatusStr(i, 3) = "Green") And (lineStatusStr(i, 4) = "Green") Then myLabel.ForeColor = Color.FromArgb(0, 0, 0)
         Next
 
     End Sub
 
 
-    Private Sub watcher2_Changed(sender As Object, e As FileSystemEventArgs) Handles watcher2.Changed
+    Private Sub Watcher2_Changed(sender As Object, e As FileSystemEventArgs) Handles watcher2.Changed
         ' If text file in the watched folder is created or rewritten, call update function
         If e.Name.Substring(0, 8) = "terminal" Then
             Try
-                Me.UpdateFields(sender, e)
+                UpdateFields(sender, e)
             Catch ex As Exception
                 System.Diagnostics.Debug.WriteLine("Exception : " + ex.StackTrace)
             End Try
@@ -273,16 +301,16 @@ Public Class Andon
         Dim i, j As Integer
         For i = 0 To nOfLines - 1
             For j = 0 To 4
-                Dim myBox As TextBox = CType(Me.Controls("TBox" & i + 1 & j + 1), TextBox)
+                Dim myLabel As Label = CType(Controls("LineLabel" & i * alarmTypes + j), Label)
                 If lineStatusStr(i, j) = "Yellow" Or lineStatusStr(i, j) = "Red" Then
-                    If DateDiff(DateInterval.Minute, alarmStartTime(i, j), DateTime.Now) > 9 Then myBox.Text = DateDiff(DateInterval.Minute, alarmStartTime(i, j), DateTime.Now) Else myBox.Text = DateDiff(DateInterval.Minute, alarmStartTime(i, j), DateTime.Now) & " min"
+                    If DateDiff(DateInterval.Minute, alarmStartTime(i, j), DateTime.Now) > 9 Then myLabel.Text = DateDiff(DateInterval.Minute, alarmStartTime(i, j), DateTime.Now) Else myLabel.Text = DateDiff(DateInterval.Minute, alarmStartTime(i, j), DateTime.Now) & " min"
                 End If
             Next
         Next
 
         ' Mark priority lines
         For i = 0 To nOfLines - 1
-            Dim myLbl As Label = CType(Me.Controls("Label" & i + 1), Label)
+            Dim myLbl As Label = CType(Controls("nameLabel" & i), Label)
             myLbl.BackColor = Color.FromArgb(255, 255, 255)
         Next
 
@@ -310,7 +338,7 @@ Public Class Andon
 
         For i = 0 To nOfLines - 1
             If priorityLines(i) >= 0 Then
-                Dim myLbl2 As Label = CType(Me.Controls("Label" & priorityLines(i) + 1), Label)
+                Dim myLbl2 As Label = CType(Controls("nameLabel" & priorityLines(i)), Label)
                 myLbl2.BackColor = Color.FromArgb(252, 228, 214)
             End If
         Next
