@@ -2,6 +2,7 @@
 
 'TODO:  
 ' - read out AlarmTypes from configuration file
+' - remove reading nOfLines from first line of production_lines.txt 
 ' - create variables for positioning of nameLabels and lineLabels
 
 
