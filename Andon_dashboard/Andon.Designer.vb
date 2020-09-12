@@ -48,20 +48,14 @@ Partial Class Andon
         Me.Label63 = New System.Windows.Forms.Label()
         Me.Label62 = New System.Windows.Forms.Label()
         Me.TextBox10 = New System.Windows.Forms.TextBox()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.TextBox9 = New System.Windows.Forms.TextBox()
-        Me.TextBox2 = New System.Windows.Forms.TextBox()
-        Me.TextBox8 = New System.Windows.Forms.TextBox()
-        Me.TextBox3 = New System.Windows.Forms.TextBox()
         Me.TextBox7 = New System.Windows.Forms.TextBox()
         Me.TextBox4 = New System.Windows.Forms.TextBox()
-        Me.TextBox6 = New System.Windows.Forms.TextBox()
-        Me.TextBox5 = New System.Windows.Forms.TextBox()
         Me.TextBox11 = New System.Windows.Forms.TextBox()
         Me.TextBox12 = New System.Windows.Forms.TextBox()
         Me.TextBox13 = New System.Windows.Forms.TextBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.Label16 = New System.Windows.Forms.Label()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -127,10 +121,10 @@ Partial Class Andon
         '
         'PictureBoxLogo
         '
-        Me.PictureBoxLogo.Location = New System.Drawing.Point(974, 11)
+        Me.PictureBoxLogo.Location = New System.Drawing.Point(677, 11)
         Me.PictureBoxLogo.Margin = New System.Windows.Forms.Padding(2)
         Me.PictureBoxLogo.Name = "PictureBoxLogo"
-        Me.PictureBoxLogo.Size = New System.Drawing.Size(200, 118)
+        Me.PictureBoxLogo.Size = New System.Drawing.Size(154, 87)
         Me.PictureBoxLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.PictureBoxLogo.TabIndex = 9
         Me.PictureBoxLogo.TabStop = False
@@ -151,7 +145,7 @@ Partial Class Andon
         '
         Me.PictureBoxSound.BackgroundImage = CType(resources.GetObject("PictureBoxSound.BackgroundImage"), System.Drawing.Image)
         Me.PictureBoxSound.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.PictureBoxSound.Location = New System.Drawing.Point(1203, 11)
+        Me.PictureBoxSound.Location = New System.Drawing.Point(390, 598)
         Me.PictureBoxSound.Name = "PictureBoxSound"
         Me.PictureBoxSound.Size = New System.Drawing.Size(60, 58)
         Me.PictureBoxSound.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -162,7 +156,7 @@ Partial Class Andon
         '
         Me.Label64.AutoSize = True
         Me.Label64.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label64.Location = New System.Drawing.Point(660, 21)
+        Me.Label64.Location = New System.Drawing.Point(420, 19)
         Me.Label64.MinimumSize = New System.Drawing.Size(0, 28)
         Me.Label64.Name = "Label64"
         Me.Label64.Size = New System.Drawing.Size(127, 28)
@@ -174,7 +168,7 @@ Partial Class Andon
         '
         Me.Label67.AutoSize = True
         Me.Label67.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label67.Location = New System.Drawing.Point(669, 110)
+        Me.Label67.Location = New System.Drawing.Point(429, 108)
         Me.Label67.MinimumSize = New System.Drawing.Size(0, 28)
         Me.Label67.Name = "Label67"
         Me.Label67.Size = New System.Drawing.Size(157, 28)
@@ -186,7 +180,7 @@ Partial Class Andon
         '
         Me.Label68.AutoSize = True
         Me.Label68.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label68.Location = New System.Drawing.Point(669, 136)
+        Me.Label68.Location = New System.Drawing.Point(429, 134)
         Me.Label68.MinimumSize = New System.Drawing.Size(0, 28)
         Me.Label68.Name = "Label68"
         Me.Label68.Size = New System.Drawing.Size(113, 28)
@@ -198,7 +192,7 @@ Partial Class Andon
         '
         Me.Label69.AutoSize = True
         Me.Label69.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label69.Location = New System.Drawing.Point(669, 164)
+        Me.Label69.Location = New System.Drawing.Point(429, 162)
         Me.Label69.MinimumSize = New System.Drawing.Size(0, 28)
         Me.Label69.Name = "Label69"
         Me.Label69.Size = New System.Drawing.Size(143, 28)
@@ -210,7 +204,7 @@ Partial Class Andon
         '
         Me.Label65.AutoSize = True
         Me.Label65.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label65.Location = New System.Drawing.Point(660, 63)
+        Me.Label65.Location = New System.Drawing.Point(420, 61)
         Me.Label65.MinimumSize = New System.Drawing.Size(0, 28)
         Me.Label65.Name = "Label65"
         Me.Label65.Size = New System.Drawing.Size(106, 28)
@@ -221,7 +215,7 @@ Partial Class Andon
         'PictureBox70
         '
         Me.PictureBox70.Image = CType(resources.GetObject("PictureBox70.Image"), System.Drawing.Image)
-        Me.PictureBox70.Location = New System.Drawing.Point(606, 18)
+        Me.PictureBox70.Location = New System.Drawing.Point(366, 16)
         Me.PictureBox70.Name = "PictureBox70"
         Me.PictureBox70.Size = New System.Drawing.Size(55, 29)
         Me.PictureBox70.TabIndex = 19
@@ -230,7 +224,7 @@ Partial Class Andon
         'PictureBox100
         '
         Me.PictureBox100.Image = CType(resources.GetObject("PictureBox100.Image"), System.Drawing.Image)
-        Me.PictureBox100.Location = New System.Drawing.Point(608, 106)
+        Me.PictureBox100.Location = New System.Drawing.Point(368, 104)
         Me.PictureBox100.Name = "PictureBox100"
         Me.PictureBox100.Size = New System.Drawing.Size(55, 29)
         Me.PictureBox100.TabIndex = 19
@@ -239,7 +233,7 @@ Partial Class Andon
         'PictureBox110
         '
         Me.PictureBox110.Image = CType(resources.GetObject("PictureBox110.Image"), System.Drawing.Image)
-        Me.PictureBox110.Location = New System.Drawing.Point(608, 134)
+        Me.PictureBox110.Location = New System.Drawing.Point(368, 132)
         Me.PictureBox110.Name = "PictureBox110"
         Me.PictureBox110.Size = New System.Drawing.Size(55, 29)
         Me.PictureBox110.TabIndex = 19
@@ -248,7 +242,7 @@ Partial Class Andon
         'PictureBox120
         '
         Me.PictureBox120.Image = CType(resources.GetObject("PictureBox120.Image"), System.Drawing.Image)
-        Me.PictureBox120.Location = New System.Drawing.Point(608, 164)
+        Me.PictureBox120.Location = New System.Drawing.Point(368, 162)
         Me.PictureBox120.Name = "PictureBox120"
         Me.PictureBox120.Size = New System.Drawing.Size(55, 29)
         Me.PictureBox120.TabIndex = 19
@@ -257,7 +251,7 @@ Partial Class Andon
         'PictureBox90
         '
         Me.PictureBox90.Image = CType(resources.GetObject("PictureBox90.Image"), System.Drawing.Image)
-        Me.PictureBox90.Location = New System.Drawing.Point(181, 64)
+        Me.PictureBox90.Location = New System.Drawing.Point(114, 63)
         Me.PictureBox90.Name = "PictureBox90"
         Me.PictureBox90.Size = New System.Drawing.Size(55, 29)
         Me.PictureBox90.TabIndex = 19
@@ -268,7 +262,7 @@ Partial Class Andon
         Me.Label66.AutoSize = True
         Me.Label66.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label66.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.Label66.Location = New System.Drawing.Point(35, 64)
+        Me.Label66.Location = New System.Drawing.Point(6, 61)
         Me.Label66.MinimumSize = New System.Drawing.Size(0, 28)
         Me.Label66.Name = "Label66"
         Me.Label66.Size = New System.Drawing.Size(102, 28)
@@ -279,7 +273,7 @@ Partial Class Andon
         'PictureBox80
         '
         Me.PictureBox80.Image = CType(resources.GetObject("PictureBox80.Image"), System.Drawing.Image)
-        Me.PictureBox80.Location = New System.Drawing.Point(606, 60)
+        Me.PictureBox80.Location = New System.Drawing.Point(366, 58)
         Me.PictureBox80.Name = "PictureBox80"
         Me.PictureBox80.Size = New System.Drawing.Size(55, 29)
         Me.PictureBox80.TabIndex = 19
@@ -291,10 +285,10 @@ Partial Class Andon
         Me.Label63.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Label63.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label63.ForeColor = System.Drawing.Color.Red
-        Me.Label63.Location = New System.Drawing.Point(242, 60)
-        Me.Label63.MinimumSize = New System.Drawing.Size(350, 28)
+        Me.Label63.Location = New System.Drawing.Point(175, 59)
+        Me.Label63.MinimumSize = New System.Drawing.Size(150, 28)
         Me.Label63.Name = "Label63"
-        Me.Label63.Size = New System.Drawing.Size(350, 32)
+        Me.Label63.Size = New System.Drawing.Size(185, 32)
         Me.Label63.TabIndex = 12
         Me.Label63.Text = "  02-nnn"
         Me.Label63.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -304,10 +298,10 @@ Partial Class Andon
         Me.Label62.BackColor = System.Drawing.Color.White
         Me.Label62.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Label62.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label62.Location = New System.Drawing.Point(242, 18)
-        Me.Label62.MinimumSize = New System.Drawing.Size(350, 28)
+        Me.Label62.Location = New System.Drawing.Point(175, 17)
+        Me.Label62.MinimumSize = New System.Drawing.Size(150, 28)
         Me.Label62.Name = "Label62"
-        Me.Label62.Size = New System.Drawing.Size(350, 32)
+        Me.Label62.Size = New System.Drawing.Size(185, 32)
         Me.Label62.TabIndex = 12
         Me.Label62.Text = "  02-nnn"
         Me.Label62.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -317,7 +311,7 @@ Partial Class Andon
         Me.TextBox10.BackColor = System.Drawing.Color.Red
         Me.TextBox10.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox10.ForeColor = System.Drawing.SystemColors.Window
-        Me.TextBox10.Location = New System.Drawing.Point(481, 64)
+        Me.TextBox10.Location = New System.Drawing.Point(303, 63)
         Me.TextBox10.Margin = New System.Windows.Forms.Padding(0, 2, 0, 2)
         Me.TextBox10.Multiline = True
         Me.TextBox10.Name = "TextBox10"
@@ -326,77 +320,12 @@ Partial Class Andon
         Me.TextBox10.Text = "2 min"
         Me.TextBox10.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
-        'TextBox1
-        '
-        Me.TextBox1.BackColor = System.Drawing.Color.Lime
-        Me.TextBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox1.ForeColor = System.Drawing.SystemColors.InactiveCaptionText
-        Me.TextBox1.Location = New System.Drawing.Point(481, 22)
-        Me.TextBox1.Margin = New System.Windows.Forms.Padding(2)
-        Me.TextBox1.Multiline = True
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(49, 24)
-        Me.TextBox1.TabIndex = 17
-        Me.TextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'TextBox9
-        '
-        Me.TextBox9.BackColor = System.Drawing.Color.Lime
-        Me.TextBox9.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox9.ForeColor = System.Drawing.SystemColors.InactiveCaptionText
-        Me.TextBox9.Location = New System.Drawing.Point(427, 64)
-        Me.TextBox9.Margin = New System.Windows.Forms.Padding(2)
-        Me.TextBox9.Multiline = True
-        Me.TextBox9.Name = "TextBox9"
-        Me.TextBox9.Size = New System.Drawing.Size(49, 24)
-        Me.TextBox9.TabIndex = 16
-        Me.TextBox9.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'TextBox2
-        '
-        Me.TextBox2.BackColor = System.Drawing.Color.Lime
-        Me.TextBox2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox2.ForeColor = System.Drawing.SystemColors.InactiveCaptionText
-        Me.TextBox2.Location = New System.Drawing.Point(427, 22)
-        Me.TextBox2.Margin = New System.Windows.Forms.Padding(2)
-        Me.TextBox2.Multiline = True
-        Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(49, 24)
-        Me.TextBox2.TabIndex = 16
-        Me.TextBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'TextBox8
-        '
-        Me.TextBox8.BackColor = System.Drawing.Color.Lime
-        Me.TextBox8.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox8.ForeColor = System.Drawing.SystemColors.InactiveCaptionText
-        Me.TextBox8.Location = New System.Drawing.Point(373, 64)
-        Me.TextBox8.Margin = New System.Windows.Forms.Padding(2)
-        Me.TextBox8.Multiline = True
-        Me.TextBox8.Name = "TextBox8"
-        Me.TextBox8.Size = New System.Drawing.Size(49, 24)
-        Me.TextBox8.TabIndex = 15
-        Me.TextBox8.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'TextBox3
-        '
-        Me.TextBox3.BackColor = System.Drawing.Color.Lime
-        Me.TextBox3.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox3.ForeColor = System.Drawing.SystemColors.InactiveCaptionText
-        Me.TextBox3.Location = New System.Drawing.Point(373, 22)
-        Me.TextBox3.Margin = New System.Windows.Forms.Padding(2)
-        Me.TextBox3.Multiline = True
-        Me.TextBox3.Name = "TextBox3"
-        Me.TextBox3.Size = New System.Drawing.Size(49, 24)
-        Me.TextBox3.TabIndex = 15
-        Me.TextBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
         'TextBox7
         '
         Me.TextBox7.BackColor = System.Drawing.Color.Lime
         Me.TextBox7.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox7.ForeColor = System.Drawing.SystemColors.InactiveCaptionText
-        Me.TextBox7.Location = New System.Drawing.Point(319, 64)
+        Me.TextBox7.Location = New System.Drawing.Point(252, 63)
         Me.TextBox7.Margin = New System.Windows.Forms.Padding(2)
         Me.TextBox7.Multiline = True
         Me.TextBox7.Name = "TextBox7"
@@ -409,7 +338,7 @@ Partial Class Andon
         Me.TextBox4.BackColor = System.Drawing.Color.Lime
         Me.TextBox4.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox4.ForeColor = System.Drawing.SystemColors.InactiveCaptionText
-        Me.TextBox4.Location = New System.Drawing.Point(319, 22)
+        Me.TextBox4.Location = New System.Drawing.Point(252, 21)
         Me.TextBox4.Margin = New System.Windows.Forms.Padding(2)
         Me.TextBox4.Multiline = True
         Me.TextBox4.Name = "TextBox4"
@@ -417,39 +346,13 @@ Partial Class Andon
         Me.TextBox4.TabIndex = 14
         Me.TextBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
-        'TextBox6
-        '
-        Me.TextBox6.BackColor = System.Drawing.Color.Lime
-        Me.TextBox6.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox6.ForeColor = System.Drawing.SystemColors.InactiveCaptionText
-        Me.TextBox6.Location = New System.Drawing.Point(535, 64)
-        Me.TextBox6.Margin = New System.Windows.Forms.Padding(2)
-        Me.TextBox6.Multiline = True
-        Me.TextBox6.Name = "TextBox6"
-        Me.TextBox6.Size = New System.Drawing.Size(49, 24)
-        Me.TextBox6.TabIndex = 13
-        Me.TextBox6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'TextBox5
-        '
-        Me.TextBox5.BackColor = System.Drawing.Color.Lime
-        Me.TextBox5.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox5.ForeColor = System.Drawing.SystemColors.InactiveCaptionText
-        Me.TextBox5.Location = New System.Drawing.Point(535, 22)
-        Me.TextBox5.Margin = New System.Windows.Forms.Padding(2)
-        Me.TextBox5.Multiline = True
-        Me.TextBox5.Name = "TextBox5"
-        Me.TextBox5.Size = New System.Drawing.Size(49, 24)
-        Me.TextBox5.TabIndex = 13
-        Me.TextBox5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
         'TextBox11
         '
         Me.TextBox11.Anchor = System.Windows.Forms.AnchorStyles.Left
         Me.TextBox11.BackColor = System.Drawing.Color.Lime
         Me.TextBox11.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox11.ForeColor = System.Drawing.SystemColors.InactiveCaptionText
-        Me.TextBox11.Location = New System.Drawing.Point(535, 110)
+        Me.TextBox11.Location = New System.Drawing.Point(295, 108)
         Me.TextBox11.Margin = New System.Windows.Forms.Padding(2)
         Me.TextBox11.Multiline = True
         Me.TextBox11.Name = "TextBox11"
@@ -463,7 +366,7 @@ Partial Class Andon
         Me.TextBox12.BackColor = System.Drawing.Color.DarkOrange
         Me.TextBox12.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox12.ForeColor = System.Drawing.SystemColors.InactiveCaptionText
-        Me.TextBox12.Location = New System.Drawing.Point(535, 138)
+        Me.TextBox12.Location = New System.Drawing.Point(295, 136)
         Me.TextBox12.Margin = New System.Windows.Forms.Padding(2)
         Me.TextBox12.Multiline = True
         Me.TextBox12.Name = "TextBox12"
@@ -477,7 +380,7 @@ Partial Class Andon
         Me.TextBox13.BackColor = System.Drawing.Color.Red
         Me.TextBox13.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox13.ForeColor = System.Drawing.SystemColors.InactiveCaptionText
-        Me.TextBox13.Location = New System.Drawing.Point(535, 167)
+        Me.TextBox13.Location = New System.Drawing.Point(295, 165)
         Me.TextBox13.Margin = New System.Windows.Forms.Padding(2)
         Me.TextBox13.Multiline = True
         Me.TextBox13.Name = "TextBox13"
@@ -492,15 +395,9 @@ Partial Class Andon
         Me.GroupBox1.Controls.Add(Me.TextBox13)
         Me.GroupBox1.Controls.Add(Me.TextBox12)
         Me.GroupBox1.Controls.Add(Me.TextBox11)
-        Me.GroupBox1.Controls.Add(Me.TextBox5)
-        Me.GroupBox1.Controls.Add(Me.TextBox6)
+        Me.GroupBox1.Controls.Add(Me.TextBox1)
         Me.GroupBox1.Controls.Add(Me.TextBox4)
         Me.GroupBox1.Controls.Add(Me.TextBox7)
-        Me.GroupBox1.Controls.Add(Me.TextBox3)
-        Me.GroupBox1.Controls.Add(Me.TextBox8)
-        Me.GroupBox1.Controls.Add(Me.TextBox2)
-        Me.GroupBox1.Controls.Add(Me.TextBox9)
-        Me.GroupBox1.Controls.Add(Me.TextBox1)
         Me.GroupBox1.Controls.Add(Me.TextBox10)
         Me.GroupBox1.Controls.Add(Me.Label62)
         Me.GroupBox1.Controls.Add(Me.Label63)
@@ -517,9 +414,9 @@ Partial Class Andon
         Me.GroupBox1.Controls.Add(Me.Label67)
         Me.GroupBox1.Controls.Add(Me.Label64)
         Me.GroupBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox1.Location = New System.Drawing.Point(546, 452)
+        Me.GroupBox1.Location = New System.Drawing.Point(560, 452)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(855, 204)
+        Me.GroupBox1.Size = New System.Drawing.Size(600, 204)
         Me.GroupBox1.TabIndex = 18
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Legend"
@@ -536,12 +433,25 @@ Partial Class Andon
         Me.Label16.Text = "Line nr."
         Me.Label16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
+        'TextBox1
+        '
+        Me.TextBox1.BackColor = System.Drawing.Color.Lime
+        Me.TextBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox1.ForeColor = System.Drawing.SystemColors.InactiveCaptionText
+        Me.TextBox1.Location = New System.Drawing.Point(305, 21)
+        Me.TextBox1.Margin = New System.Windows.Forms.Padding(2)
+        Me.TextBox1.Multiline = True
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.Size = New System.Drawing.Size(49, 24)
+        Me.TextBox1.TabIndex = 14
+        Me.TextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
         'Andon
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.ClientSize = New System.Drawing.Size(1290, 686)
+        Me.ClientSize = New System.Drawing.Size(1215, 686)
         Me.Controls.Add(Me.PictureBoxSound)
         Me.Controls.Add(Me.PictureBoxLogo)
         Me.Controls.Add(Me.PictureBox5)
@@ -588,15 +498,8 @@ Partial Class Andon
     Friend WithEvents TextBox13 As TextBox
     Friend WithEvents TextBox12 As TextBox
     Friend WithEvents TextBox11 As TextBox
-    Friend WithEvents TextBox5 As TextBox
-    Friend WithEvents TextBox6 As TextBox
     Friend WithEvents TextBox4 As TextBox
     Friend WithEvents TextBox7 As TextBox
-    Friend WithEvents TextBox3 As TextBox
-    Friend WithEvents TextBox8 As TextBox
-    Friend WithEvents TextBox2 As TextBox
-    Friend WithEvents TextBox9 As TextBox
-    Friend WithEvents TextBox1 As TextBox
     Friend WithEvents TextBox10 As TextBox
     Friend WithEvents Label62 As Label
     Friend WithEvents Label63 As Label
@@ -613,4 +516,5 @@ Partial Class Andon
     Friend WithEvents Label67 As Label
     Friend WithEvents Label64 As Label
     Friend WithEvents Label16 As Label
+    Friend WithEvents TextBox1 As TextBox
 End Class

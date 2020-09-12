@@ -3,6 +3,7 @@
 Public Class Form1
     Public terminalName As String = System.Reflection.Assembly.GetExecutingAssembly().GetName().Name    ' Get name of current file
     Public lineCount As Integer = 0                   ' Number of lines displayed on this form
+    Public alarmTypes As Integer = 0                  ' Number of displayed alarm types
     Public displayedLines(10) As Integer              ' Numbers or lines from linky.txt displayed on this form
     Public alarmStartDateTime(10, 4) As DateTime      ' When alarm was pressed last time
     Public alarmEndDateTime(10, 4) As DateTime        ' When alarm was turned off
@@ -29,25 +30,23 @@ Public Class Form1
 
         ' Read Settings from Text File
         Dim rootpath As String = Application.StartupPath
-        Using MyReader2 As New Microsoft.VisualBasic.FileIO.TextFieldParser("Assets/settings.txt")
-            logofile = MyReader2.ReadLine()
-            alarmfile = MyReader2.ReadLine()
-            instructions = MyReader2.ReadLine()
-            icon1lbl = MyReader2.ReadLine()
-            icon2lbl = MyReader2.ReadLine()
-            icon3lbl = MyReader2.ReadLine()
-            icon4lbl = MyReader2.ReadLine()
-            icon5lbl = MyReader2.ReadLine()
-            icon1imgfile = MyReader2.ReadLine()
-            icon2imgfile = MyReader2.ReadLine()
-            icon3imgfile = MyReader2.ReadLine()
-            icon4imgfile = MyReader2.ReadLine()
-            icon5imgfile = MyReader2.ReadLine()
-            Try
-                noOfColors = CInt(MyReader2.ReadLine()) 'read the next line for no. of color schemes to be used
-            Catch ex As Exception
-                'if there is an error reading no of colors then we will keep it default (2)
-            End Try
+        Using MyReader As New Microsoft.VisualBasic.FileIO.TextFieldParser("Assets/settings.txt")
+            alarmTypes = CInt(MyReader.ReadLine())
+            noOfColors = CInt(MyReader.ReadLine()) 'read the next line for no. of color schemes to be used
+            logofile = MyReader.ReadLine()
+            alarmfile = MyReader.ReadLine()
+            instructions = MyReader.ReadLine()
+            icon1lbl = MyReader.ReadLine()
+            icon2lbl = MyReader.ReadLine()
+            icon3lbl = MyReader.ReadLine()
+            icon4lbl = MyReader.ReadLine()
+            icon5lbl = MyReader.ReadLine()
+            icon1imgfile = MyReader.ReadLine()
+            icon2imgfile = MyReader.ReadLine()
+            icon3imgfile = MyReader.ReadLine()
+            icon4imgfile = MyReader.ReadLine()
+            icon5imgfile = MyReader.ReadLine()
+
             PopulateAutoInfo()
         End Using
 
@@ -100,7 +99,7 @@ Public Class Form1
                 lineStatusStr(i, j) = "Green"
             Next
         Next
-        For i = 0 To lineCount * 5 - 1
+        For i = 0 To lineCount * alarmTypes - 1
             Dim myBox As TextBox = CType(Me.Controls("TBox" & i + 1), TextBox)
             If myBox Is Nothing Then
 
@@ -144,7 +143,7 @@ Public Class Form1
                                                                     , TBox31.MouseEnter, TBox32.MouseEnter, TBox33.MouseEnter, TBox34.MouseEnter, TBox35.MouseEnter, TBox36.MouseEnter, TBox37.MouseEnter, TBox38.MouseEnter, TBox39.MouseEnter, TBox40.MouseEnter _
                                                                     , TBox41.MouseEnter, TBox42.MouseEnter, TBox43.MouseEnter, TBox44.MouseEnter, TBox45.MouseEnter, TBox46.MouseEnter, TBox47.MouseEnter, TBox48.MouseEnter, TBox49.MouseEnter, TBox50.MouseEnter
 
-        For i = 0 To lineCount * 5 - 1
+        For i = 0 To lineCount * alarmTypes - 1
             Dim myBox As TextBox = CType(Me.Controls("TBox" & i + 1), TextBox)
             If myBox Is Nothing Then
 
@@ -159,7 +158,7 @@ Public Class Form1
                                                                     , TBox21.MouseLeave, TBox22.MouseLeave, TBox23.MouseLeave, TBox24.MouseLeave, TBox25.MouseLeave, TBox26.MouseLeave, TBox27.MouseLeave, TBox28.MouseLeave, TBox29.MouseLeave, TBox30.MouseLeave _
                                                                     , TBox31.MouseLeave, TBox32.MouseLeave, TBox33.MouseLeave, TBox34.MouseLeave, TBox35.MouseLeave, TBox36.MouseLeave, TBox37.MouseLeave, TBox38.MouseLeave, TBox39.MouseLeave, TBox40.MouseLeave _
                                                                     , TBox41.MouseLeave, TBox42.MouseLeave, TBox43.MouseLeave, TBox44.MouseLeave, TBox45.MouseLeave, TBox46.MouseLeave, TBox47.MouseLeave, TBox48.MouseLeave, TBox49.MouseLeave, TBox50.MouseLeave
-        For i = 0 To lineCount * 5 - 1
+        For i = 0 To lineCount * alarmTypes - 1
             Dim myBox As TextBox = CType(Me.Controls("TBox" & i + 1), TextBox)
             If myBox Is Nothing Then
 
@@ -175,9 +174,9 @@ Public Class Form1
             Dim alarmType As Integer
             Using outputFile As New StreamWriter("Data/alarmlog_" & terminalName & ".txt", True)
                 Dim sb As New System.Text.StringBuilder
-                If (CInt(controlObj.Remove(0, 4)) Mod 5) = 0 Then
+                If (CInt(controlObj.Remove(0, 4)) Mod alarmTypes) = 0 Then
                     alarmType = 5
-                Else alarmType = (CInt(controlObj.Remove(0, 4)) Mod 5)
+                Else alarmType = (CInt(controlObj.Remove(0, 4)) Mod alarmTypes)
                 End If
                 sb.Append("Event DateTime : " & DateTime.Now & ";")
                 sb.Append(" Line : " & line & ";")
@@ -197,7 +196,7 @@ Public Class Form1
 
         ' If alarm is switched on, set starting time in alarmStartTime and write initial label in text box
         For i As Integer = 0 To lineCount - 1
-            For j As Integer = 0 To 4
+            For j As Integer = 0 To alarmTypes - 1
                 Dim myBox As TextBox = CType(Me.Controls("TBox" & i * 5 + j + 1), TextBox)
                 If sender Is myBox Then
                     If noOfColors = 3 Then
@@ -247,8 +246,8 @@ Public Class Form1
 
         ' Update background colours of TextBoxes
         For i = 0 To lineCount - 1
-            For j = 0 To 4
-                Dim myBox As TextBox = CType(Me.Controls("TBox" & i * 5 + j + 1), TextBox)
+            For j = 0 To alarmTypes - 1
+                Dim myBox As TextBox = CType(Me.Controls("TBox" & i * alarmTypes + j + 1), TextBox)
                 If myBox Is Nothing Then
                 Else
                     If lineStatusStr(i, j) = "Green" Then
@@ -294,7 +293,7 @@ Public Class Form1
         Button1_Click(sender, e)
         Dim i, j As Integer
         For i = 0 To lineCount - 1
-            For j = 0 To 4
+            For j = 0 To alarmTypes - 1
                 Dim myBox As TextBox = CType(Me.Controls("TBox" & i * 5 + j + 1), TextBox)
                 Try
                     If lineStatusStr(i, j) = "Yellow" Or lineStatusStr(i, j) = "Red" Then myBox.Text = "                       " & DateDiff(DateInterval.Minute, alarmStartDateTime(i, j), DateTime.Now) & " min"

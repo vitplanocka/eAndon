@@ -1,7 +1,6 @@
 ﻿Imports System.IO
 
 'TODO:  
-' - replace 4/5 by AlarmTypes
 ' - read out AlarmTypes from configuration file
 ' - create variables for positioning of nameLabels and lineLabels
 
@@ -9,15 +8,15 @@
 Public Class Andon
 
     Public nOfLines As Integer = 0 ' number of displayed lines
+    Public alarmTypes As Integer = 0  ' number of displayed alarm types
     Public lineLabels(100, 3) As String
     Public nOfPreviousAlarms As Integer
     Public nOfAlarms As Integer
-    Public lineStatusStr(nOfLines - 1, 4) As String
-    Public previousLineStatusStr(nOfLines - 1, 4) As String
+    Public lineStatusStr(nOfLines - 1, alarmTypes - 1) As String
+    Public previousLineStatusStr(nOfLines - 1, alarmTypes - 1) As String
     Public alarmStartTime(100, 4) As Date
     Public oldFile As Boolean
-    Public maxDelay As Integer = 10   ' text files older than x minutes are ignored
-    Public alarmTypes As Integer = 5  ' number of displayed alarm types
+    Public maxDelay As Integer = 1   ' text files older than x minutes are ignored
     Public soundOn As Boolean = False
     Public priorityLines(nOfLines) As Integer
 
@@ -38,28 +37,29 @@ Public Class Andon
         ' Things to do when app starts
 
         ' Maximize the window
-        Me.WindowState = FormWindowState.Maximized
+        ' Me.WindowState = FormWindowState.Maximized
 
         ' Set watcher path to current folder
         watcher2.Path = Application.StartupPath & "/Data"
 
         ' Read Settings from Text File
         Dim rootpath As String = Application.StartupPath
-        Using MyReader2 As New Microsoft.VisualBasic.FileIO.TextFieldParser("Assets/settings.txt")
-            logofile = MyReader2.ReadLine()
-            alarmfile = MyReader2.ReadLine()
-            MyReader2.ReadLine()
-            icon1lbl = MyReader2.ReadLine()
-            icon2lbl = MyReader2.ReadLine()
-            icon3lbl = MyReader2.ReadLine()
-            icon4lbl = MyReader2.ReadLine()
-            icon5lbl = MyReader2.ReadLine()
-            icon1imgfile = MyReader2.ReadLine()
-            icon2imgfile = MyReader2.ReadLine()
-            icon3imgfile = MyReader2.ReadLine()
-            icon4imgfile = MyReader2.ReadLine()
-            icon5imgfile = MyReader2.ReadLine()
-            PopulateAutoInfo()
+        Using MyReader As New Microsoft.VisualBasic.FileIO.TextFieldParser("Assets/settings.txt")
+            alarmTypes = CInt(MyReader.ReadLine())
+            MyReader.ReadLine()  ' 2 or 3 status colours
+            PictureBoxLogo.ImageLocation = MyReader.ReadLine()
+            alarmfile = MyReader.ReadLine()
+            MyReader.ReadLine()
+            icon1lbl = MyReader.ReadLine()
+            icon2lbl = MyReader.ReadLine()
+            icon3lbl = MyReader.ReadLine()
+            icon4lbl = MyReader.ReadLine()
+            icon5lbl = MyReader.ReadLine()
+            PictureBox1.ImageLocation = MyReader.ReadLine()
+            PictureBox2.ImageLocation = MyReader.ReadLine()
+            PictureBox3.ImageLocation = MyReader.ReadLine()
+            PictureBox4.ImageLocation = MyReader.ReadLine()
+            PictureBox5.ImageLocation = MyReader.ReadLine()
         End Using
 
 
@@ -70,8 +70,8 @@ Public Class Andon
 
             nOfLines = MyReader.ReadLine
 
-            lineStatusStr = New String(nOfLines - 1, 4) {}
-            previousLineStatusStr = New String(nOfLines - 1, 4) {}
+            lineStatusStr = New String(nOfLines - 1, alarmTypes - 1) {}
+            previousLineStatusStr = New String(nOfLines - 1, alarmTypes - 1) {}
             Dim i As Integer = 0
 
             Dim currentRow As String()
@@ -96,7 +96,7 @@ Public Class Andon
         For i As Integer = 0 To nOfLines * alarmTypes - 1 'Create labels and set properties
             newbox = New Label With {
                 .Size = New Drawing.Size(40, 20),
-                .Location = New Point(100 + (i Mod alarmTypes) * 53, 55 + (i - (i Mod alarmTypes)) * 5),
+                .Location = New Point(100 + (i Mod alarmTypes) * 53, 55 + (i - (i Mod alarmTypes)) * alarmTypes),
                 .Font = New Font("Arial", 8),
                 .TextAlign = ContentAlignment.MiddleCenter
                  }
@@ -137,7 +137,7 @@ Public Class Andon
         nOfAlarms = 0
 
         For i = 0 To nOfLines - 1
-            For j = 0 To 4
+            For j = 0 To alarmTypes - 1
                 If lineStatusStr(i, j) = "Yellow" Then nOfAlarms = nOfAlarms + 1
                 If lineStatusStr(i, j) = "Red" Then nOfAlarms = nOfAlarms + 2
             Next
@@ -145,7 +145,7 @@ Public Class Andon
 
         ' Set everything to green
         For i = 0 To nOfLines - 1
-            For j = 0 To 4
+            For j = 0 To alarmTypes - 1
                 lineStatusStr(i, j) = "Green"
                 previousLineStatusStr(i, j) = "Green"
             Next
@@ -167,36 +167,27 @@ Public Class Andon
 
     End Sub
 
-    Private Sub PopulateAutoInfo()    ' Load labels and descriptions from the settings file
-        PictureBoxLogo.ImageLocation = logofile
-        PictureBox1.ImageLocation = icon1imgfile
-        PictureBox2.ImageLocation = icon2imgfile
-        PictureBox3.ImageLocation = icon3imgfile
-        PictureBox4.ImageLocation = icon4imgfile
-        PictureBox5.ImageLocation = icon5imgfile
-    End Sub
-
     Private Sub UpdateFields(sender As Object, e As FileSystemEventArgs)
         ' Update alarm fields according to the current text files
 
         ' Copy initial lineStatus state to be able to find out later which lines were updated
         Dim i As Integer
         For i = 0 To nOfLines - 1
-            For j = 0 To 4
+            For j = 0 To alarmTypes - 1
                 previousLineStatusStr(i, j) = lineStatusStr(i, j)
             Next
         Next
 
-            '-----------------------------------------------------------------------
-            ' Read updated text file and update relevant fields
-            Dim lineNumber As String
+        '-----------------------------------------------------------------------
+        ' Read updated text file and update relevant fields
+        Dim lineNumber As String
         Try
             Using inputFile As New StreamReader(e.FullPath)
                 oldFile = DateDiff(DateInterval.Minute, Convert.ToDateTime(System.IO.File.GetLastWriteTime(e.FullPath)), DateTime.Now) > maxDelay
                 While Not (inputFile.EndOfStream Or oldFile)
                     lineNumber = inputFile.ReadLine()
                     inputFile.ReadLine()
-                    For i = 0 To 4
+                    For i = 0 To alarmTypes - 1
                         Try
                             lineStatusStr(CInt(lineNumber), i) = inputFile.ReadLine()
                         Catch ex As Exception
@@ -251,12 +242,12 @@ Public Class Andon
         nOfPreviousAlarms = nOfAlarms
         nOfAlarms = 0
         For i = 0 To nOfLines - 1
-            For j = 0 To 4
+            For j = 0 To alarmTypes - 1
                 If lineStatusStr(i, j) = "Yellow" Then nOfAlarms = nOfAlarms + 1
                 If lineStatusStr(i, j) = "Red" Then nOfAlarms = nOfAlarms + 2
             Next
         Next
-            If nOfAlarms > nOfPreviousAlarms Then
+        If nOfAlarms > nOfPreviousAlarms Then
             Dim fpath As String = Application.StartupPath + "/Assets/alarm.wav"
             If soundOn Then My.Computer.Audio.Play(fpath, AudioPlayMode.Background)
 
@@ -300,7 +291,7 @@ Public Class Andon
         ' Periodically update time since alarm was started
         Dim i, j As Integer
         For i = 0 To nOfLines - 1
-            For j = 0 To 4
+            For j = 0 To alarmTypes - 1
                 Dim myLabel As Label = CType(Controls("LineLabel" & i * alarmTypes + j), Label)
                 If lineStatusStr(i, j) = "Yellow" Or lineStatusStr(i, j) = "Red" Then
                     If DateDiff(DateInterval.Minute, alarmStartTime(i, j), DateTime.Now) > 9 Then myLabel.Text = DateDiff(DateInterval.Minute, alarmStartTime(i, j), DateTime.Now) Else myLabel.Text = DateDiff(DateInterval.Minute, alarmStartTime(i, j), DateTime.Now) & " min"

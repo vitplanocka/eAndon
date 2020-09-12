@@ -1,4 +1,6 @@
-﻿Assets\logo.png
+﻿5
+3
+Assets\logo.png
 Assets\alarms\alarm.wav
 IN CASE OF PROBLEM CLICK ON APPROPRIATE GREEN FIELD.    ORANGE FIELD MEANS LINE HAS A PROBLEM BUT IS STILL RUNNING. RED MEANS THAT LINE HAS STOPPED.    AFTER PROBLEM IS SOLVED, CLICK THE FIELD AGAIN AND CHANGE IT TO GREEN. 
 Help from Teamleader
@@ -11,4 +13,3 @@ Assets\Icon2.png
 Assets\Icon3.png
 Assets\Icon4.png
 Assets\Icon5.png
-3
