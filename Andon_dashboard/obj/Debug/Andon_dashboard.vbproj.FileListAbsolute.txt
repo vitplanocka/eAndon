@@ -10,3 +10,14 @@ C:\Users\planockav\Source\Repos\eAndon\Andon_dashboard\obj\Debug\Andon_dashboard
 C:\Users\planockav\Source\Repos\eAndon\Andon_dashboard\obj\Debug\Andon_dashboard.exe
 C:\Users\planockav\Source\Repos\eAndon\Andon_dashboard\obj\Debug\Andon_dashboard.xml
 C:\Users\planockav\Source\Repos\eAndon\Andon_dashboard\obj\Debug\Andon_dashboard.pdb
+D:\Repo\Andon_dashboard\bin\Debug\Andon_dashboard.exe.config
+D:\Repo\Andon_dashboard\bin\Debug\Andon_dashboard.exe
+D:\Repo\Andon_dashboard\bin\Debug\Andon_dashboard.pdb
+D:\Repo\Andon_dashboard\bin\Debug\Andon_dashboard.xml
+D:\Repo\Andon_dashboard\obj\Debug\Andon_dashboard.Andon.resources
+D:\Repo\Andon_dashboard\obj\Debug\Andon_dashboard.Resources.resources
+D:\Repo\Andon_dashboard\obj\Debug\Andon_dashboard.vbproj.GenerateResource.Cache
+D:\Repo\Andon_dashboard\obj\Debug\Andon_dashboard.vbproj.CoreCompileInputs.cache
+D:\Repo\Andon_dashboard\obj\Debug\Andon_dashboard.exe
+D:\Repo\Andon_dashboard\obj\Debug\Andon_dashboard.xml
+D:\Repo\Andon_dashboard\obj\Debug\Andon_dashboard.pdb

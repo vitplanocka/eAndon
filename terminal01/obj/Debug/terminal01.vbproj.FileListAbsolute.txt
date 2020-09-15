@@ -10,3 +10,15 @@ C:\Users\planockav\Source\Repos\eAndon\terminal01\obj\Debug\terminal01.vbproj.Co
 C:\Users\planockav\Source\Repos\eAndon\terminal01\obj\Debug\terminal01.exe
 C:\Users\planockav\Source\Repos\eAndon\terminal01\obj\Debug\terminal01.xml
 C:\Users\planockav\Source\Repos\eAndon\terminal01\obj\Debug\terminal01.pdb
+D:\Repo\terminal01\bin\Debug\terminal01.exe.config
+D:\Repo\terminal01\bin\Debug\terminal01.exe
+D:\Repo\terminal01\bin\Debug\terminal01.pdb
+D:\Repo\terminal01\bin\Debug\terminal01.xml
+D:\Repo\terminal01\obj\Debug\terminal01.Form1.resources
+D:\Repo\terminal01\obj\Debug\terminal01.Resources.resources
+D:\Repo\terminal01\obj\Debug\terminal01.vbproj.GenerateResource.Cache
+D:\Repo\terminal01\obj\Debug\terminal01.vbproj.CoreCompileInputs.cache
+D:\Repo\terminal01\obj\Debug\terminal01.exe
+D:\Repo\terminal01\obj\Debug\terminal01.xml
+D:\Repo\terminal01\obj\Debug\terminal01.pdb
+D:\Repo\terminal01\obj\Debug\terminal01.vbprojResolveAssemblyReference.cache
