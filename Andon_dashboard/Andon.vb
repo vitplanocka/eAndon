@@ -78,7 +78,6 @@ Public Class Andon
 			PictureBox10.ImageLocation = MyReader.ReadLine()
 		End Using
 
-
 		' Load the line labels
 		Using MyReader As New Microsoft.VisualBasic.FileIO.TextFieldParser("Assets/production_lines.txt")
 			MyReader.TextFieldType = FileIO.FieldType.Delimited
