@@ -33,3 +33,15 @@ Event DateTime : 2020-08-30 13:51:57; Line : 02-001; Alarm type : 4; New Color :
 Event DateTime : 2020-08-30 13:51:57; Line : 02-001; Alarm type : 4; New Color : Yellow; Length of alarm (minutes) : 0
 Event DateTime : 2020-08-30 13:51:58; Line : 02-001; Alarm type : 4; New Color : Red; Length of alarm (minutes) : 0
 Event DateTime : 2020-08-30 13:51:58; Line : 02-001; Alarm type : 4; New Color : Green; Length of alarm (minutes) : 0
+Event DateTime : 2020-09-12 22:01:39; Line : 01; Alarm type : 2; New Color : Yellow; Length of alarm (minutes) : 0
+Event DateTime : 2020-09-12 22:01:40; Line : 01; Alarm type : 2; New Color : Red; Length of alarm (minutes) : 0
+Event DateTime : 2020-09-12 22:01:41; Line : 03A; Alarm type : 4; New Color : Yellow; Length of alarm (minutes) : 0
+Event DateTime : 2020-09-12 22:01:42; Line : 03A; Alarm type : 4; New Color : Red; Length of alarm (minutes) : 0
+Event DateTime : 2020-09-12 22:01:43; Line : 03A; Alarm type : 4; New Color : Green; Length of alarm (minutes) : 0
+Event DateTime : 2020-09-12 22:01:44; Line : 01; Alarm type : 2; New Color : Green; Length of alarm (minutes) : 0
+Event DateTime : 2020-09-12 22:01:49; Line : 01; Alarm type : 5; New Color : Yellow; Length of alarm (minutes) : 0
+Event DateTime : 2020-09-12 22:01:50; Line : 01; Alarm type : 5; New Color : Red; Length of alarm (minutes) : 0
+Event DateTime : 2020-09-12 22:01:51; Line : 03A; Alarm type : 2; New Color : Yellow; Length of alarm (minutes) : 0
+Event DateTime : 2020-09-12 22:01:52; Line : 03A; Alarm type : 2; New Color : Red; Length of alarm (minutes) : 0
+Event DateTime : 2020-09-12 22:01:53; Line : 03A; Alarm type : 2; New Color : Green; Length of alarm (minutes) : 0
+Event DateTime : 2020-09-12 22:01:54; Line : 01; Alarm type : 5; New Color : Green; Length of alarm (minutes) : 0

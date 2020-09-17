@@ -21,3 +21,4 @@ C:\Users\Vit\source\repos\vitplanocka\eAndon\terminal01\obj\Release\terminal01.v
 C:\Users\Vit\source\repos\vitplanocka\eAndon\terminal01\obj\Release\terminal01.exe
 C:\Users\Vit\source\repos\vitplanocka\eAndon\terminal01\obj\Release\terminal01.xml
 C:\Users\Vit\source\repos\vitplanocka\eAndon\terminal01\obj\Release\terminal01.pdb
+C:\Users\planockav\Source\Repos\eAndon\terminal01\obj\Release\terminal01.vbprojAssemblyReference.cache

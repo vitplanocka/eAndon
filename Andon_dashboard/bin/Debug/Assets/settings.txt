@@ -1,0 +1,20 @@
+﻿Number of types of alarms : 10
+Number of status colours : 3
+Image file for company logo : Assets\logo.png
+Assets\alarms\alarm.wav
+IN CASE OF PROBLEM CLICK ON APPROPRIATE GREEN FIELD.    ORANGE FIELD MEANS LINE HAS A PROBLEM BUT IS STILL RUNNING. RED MEANS THAT LINE HAS STOPPED.    AFTER PROBLEM IS SOLVED, CLICK THE FIELD AGAIN AND CHANGE IT TO GREEN. 
+Help from Teamleader
+Help from Maintenance
+Help from Quality
+Missing material
+Handler - empty/full packaging
+Assets\Icon1.png
+Assets\Icon2.png
+Assets\Icon3.png
+Assets\Icon4.png
+Assets\Icon5.png
+Assets\Icon1.png
+Assets\Icon2.png
+Assets\Icon3.png
+Assets\Icon4.png
+Assets\Icon5.png
