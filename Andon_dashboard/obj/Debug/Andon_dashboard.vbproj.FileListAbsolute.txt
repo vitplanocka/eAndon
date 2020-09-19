@@ -21,3 +21,15 @@ D:\Repo\Andon_dashboard\obj\Debug\Andon_dashboard.vbproj.CoreCompileInputs.cache
 D:\Repo\Andon_dashboard\obj\Debug\Andon_dashboard.exe
 D:\Repo\Andon_dashboard\obj\Debug\Andon_dashboard.xml
 D:\Repo\Andon_dashboard\obj\Debug\Andon_dashboard.pdb
+C:\Users\plano\Source\Repos\eAndon\Andon_dashboard\bin\Debug\Andon_dashboard.exe.config
+C:\Users\plano\Source\Repos\eAndon\Andon_dashboard\bin\Debug\Andon_dashboard.exe
+C:\Users\plano\Source\Repos\eAndon\Andon_dashboard\bin\Debug\Andon_dashboard.pdb
+C:\Users\plano\Source\Repos\eAndon\Andon_dashboard\bin\Debug\Andon_dashboard.xml
+C:\Users\plano\Source\Repos\eAndon\Andon_dashboard\obj\Debug\Andon_dashboard.vbprojAssemblyReference.cache
+C:\Users\plano\Source\Repos\eAndon\Andon_dashboard\obj\Debug\Andon_dashboard.Andon.resources
+C:\Users\plano\Source\Repos\eAndon\Andon_dashboard\obj\Debug\Andon_dashboard.Resources.resources
+C:\Users\plano\Source\Repos\eAndon\Andon_dashboard\obj\Debug\Andon_dashboard.vbproj.GenerateResource.cache
+C:\Users\plano\Source\Repos\eAndon\Andon_dashboard\obj\Debug\Andon_dashboard.vbproj.CoreCompileInputs.cache
+C:\Users\plano\Source\Repos\eAndon\Andon_dashboard\obj\Debug\Andon_dashboard.exe
+C:\Users\plano\Source\Repos\eAndon\Andon_dashboard\obj\Debug\Andon_dashboard.xml
+C:\Users\plano\Source\Repos\eAndon\Andon_dashboard\obj\Debug\Andon_dashboard.pdb

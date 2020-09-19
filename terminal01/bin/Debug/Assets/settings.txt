@@ -1,7 +1,7 @@
-﻿Number of types of alarms : 8
+﻿Number of alarm types to display : 8
 Number of status colours : 3
-Image file for company logo : Assets\logo.png
-Assets\alarms\alarm.wav
+Image file for company logo : logo.png
+Alarm sound file : alarm.wav
 IN CASE OF PROBLEM CLICK ON APPROPRIATE GREEN FIELD.    ORANGE FIELD MEANS LINE HAS A PROBLEM BUT IS STILL RUNNING. RED MEANS THAT LINE HAS STOPPED.    AFTER PROBLEM IS SOLVED, CLICK THE FIELD AGAIN AND CHANGE IT TO GREEN. 
 Help from Teamleader
 Help from Maintenance

@@ -1,15 +1,21 @@
 ﻿Imports System.IO
 
+'TODO:  
+' - fix mouseover and clicking for last 2 fields
+' - fix  timer tick exception
+' - remove For j=10
+' - make alarm fields dynamic
+
 Public Class Form1
 	Public terminalName As String = System.Reflection.Assembly.GetExecutingAssembly().GetName().Name    ' Get name of current file
 	Public lineCount As Integer = 0                   ' Number of lines displayed on this form
 	Public alarmTypes As Integer = 0                  ' Number of displayed alarm types
-	Public displayedLines(10) As Integer              ' Numbers or lines from linky.txt displayed on this form
-	Public alarmStartDateTime(10, 20) As DateTime      ' When alarm was pressed last time
-	Public alarmEndDateTime(10, 20) As DateTime        ' When alarm was turned off
+	Public displayedLines(10) As Integer              ' Numbers or lines from production_lines.txt displayed on this form
+	Public alarmStartDateTime(10, 20) As DateTime     ' When alarm was pressed last time
+	Public alarmEndDateTime(10, 20) As DateTime       ' When alarm was turned off
 	Public noOfColors As Integer = 2                  ' default is 2 but we will read it from settings file
 	Public lineLabels(100, 3) As String               ' #, line number, line name, output file name 
-	Public lineStatusStr(20, 20) As String             ' Green, Yellow, Red
+	Public lineStatusStr(20, 20) As String            ' Green, Yellow, Red
 	Public logofile As String
 	Public alarmfile As String
 	Public instructions As String
@@ -44,17 +50,21 @@ Public Class Form1
 		' Read Settings from Text File
 		Dim rootpath As String = Application.StartupPath
 		Using MyReader As New Microsoft.VisualBasic.FileIO.TextFieldParser("Assets/settings.txt")
-			Dim arrAlramTypes() As String = MyReader.ReadLine().Split(":")
-			Dim strAlramTypes As String = arrAlramTypes(1).ToString().Trim().TrimStart()
-			alarmTypes = CInt(strAlramTypes)
-			Dim arrnoOfColor() As String = MyReader.ReadLine().Split(":")
-			Dim strnoOfColor As String = arrnoOfColor(1).ToString().Trim().TrimStart()
-			noOfColors = CInt(strnoOfColor) 'read the next line for no. of color schemes to be used
-			Dim arrImgLocation() As String = MyReader.ReadLine().Split(":")
-			Dim strImage As String = arrImgLocation(1).ToString().Trim().TrimStart()
-			logofile = strImage
-			alarmfile = MyReader.ReadLine()
+			' Number of alarm types to display
+			Dim lineReader() As String = MyReader.ReadLine().Split(":")
+			alarmTypes = CInt(lineReader(1).ToString().Trim().TrimStart())
+			' Number of status colours
+			lineReader = MyReader.ReadLine().Split(":")
+			noOfColors = CInt(lineReader(1).ToString().Trim().TrimStart())
+			' Image file for company logo
+			lineReader = MyReader.ReadLine().Split(":")
+			PictureBoxLogo.ImageLocation = "Assets/" & lineReader(1).ToString().Trim().TrimStart()
+			' Alarm sound file
+			lineReader = MyReader.ReadLine().Split(":")
+			alarmfile = "Assets/" & lineReader(1).ToString().Trim().TrimStart()
+			' Terminal usage instruction
 			instructions = MyReader.ReadLine()
+			' Alarm type descriptions
 			icon1lbl = MyReader.ReadLine()
 			icon2lbl = MyReader.ReadLine()
 			icon3lbl = MyReader.ReadLine()
@@ -65,6 +75,7 @@ Public Class Form1
 			icon8lbl = MyReader.ReadLine()
 			icon9lbl = MyReader.ReadLine()
 			icon10lbl = MyReader.ReadLine()
+			' Alarm type icons
 			icon1imgfile = MyReader.ReadLine()
 			icon2imgfile = MyReader.ReadLine()
 			icon3imgfile = MyReader.ReadLine()
@@ -151,10 +162,10 @@ Public Class Form1
 			End If
 		Next
 		' Create initial text file
-		Button1_Click(sender, e)
+		Update_Fields(sender, e)
 	End Sub
 	Private Sub PopulateAutoInfo()
-		PictureBox11.ImageLocation = logofile
+		PictureBoxLogo.ImageLocation = logofile
 		TextBoxIns.Text = instructions
 		TextBox1.Text = IIf(icon1lbl = "NA", "", icon1lbl)
 		TextBox2.Text = IIf(icon2lbl = "NA", "", icon2lbl)
@@ -209,7 +220,7 @@ Public Class Form1
 																	, TBox31.Click, TBox32.Click, TBox33.Click, TBox34.Click, TBox35.Click, TBox36.Click, TBox37.Click, TBox38.Click, TBox39.Click, TBox40.Click _
 																	, TBox41.Click, TBox42.Click, TBox43.Click, TBox44.Click, TBox45.Click, TBox46.Click, TBox47.Click, TBox48.Click, TBox49.Click, TBox50.Click, TBox20.Click, TBox19.Click, TBox18.Click, TBox17.Click, TBox16.Click, TBox15.Click, TBox14.Click, TBox13.Click, TBox12.Click, TBox11.Click
 		' If button is clicked, update the fields and change colour
-		Button1_Click(sender, e)
+		Update_Fields(sender, e)
 	End Sub
 
 	Private Sub Tbox1_MouseEnter(sender As Object, e As System.EventArgs) Handles TBox1.MouseEnter, TBox2.MouseEnter, TBox3.MouseEnter, TBox4.MouseEnter, TBox5.MouseEnter, TBox6.MouseEnter, TBox7.MouseEnter, TBox8.MouseEnter, TBox9.MouseEnter, TBox10.MouseEnter _
@@ -227,14 +238,14 @@ Public Class Form1
 			End If
 		Next
 
-		For i = 10 To lineCount * (alarmTypes * 2) - 1
-			Dim myBox As TextBox = CType(Me.Controls("TBox" & i + 1), TextBox)
-			If myBox Is Nothing Then
-
-			Else
-				myBox.Cursor = Cursors.Hand
-			End If
-		Next
+		'For i = 10 To lineCount * (alarmTypes * 2) - 1
+		'	Dim myBox As TextBox = CType(Me.Controls("TBox" & i + 1), TextBox)
+		'		If myBox Is Nothing Then
+		'
+		'		Else
+		'		myBox.Cursor = Cursors.Hand
+		'		End If
+		'		Next
 	End Sub
 	Private Sub Tbox1_MouseLeave(sender As Object, e As System.EventArgs) Handles TBox1.MouseLeave, TBox2.MouseLeave, TBox3.MouseLeave, TBox4.MouseLeave, TBox5.MouseLeave, TBox6.MouseLeave, TBox7.MouseLeave, TBox8.MouseLeave, TBox9.MouseLeave, TBox10.MouseLeave _
 																	, TBox11.MouseLeave, TBox12.MouseLeave, TBox13.MouseLeave, TBox14.MouseLeave, TBox15.MouseLeave, TBox16.MouseLeave, TBox17.MouseLeave, TBox18.MouseLeave, TBox19.MouseLeave, TBox20.MouseLeave _
@@ -250,14 +261,14 @@ Public Class Form1
 			End If
 		Next
 
-		For i = 10 To lineCount * (alarmTypes * 2) - 1
-			Dim myBox As TextBox = CType(Me.Controls("TBox" & i + 1), TextBox)
-			If myBox Is Nothing Then
-
-			Else
-				myBox.Cursor = Cursors.Default
-			End If
-		Next
+		'	For i = 10 To lineCount * (alarmTypes * 2) - 1
+		'	Dim myBox As TextBox = CType(Me.Controls("TBox" & i + 1), TextBox)
+		'	If myBox Is Nothing Then
+		'
+		'Else
+		'myBox.Cursor = Cursors.Default
+		'	End If
+		'	Next
 	End Sub
 
 	Private Sub LogAlarmInfo(line As String, controlObj As String, color As String, alarmLength As Long)
@@ -266,7 +277,7 @@ Public Class Form1
 			Using outputFile As New StreamWriter("Data/alarmlog_" & terminalName & ".txt", True)
 				Dim sb As New System.Text.StringBuilder
 				If (CInt(controlObj.Remove(0, 4)) Mod alarmTypes) = 0 Then
-					alarmType = 5
+					alarmType = alarmTypes
 				Else alarmType = (CInt(controlObj.Remove(0, 4)) Mod alarmTypes)
 				End If
 				sb.Append("Event DateTime : " & DateTime.Now & ";")
@@ -282,59 +293,13 @@ Public Class Form1
 		End Try
 
 	End Sub
-	Private Sub Button1_Click(sender As Object, e As EventArgs)
+	Private Sub Update_Fields(sender As Object, e As EventArgs)
 		' Alarm was clicked, update the fields and export text file
 
 		' If alarm is switched on, set starting time in alarmStartTime and write initial label in text box
 		For i As Integer = 0 To lineCount - 1
 			For j As Integer = 0 To alarmTypes - 1
-				Dim myBox As TextBox = CType(Me.Controls("TBox" & i * 5 + j + 1), TextBox)
-				If sender Is myBox Then
-					If noOfColors = 3 Then
-						If lineStatusStr(i, j) = "Red" Then
-							lineStatusStr(i, j) = "Green"
-						ElseIf lineStatusStr(i, j) = "Green" Then
-							lineStatusStr(i, j) = "Yellow"
-						ElseIf lineStatusStr(i, j) = "Yellow" Then
-							lineStatusStr(i, j) = "Red"
-						End If
-					ElseIf noOfColors = 2 Then
-						If lineStatusStr(i, j) = "Red" Then
-							lineStatusStr(i, j) = "Green"
-						ElseIf lineStatusStr(i, j) = "Green" Then
-							lineStatusStr(i, j) = "Red"
-						End If
-					End If
-
-					If lineStatusStr(i, j) = "Red" Then
-						If noOfColors = 2 Then                     ' in case we switch from yellow to red, we continue the yellow alarm length 
-							alarmStartDateTime(i, j) = DateTime.Now
-							myBox.Text = "                       0 min"
-							PictureBox1.Select()
-						End If
-						myBox.ForeColor = Color.White
-						LogAlarmInfo(lineLabels(displayedLines(i), 1), myBox.Name, lineStatusStr(i, j), 0)
-
-					ElseIf lineStatusStr(i, j) = "Yellow" Then
-						alarmStartDateTime(i, j) = DateTime.Now
-						myBox.Text = "                       0 min"
-						myBox.ForeColor = Color.Black
-						PictureBox1.Select()
-						LogAlarmInfo(lineLabels(displayedLines(i), 1), myBox.Name, lineStatusStr(i, j), 0)
-
-					ElseIf lineStatusStr(i, j) = "Green" Then
-						alarmEndDateTime(i, j) = DateTime.Now
-						myBox.Text = ""
-						PictureBox1.Select()
-						LogAlarmInfo(lineLabels(displayedLines(i), 1), myBox.Name, lineStatusStr(i, j), DateDiff(DateInterval.Minute, alarmStartDateTime(i, j), alarmEndDateTime(i, j)))
-					Else
-						myBox.Text = ""
-						PictureBox1.Select()
-					End If
-				End If
-			Next
-			For j As Integer = 10 To lineCount * (alarmTypes * 2) - 1
-				Dim myBox As TextBox = CType(Me.Controls("TBox" & i * 5 + j + 1), TextBox)
+				Dim myBox As TextBox = CType(Me.Controls("TBox" & i * alarmTypes + j + 1), TextBox)
 				If sender Is myBox Then
 					If noOfColors = 3 Then
 						If lineStatusStr(i, j) = "Red" Then
@@ -395,21 +360,6 @@ Public Class Form1
 						myBox.BackColor = Color.FromArgb(255, 0, 0)
 					End If
 				End If
-
-			Next
-			For j = 10 To 20
-				Dim myBox As TextBox = CType(Me.Controls("TBox" & i * alarmTypes + j + 1), TextBox)
-				If myBox Is Nothing Then
-				Else
-					If lineStatusStr(i, j) = "Green" Then
-						myBox.BackColor = Color.FromArgb(0, 255, 0)
-					ElseIf lineStatusStr(i, j) = "Yellow" Then
-						myBox.BackColor = Color.FromArgb(255, 192, 0)
-					ElseIf lineStatusStr(i, j) = "Red" Then
-						myBox.BackColor = Color.FromArgb(255, 0, 0)
-					End If
-				End If
-
 			Next
 		Next
 
@@ -417,15 +367,13 @@ Public Class Form1
 		Try
 
 			Using outputFile As New StreamWriter("Data/" & terminalName & ".txt")
-				For j = 0 To lineCount - 1
-					outputFile.WriteLine(lineLabels(displayedLines(j), 0))
-					outputFile.WriteLine(lineLabels(displayedLines(j), 1))
+				For i = 0 To lineCount - 1
+					outputFile.WriteLine(lineLabels(displayedLines(i), 0))
+					outputFile.WriteLine(lineLabels(displayedLines(i), 1))
 					Try
-						outputFile.WriteLine(lineStatusStr(j, 0))
-						outputFile.WriteLine(lineStatusStr(j, 1))
-						outputFile.WriteLine(lineStatusStr(j, 2))
-						outputFile.WriteLine(lineStatusStr(j, 3))
-						outputFile.WriteLine(lineStatusStr(j, 4))
+						For j = 0 To alarmTypes - 1
+							outputFile.WriteLine(lineStatusStr(i, j))
+						Next
 					Catch ex As Exception
 
 					End Try
@@ -434,22 +382,21 @@ Public Class Form1
 			Exit Try
 		Catch ex As Exception
 			System.Threading.Thread.Sleep(100)
-			Button1_Click(sender, e)
+			Update_Fields(sender, e)
 		End Try
 
 	End Sub
 
 	Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
 		' Periodically update the text file and the labels for time since alarm was activated
-		Button1_Click(sender, e)
+		Update_Fields(sender, e)
 		Dim i, j As Integer
 		For i = 0 To lineCount - 1
 			For j = 0 To alarmTypes - 1
-				Dim myBox As TextBox = CType(Me.Controls("TBox" & i * 5 + j + 1), TextBox)
+				Dim myBox As TextBox = CType(Me.Controls("TBox" & i * alarmTypes + j + 1), TextBox)
 				Try
 					If lineStatusStr(i, j) = "Yellow" Or lineStatusStr(i, j) = "Red" Then myBox.Text = "                       " & DateDiff(DateInterval.Minute, alarmStartDateTime(i, j), DateTime.Now) & " min"
 				Catch ex As Exception
-
 				End Try
 			Next
 		Next

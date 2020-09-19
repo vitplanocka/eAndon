@@ -1,9 +1,13 @@
 ﻿Imports System.IO
 
 'TODO:  
-' - read out AlarmTypes from configuration file
+' - change icon1lbl and icon1imgfile to arrays
+' - fix Terminal01
+' - fix 308, 309, 324
+' - copy Terminal 01 to 02-04
 ' - remove reading nOfLines from first line of production_lines.txt 
 ' - create variables for positioning of nameLabels and lineLabels
+' - make creation of Terminals dynamic
 
 
 Public Class Andon
@@ -15,7 +19,7 @@ Public Class Andon
 	Public nOfAlarms As Integer
 	Public lineStatusStr(nOfLines - 1, alarmTypes - 1) As String
 	Public previousLineStatusStr(nOfLines - 1, alarmTypes - 1) As String
-	Public alarmStartTime(100, 4) As Date
+	Public alarmStartTime(100, alarmTypes - 1) As Date
 	Public oldFile As Boolean
 	Public maxDelay As Integer = 1   ' text files older than x minutes are ignored
 	Public soundOn As Boolean = False
@@ -28,11 +32,21 @@ Public Class Andon
 	Public icon3lbl As String
 	Public icon4lbl As String
 	Public icon5lbl As String
+	Public icon6lbl As String
+	Public icon7lbl As String
+	Public icon8lbl As String
+	Public icon9lbl As String
+	Public icon10lbl As String
 	Public icon1imgfile As String
 	Public icon2imgfile As String
 	Public icon3imgfile As String
 	Public icon4imgfile As String
 	Public icon5imgfile As String
+	Public icon6imgfile As String
+	Public icon7imgfile As String
+	Public icon8imgfile As String
+	Public icon9imgfile As String
+	Public icon10imgfile As String
 
 	Private Sub Andon_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
 		' Things to do when app starts
@@ -52,20 +66,31 @@ Public Class Andon
 		' Read Settings from Text File
 		Dim rootpath As String = Application.StartupPath
 		Using MyReader As New Microsoft.VisualBasic.FileIO.TextFieldParser("Assets/settings.txt")
-			Dim arrAlramTypes() As String = MyReader.ReadLine().Split(":")
-			Dim strAlramTypes As String = arrAlramTypes(1).ToString().Trim().TrimStart()
-			alarmTypes = CInt(strAlramTypes)
-			MyReader.ReadLine()  ' 2 or 3 status colours
-			Dim arrImgLocation() As String = MyReader.ReadLine().Split(":")
-			Dim strImage As String = arrImgLocation(1).ToString().Trim().TrimStart()
-			PictureBoxLogo.ImageLocation = strImage
-			alarmfile = MyReader.ReadLine()
+			' Number of alarm types to display
+			Dim lineReader() As String = MyReader.ReadLine().Split(":")
+			alarmTypes = CInt(lineReader(1).ToString().Trim().TrimStart())
+			' Number of status colours
 			MyReader.ReadLine()
+			' Image file for company logo
+			lineReader = MyReader.ReadLine().Split(":")
+			PictureBoxLogo.ImageLocation = "Assets/" & lineReader(1).ToString().Trim().TrimStart()
+			' Alarm sound file
+			lineReader = MyReader.ReadLine().Split(":")
+			alarmfile = "Assets/" & lineReader(1).ToString().Trim().TrimStart()
+			' Terminal usage instruction
+			MyReader.ReadLine()
+			' Alarm type descriptions
 			icon1lbl = MyReader.ReadLine()
 			icon2lbl = MyReader.ReadLine()
 			icon3lbl = MyReader.ReadLine()
 			icon4lbl = MyReader.ReadLine()
 			icon5lbl = MyReader.ReadLine()
+			icon6lbl = MyReader.ReadLine()
+			icon7lbl = MyReader.ReadLine()
+			icon8lbl = MyReader.ReadLine()
+			icon9lbl = MyReader.ReadLine()
+			icon10lbl = MyReader.ReadLine()
+			' Alarm type icons
 			PictureBox1.ImageLocation = MyReader.ReadLine()
 			PictureBox2.ImageLocation = MyReader.ReadLine()
 			PictureBox3.ImageLocation = MyReader.ReadLine()
@@ -109,13 +134,12 @@ Public Class Andon
 		' Alarm labels
 		Dim newbox As Label
 		Dim y As Int32 = 0
-		Dim Lineno As Int32 = 1
+		Dim lineNo As Int32 = 1
 		For i As Integer = 0 To (nOfLines * alarmTypes) - 1 'Create labels and set properties
-
 			'set Y
-			If (i / Lineno) = alarmTypes Then
+			If (i / lineNo) = alarmTypes Then
 				y += 25
-				Lineno += 1
+				lineNo += 1
 			End If
 
 			newbox = New Label With {
@@ -167,8 +191,8 @@ Public Class Andon
 
 		For i = 0 To nOfLines - 1
 			For j = 0 To alarmTypes - 1
-				If lineStatusStr(i, j) = "Yellow" Then nOfAlarms = nOfAlarms + 1
-				If lineStatusStr(i, j) = "Red" Then nOfAlarms = nOfAlarms + 2
+				If lineStatusStr(i, j) = "Yellow" Then nOfAlarms += 1
+				If lineStatusStr(i, j) = "Red" Then nOfAlarms += 2
 			Next
 		Next
 
@@ -224,7 +248,7 @@ Public Class Andon
 						End Try
 					Next
 					Try
-						For i = 1 To 5
+						For i = 1 To alarmTypes
 							Dim myLabel As Label = CType(Me.Controls("LineLabel" & lineNumber * alarmTypes + i - 1), Label)
 							If lineStatusStr(CInt(lineNumber), i - 1) = "Green" Then
 								myLabel.BackColor = Color.FromArgb(0, 255, 0)
@@ -268,12 +292,13 @@ Public Class Andon
 
 		' Highlight the line with last alarm
 		Dim lastAlarmLineNr As Integer = -1
+		Dim alarmWorsened As Boolean = False
 		nOfPreviousAlarms = nOfAlarms
 		nOfAlarms = 0
 		For i = 0 To nOfLines - 1
 			For j = 0 To alarmTypes - 1
-				If lineStatusStr(i, j) = "Yellow" Then nOfAlarms = nOfAlarms + 1
-				If lineStatusStr(i, j) = "Red" Then nOfAlarms = nOfAlarms + 2
+				If lineStatusStr(i, j) = "Yellow" Then nOfAlarms += 1
+				If lineStatusStr(i, j) = "Red" Then nOfAlarms += 2
 			Next
 		Next
 		If nOfAlarms > nOfPreviousAlarms Then
@@ -282,8 +307,12 @@ Public Class Andon
 
 			For i = 0 To nOfLines - 1
 				' Identify the last alarm
-				If (previousLineStatusStr(i, 0) = "Green" And lineStatusStr(i, 0) = "Yellow") Or (previousLineStatusStr(i, 1) = "Green" And lineStatusStr(i, 1) = "Yellow") Or (previousLineStatusStr(i, 2) = "Green" And lineStatusStr(i, 2) = "Yellow") Or (previousLineStatusStr(i, 3) = "Green" And lineStatusStr(i, 3) = "Yellow") Or (previousLineStatusStr(i, 4) = "Green" And lineStatusStr(i, 4) = "Yellow") Then lastAlarmLineNr = i
-				If (previousLineStatusStr(i, 0) = "Yellow" And lineStatusStr(i, 0) = "Red") Or (previousLineStatusStr(i, 1) = "Yellow" And lineStatusStr(i, 1) = "Red") Or (previousLineStatusStr(i, 2) = "Yellow" And lineStatusStr(i, 2) = "Red") Or (previousLineStatusStr(i, 3) = "Yellow" And lineStatusStr(i, 3) = "Red") Or (previousLineStatusStr(i, 4) = "Yellow" And lineStatusStr(i, 4) = "Red") Then lastAlarmLineNr = i
+				For j = 0 To alarmTypes - 1
+					If (previousLineStatusStr(i, j) = "Green" And lineStatusStr(i, j) = "Yellow") Then alarmWorsened = True
+					If (previousLineStatusStr(i, j) = "Yellow" And lineStatusStr(i, j) = "Red") Then alarmWorsened = True
+					If (previousLineStatusStr(i, j) = "Green" And lineStatusStr(i, j) = "Red") Then alarmWorsened = True
+				Next
+				If alarmWorsened Then lastAlarmLineNr = i
 			Next
 			For i = 0 To nOfLines - 1
 				' Remove previous marking of last alarm 
@@ -296,10 +325,10 @@ Public Class Andon
 		End If
 
 		' Remove last alarm label if all alarms have been solved
-		For i = 0 To nOfLines - 1
-			Dim myLabel As Label = CType(Controls("nameLabel" & i), Label)
-			If (lineStatusStr(i, 0) = "Green") And (lineStatusStr(i, 1) = "Green") And (lineStatusStr(i, 2) = "Green") And (lineStatusStr(i, 3) = "Green") And (lineStatusStr(i, 4) = "Green") Then myLabel.ForeColor = Color.FromArgb(0, 0, 0)
-		Next
+		'	For i = 0 To nOfLines - 1
+		'Dim myLabel As Label = CType(Controls("nameLabel" & i), Label)
+		'	If (lineStatusStr(i, 0) = "Green") And (lineStatusStr(i, 1) = "Green") And (lineStatusStr(i, 2) = "Green") And (lineStatusStr(i, 3) = "Green") And (lineStatusStr(i, 4) = "Green") Then myLabel.ForeColor = Color.FromArgb(0, 0, 0)
+		'	Next
 
 	End Sub
 
@@ -343,9 +372,9 @@ Public Class Andon
 			j = 0
 			While Not MyReader.EndOfData
 				Try
-					Dim escLine As String = MyReader.ReadLine()
+					Dim prioLine As String = MyReader.ReadLine()
 					For i = 0 To nOfLines - 1
-						If lineLabels(i, 1) = escLine Then
+						If lineLabels(i, 1) = prioLine Then
 							priorityLines(j) = i
 							j += 1
 						End If
