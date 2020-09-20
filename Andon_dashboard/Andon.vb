@@ -1,8 +1,8 @@
 ﻿Imports System.IO
 
 'TODO:  
-' - fix 312, 313, 330 - marking of last alarm
-' - 0 min doesn't appear on andon  - 263
+' - fix lines 228, 229, If (lineStatusStr(i, 0) = "Green") And (lineStatusStr(i, 1) = "Green") And (lineStatusStr(i, 2) = "Green") And (lineStatusStr(i, 3) = "Green") And (lineStatusStr(i, 4) = "Green") Then myLabel.ForeColor = Color.FromArgb(0, 0, 0)
+' - 0 min doesn't appear on andon 
 ' - fix  timer tick exception - alarmStartTime 355
 ' - copy Terminal 01 to 02-04
 ' - remove reading nOfLines from first line of production_lines.txt 
@@ -32,7 +32,7 @@ Public Class Andon
 		' Things to do when app starts
 
 		' Maximize the window
-		' Me.WindowState = FormWindowState.Maximized
+		Me.WindowState = FormWindowState.Maximized
 
 		'Check Directory is available or not.
 		If (Directory.Exists(Application.StartupPath & "/Data") = False) Then
@@ -222,7 +222,6 @@ Public Class Andon
 								myLabel.BackColor = Color.FromArgb(255, 0, 0)
 							End If
 
-							'MsgBox(lineStatusStr(0, 0) & "  " & previousLineStatusStr(0, 0))
 
 							'Display time since last alarm
 							If (lineStatusStr(CInt(lineNumber), i) = "Yellow") And (previousLineStatusStr(CInt(lineNumber), i) = "Green") Then   ' it's a new alarm
