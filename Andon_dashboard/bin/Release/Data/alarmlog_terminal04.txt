@@ -1,8 +1,0 @@
-Event DateTime : 2020-08-30 14:07:46; Line : 07; Alarm type : 2; New Color : Yellow; Length of alarm (minutes) : 0
-Event DateTime : 2020-08-30 14:07:46; Line : 10; Alarm type : 3; New Color : Yellow; Length of alarm (minutes) : 0
-Event DateTime : 2020-08-30 14:07:47; Line : 12E; Alarm type : 2; New Color : Yellow; Length of alarm (minutes) : 0
-Event DateTime : 2020-08-30 14:07:47; Line : 12E; Alarm type : 2; New Color : Red; Length of alarm (minutes) : 0
-Event DateTime : 2020-08-30 14:07:48; Line : 13; Alarm type : 2; New Color : Yellow; Length of alarm (minutes) : 0
-Event DateTime : 2020-08-30 14:07:49; Line : 13; Alarm type : 2; New Color : Red; Length of alarm (minutes) : 0
-Event DateTime : 2020-08-30 14:07:50; Line : 14; Alarm type : 4; New Color : Yellow; Length of alarm (minutes) : 0
-Event DateTime : 2020-08-30 14:07:50; Line : 14; Alarm type : 5; New Color : Yellow; Length of alarm (minutes) : 0

@@ -1,2 +1,0 @@
-Event DateTime : 2020-08-30 14:05:32; Line : 05; Alarm type : 3; New Color : Yellow; Length of alarm (minutes) : 0
-Event DateTime : 2020-08-30 14:05:33; Line : 05; Alarm type : 3; New Color : Red; Length of alarm (minutes) : 0

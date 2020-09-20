@@ -1,7 +1,6 @@
 ﻿Imports System.IO
 
 'TODO:  
-' - change icon1lbl and icon1imgfile to arrays
 ' - fix 312, 313, 330 - marking of last alarm
 ' - 0 min doesn't appear on andon  - 263
 ' - fix  timer tick exception - alarmStartTime 355
@@ -13,8 +12,8 @@
 
 Public Class Andon
 
-	Public nOfLines As Integer = 0 ' number of displayed lines
-	Public alarmTypes As Integer = 0  ' number of displayed alarm types
+	Public nOfLines As Integer = 0                    ' number of displayed lines
+	Public alarmTypes As Integer = 0                  ' number of displayed alarm types
 	Public lineLabels(100, 3) As String
 	Public nOfPreviousAlarms As Integer
 	Public nOfAlarms As Integer
@@ -22,32 +21,12 @@ Public Class Andon
 	Public previousLineStatusStr(nOfLines - 1, alarmTypes - 1) As String
 	Public alarmStartTime(nOfLines - 1, alarmTypes - 1) As Date
 	Public oldFile As Boolean
-	Public maxDelay As Integer = 1   ' text files older than x minutes are ignored
+	Public maxDelay As Integer = 1                    ' text files older than x minutes are ignored
 	Public soundOn As Boolean = False
 	Public priorityLines(nOfLines) As Integer
-
-	Public logofile As String     ' resources from Asset folder
-	Public alarmfile As String
-	Public icon1lbl As String
-	Public icon2lbl As String
-	Public icon3lbl As String
-	Public icon4lbl As String
-	Public icon5lbl As String
-	Public icon6lbl As String
-	Public icon7lbl As String
-	Public icon8lbl As String
-	Public icon9lbl As String
-	Public icon10lbl As String
-	Public icon1imgfile As String
-	Public icon2imgfile As String
-	Public icon3imgfile As String
-	Public icon4imgfile As String
-	Public icon5imgfile As String
-	Public icon6imgfile As String
-	Public icon7imgfile As String
-	Public icon8imgfile As String
-	Public icon9imgfile As String
-	Public icon10imgfile As String
+	Public alarmfile As String                        ' alarm sound filename
+	Public iconLbl(alarmTypes) As String              ' labels for alarm types
+	Public iconImgFile(alarmTypes) As String          ' image filenames for alarm types  
 
 	Private Sub Andon_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
 		' Things to do when app starts
@@ -59,7 +38,6 @@ Public Class Andon
 		If (Directory.Exists(Application.StartupPath & "/Data") = False) Then
 			Directory.CreateDirectory(Application.StartupPath & "/Data")
 		End If
-
 
 		' Set watcher path to current folder
 		watcher2.Path = Application.StartupPath & "/Data"
@@ -80,28 +58,14 @@ Public Class Andon
 			alarmfile = "Assets/" & lineReader(1).ToString().Trim().TrimStart()
 			' Terminal usage instruction
 			MyReader.ReadLine()
-			' Alarm type descriptions
-			icon1lbl = MyReader.ReadLine()
-			icon2lbl = MyReader.ReadLine()
-			icon3lbl = MyReader.ReadLine()
-			icon4lbl = MyReader.ReadLine()
-			icon5lbl = MyReader.ReadLine()
-			icon6lbl = MyReader.ReadLine()
-			icon7lbl = MyReader.ReadLine()
-			icon8lbl = MyReader.ReadLine()
-			icon9lbl = MyReader.ReadLine()
-			icon10lbl = MyReader.ReadLine()
-			' Alarm type icons
-			PictureBox1.ImageLocation = MyReader.ReadLine()
-			PictureBox2.ImageLocation = MyReader.ReadLine()
-			PictureBox3.ImageLocation = MyReader.ReadLine()
-			PictureBox4.ImageLocation = MyReader.ReadLine()
-			PictureBox5.ImageLocation = MyReader.ReadLine()
-			PictureBox6.ImageLocation = MyReader.ReadLine()
-			PictureBox7.ImageLocation = MyReader.ReadLine()
-			PictureBox8.ImageLocation = MyReader.ReadLine()
-			PictureBox9.ImageLocation = MyReader.ReadLine()
-			PictureBox10.ImageLocation = MyReader.ReadLine()
+			' Alarm type descriptions and icons
+			ReDim iconLbl(alarmTypes)
+			ReDim iconImgFile(alarmTypes)
+			For i = 0 To alarmTypes
+				MyReader.ReadLine()
+				lineReader = MyReader.ReadLine().Split(":")
+				iconImgFile(i) = "Assets/" & lineReader(1).ToString().Trim().TrimStart()
+			Next
 		End Using
 
 		' Load the line labels
@@ -157,10 +121,19 @@ Public Class Andon
 			Controls.Add(newbox)
 		Next
 
-		'Show PictureBox
-		For i = 1 To alarmTypes
-			Dim pbox As PictureBox = CType(Controls("PictureBox" & i), PictureBox)
-			pbox.Visible = True
+		' Create dynamic PictureBox alarm labels
+		Dim newbox2 As PictureBox
+		For i As Integer = 0 To alarmTypes - 1 'Create labels and set properties
+			newbox2 = New PictureBox With {
+				.Size = New Drawing.Size(40, 30),
+				.Location = New Point(100 + i * 53, 10),
+				.ImageLocation = iconImgFile(i),
+				.SizeMode = PictureBoxSizeMode.StretchImage
+			}
+			' Draw alarm labels
+			newbox2.Name = "alarmLabel" & i
+			newbox2.BorderStyle = BorderStyle.None
+			Controls.Add(newbox2)
 		Next
 
 		'Line Labels
@@ -180,14 +153,12 @@ Public Class Andon
 			Controls.Add(newbox)
 		Next
 
-
 		' Set tooltips for line nubmers
 		Dim toolTip1 As New ToolTip()
 		For i = 0 To nOfLines - 1
 			Dim myLabel As Label = CType(Controls("nameLabel" & i), Label)
 			toolTip1.SetToolTip(myLabel, lineLabels(i, 2))
 		Next
-
 
 		' Set everything to green
 		For i = 0 To nOfLines - 1
@@ -258,18 +229,18 @@ Public Class Andon
 								alarmStartTime(CInt(lineNumber), i) = Date.Now
 								myLabel.Text = "0 min"
 								myLabel.ForeColor = Color.Black
-								PictureBox1.Select() ' Remove the cursor from updated field
+								PictureBoxLogo.Select() ' Remove the cursor from updated field
 							ElseIf (lineStatusStr(CInt(lineNumber), i) = "Red") And (previousLineStatusStr(CInt(lineNumber), i) = "Yellow") Then   ' it's a new alarm
 								alarmStartTime(CInt(lineNumber), i) = Date.Now
 								myLabel.Text = "0 min"
 								myLabel.ForeColor = Color.White
-								PictureBox1.Select() ' Remove the cursor from updated field
+								PictureBoxLogo.Select() ' Remove the cursor from updated field
 							ElseIf (lineStatusStr(CInt(lineNumber), i) = "Green" And previousLineStatusStr(CInt(lineNumber), i) = "Red") Then  ' we're going from red to green
 								myLabel.Text = ""
-								PictureBox1.Select() ' Remove the cursor from updated field
+								PictureBoxLogo.Select() ' Remove the cursor from updated field
 							ElseIf (lineStatusStr(CInt(lineNumber), i) = "Green" And previousLineStatusStr(CInt(lineNumber), i) = "Green") Then  ' in case of initialization on startup, we must remove all labels
 								myLabel.Text = ""
-								PictureBox1.Select() ' Remove the cursor from updated field
+								PictureBoxLogo.Select() ' Remove the cursor from updated field
 							End If
 						Next
 					Catch exz As Exception
