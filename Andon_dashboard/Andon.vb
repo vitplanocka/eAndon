@@ -3,7 +3,7 @@
 'TODO:  
 ' - change icon1lbl and icon1imgfile to arrays
 ' - fix Terminal01
-' - fix 308, 309, 324
+' - fix 312, 313, 330 - marking of last alarm
 ' - copy Terminal 01 to 02-04
 ' - remove reading nOfLines from first line of production_lines.txt 
 ' - create variables for positioning of nameLabels and lineLabels
@@ -131,11 +131,11 @@ Public Class Andon
 			End While
 		End Using
 
-		' Alarm labels
+		' Create dynamic alarm labels
 		Dim newbox As Label
 		Dim y As Int32 = 0
 		Dim lineNo As Int32 = 1
-		For i As Integer = 0 To (nOfLines * alarmTypes) - 1 'Create labels and set properties
+		For i As Integer = 0 To nOfLines * alarmTypes - 1 'Create labels and set properties
 			'set Y
 			If (i / lineNo) = alarmTypes Then
 				y += 25
@@ -325,10 +325,10 @@ Public Class Andon
 		End If
 
 		' Remove last alarm label if all alarms have been solved
-		'	For i = 0 To nOfLines - 1
-		'Dim myLabel As Label = CType(Controls("nameLabel" & i), Label)
-		'	If (lineStatusStr(i, 0) = "Green") And (lineStatusStr(i, 1) = "Green") And (lineStatusStr(i, 2) = "Green") And (lineStatusStr(i, 3) = "Green") And (lineStatusStr(i, 4) = "Green") Then myLabel.ForeColor = Color.FromArgb(0, 0, 0)
-		'	Next
+		For i = 0 To nOfLines - 1
+			Dim myLabel As Label = CType(Controls("nameLabel" & i), Label)
+			If (lineStatusStr(i, 0) = "Green") And (lineStatusStr(i, 1) = "Green") And (lineStatusStr(i, 2) = "Green") And (lineStatusStr(i, 3) = "Green") And (lineStatusStr(i, 4) = "Green") Then myLabel.ForeColor = Color.FromArgb(0, 0, 0)
+		Next
 
 	End Sub
 
@@ -368,7 +368,7 @@ Public Class Andon
 			priorityLines(i) = -1
 		Next
 
-		Using MyReader As New Microsoft.VisualBasic.FileIO.TextFieldParser("prioritni_linky.txt")
+		Using MyReader As New Microsoft.VisualBasic.FileIO.TextFieldParser("priority_lines.txt")
 			j = 0
 			While Not MyReader.EndOfData
 				Try
@@ -387,8 +387,8 @@ Public Class Andon
 
 		For i = 0 To nOfLines - 1
 			If priorityLines(i) >= 0 Then
-				Dim myLbl2 As Label = CType(Controls("nameLabel" & priorityLines(i)), Label)
-				myLbl2.BackColor = Color.FromArgb(252, 228, 214)
+				Dim myLbl As Label = CType(Controls("nameLabel" & priorityLines(i)), Label)
+				myLbl.BackColor = Color.FromArgb(252, 228, 214)
 			End If
 		Next
 	End Sub
