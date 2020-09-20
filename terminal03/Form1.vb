@@ -71,7 +71,7 @@ Public Class Form1
                         lineLabels(i, 2) = currentRow(2)
                         lineLabels(i, 3) = currentRow(3)
                         displayedLines(lineCount) = CInt(currentRow(0))
-                        lineCount = lineCount + 1
+                        lineCount += 1
                     End If
                     i += 1
                 Catch ex As Microsoft.VisualBasic.FileIO.MalformedLineException

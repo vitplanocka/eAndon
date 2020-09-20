@@ -2,7 +2,6 @@
 
 'TODO:  
 ' - logo doesn't show up
-' - fix  timer tick exception
 ' - make alarm fields dynamic
 
 Public Class Form1

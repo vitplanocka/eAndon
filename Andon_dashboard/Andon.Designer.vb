@@ -134,7 +134,7 @@ Partial Class Andon
         Me.PictureBoxLogo.Location = New System.Drawing.Point(677, 11)
         Me.PictureBoxLogo.Margin = New System.Windows.Forms.Padding(2)
         Me.PictureBoxLogo.Name = "PictureBoxLogo"
-        Me.PictureBoxLogo.Size = New System.Drawing.Size(154, 87)
+        Me.PictureBoxLogo.Size = New System.Drawing.Size(166, 63)
         Me.PictureBoxLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.PictureBoxLogo.TabIndex = 9
         Me.PictureBoxLogo.TabStop = False
