@@ -1,30 +1,32 @@
 ﻿Imports System.IO
 
 'TODO:  
-' - fix lines 228, 229, If (lineStatusStr(i, 0) = "Green") And (lineStatusStr(i, 1) = "Green") And (lineStatusStr(i, 2) = "Green") And (lineStatusStr(i, 3) = "Green") And (lineStatusStr(i, 4) = "Green") Then myLabel.ForeColor = Color.FromArgb(0, 0, 0)
+' - fix If (lineStatusStr(i, 0) = "Green") And (lineStatusStr(i, 1) = "Green") And (lineStatusStr(i, 2) = "Green") And (lineStatusStr(i, 3) = "Green") And (lineStatusStr(i, 4) = "Green") Then myLabel.ForeColor = Color.FromArgb(0, 0, 0)
 ' - copy Terminal 01 to 02-04
 ' - remove reading nOfLines from first line of production_lines.txt 
 ' - create variables for positioning of nameLabels and lineLabels
+' - add a column with line name 
+' - create a label with details of last alarm
 ' - make creation of Terminals dynamic
 
 
 Public Class Andon
 
-    Public nOfLines As Integer = 0                    ' number of displayed lines
-    Public alarmTypes As Integer = 0                  ' number of displayed alarm types
-    Public lineLabels(100, 3) As String
-    Public nOfPreviousAlarms As Integer
-    Public nOfAlarms As Integer
-    Public lineStatusStr(nOfLines - 1, alarmTypes - 1) As String
-    Public previousLineStatusStr(nOfLines - 1, alarmTypes - 1) As String
-    Public alarmStartTime(10, 20) As Date
-    Public oldFile As Boolean
-    Public maxDelay As Integer = 1                    ' text files older than x minutes are ignored
-    Public soundOn As Boolean = False
-    Public priorityLines(nOfLines) As Integer
-    Public alarmfile As String                        ' alarm sound filename
-    Public iconLbl(alarmTypes) As String              ' labels for alarm types
-    Public iconImgFile(alarmTypes) As String          ' image filenames for alarm types  
+    Public nOfLines As Integer = 0                                        ' number of displayed lines
+    Public alarmTypes As Integer = 0                                      ' number of displayed alarm types
+    Public lineLabels(nOfLines - 1, 3) As String                          ' #, line number, line name for displayed lines
+    Public nOfPreviousAlarms As Integer                                   ' number of previous displayed alarms 
+    Public nOfAlarms As Integer                                           ' number of displayed alarms
+    Public lineStatusStr(nOfLines - 1, alarmTypes - 1) As String          ' current status of alarms for all lines
+    Public previousLineStatusStr(nOfLines - 1, alarmTypes - 1) As String  ' previous status of alarms for all lines
+    Public alarmStartTime(nOfLines - 1, alarmTypes - 1) As Date           ' date of last start of yellow or red alarm
+    Public oldFile As Boolean                                             ' is the file change date too old to display in dashboard?
+    Public maxDelay As Integer = 1                                        ' text files older than x minutes are ignored
+    Public soundOn As Boolean = False                                     ' do alarms play a sound?
+    Public priorityLines(nOfLines) As Integer                             ' array of lines that are highlighted as priority
+    Public alarmfile As String                                            ' alarm sound filename
+    Public iconLbl(alarmTypes) As String                                  ' labels for alarm types
+    Public iconImgFile(alarmTypes) As String                              ' image filenames for alarm types  
 
     Private Sub Andon_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         ' Things to do when app starts
@@ -42,7 +44,7 @@ Public Class Andon
 
         ' Read Settings from Text File
         Dim rootpath As String = Application.StartupPath
-        Using MyReader As New Microsoft.VisualBasic.FileIO.TextFieldParser("Assets/settings.txt")
+        Using MyReader As New FileIO.TextFieldParser("Assets/settings.txt")
             ' Number of alarm types to display
             Dim lineReader() As String = MyReader.ReadLine().Split(":")
             alarmTypes = CInt(lineReader(1).ToString().Trim().TrimStart())
@@ -67,11 +69,12 @@ Public Class Andon
         End Using
 
         ' Load the line labels
-        Using MyReader As New Microsoft.VisualBasic.FileIO.TextFieldParser("Assets/production_lines.txt")
+        Using MyReader As New FileIO.TextFieldParser("Assets/production_lines.txt")
             MyReader.TextFieldType = FileIO.FieldType.Delimited
             MyReader.SetDelimiters(";")
 
             nOfLines = MyReader.ReadLine
+            ReDim lineLabels(nOfLines - 1, 3)
 
             lineStatusStr = New String(nOfLines - 1, alarmTypes - 1) {}
             previousLineStatusStr = New String(nOfLines - 1, alarmTypes - 1) {}
@@ -93,6 +96,10 @@ Public Class Andon
                 End Try
             End While
         End Using
+
+        'ReDim all arrays that depend on nOfLines, alarmTypes
+        ReDim alarmStartTime(nOfLines - 1, alarmTypes - 1)
+        ReDim priorityLines(nOfLines - 1)
 
         ' Create dynamic alarm labels
         Dim newbox As Label
@@ -282,7 +289,10 @@ Public Class Andon
                     If (previousLineStatusStr(i, j) = "Yellow" And lineStatusStr(i, j) = "Red") Then alarmWorsened = True
                     If (previousLineStatusStr(i, j) = "Green" And lineStatusStr(i, j) = "Red") Then alarmWorsened = True
                 Next
-                If alarmWorsened Then lastAlarmLineNr = i
+                If alarmWorsened Then
+                    lastAlarmLineNr = i
+                    alarmWorsened = False
+                End If
             Next
             For i = 0 To nOfLines - 1
                 ' Remove previous marking of last alarm 
@@ -335,7 +345,6 @@ Public Class Andon
             myLbl.BackColor = Color.FromArgb(255, 255, 255)
         Next
 
-        ReDim priorityLines(nOfLines - 1)
         For i = 0 To nOfLines - 1
             priorityLines(i) = -1
         Next
