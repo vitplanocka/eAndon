@@ -1,0 +1,12 @@
+C:\Users\plano\Source\Repos\eAndon\terminal03\bin\Debug\terminal03.exe.config
+C:\Users\plano\Source\Repos\eAndon\terminal03\bin\Debug\terminal03.exe
+C:\Users\plano\Source\Repos\eAndon\terminal03\bin\Debug\terminal03.pdb
+C:\Users\plano\Source\Repos\eAndon\terminal03\bin\Debug\terminal03.xml
+C:\Users\plano\Source\Repos\eAndon\terminal03\obj\Debug\terminal03.vbprojAssemblyReference.cache
+C:\Users\plano\Source\Repos\eAndon\terminal03\obj\Debug\terminal03.Form1.resources
+C:\Users\plano\Source\Repos\eAndon\terminal03\obj\Debug\terminal03.Resources.resources
+C:\Users\plano\Source\Repos\eAndon\terminal03\obj\Debug\terminal03.vbproj.GenerateResource.cache
+C:\Users\plano\Source\Repos\eAndon\terminal03\obj\Debug\terminal03.vbproj.CoreCompileInputs.cache
+C:\Users\plano\Source\Repos\eAndon\terminal03\obj\Debug\terminal03.exe
+C:\Users\plano\Source\Repos\eAndon\terminal03\obj\Debug\terminal03.xml
+C:\Users\plano\Source\Repos\eAndon\terminal03\obj\Debug\terminal03.pdb

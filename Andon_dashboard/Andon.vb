@@ -2,8 +2,6 @@
 
 'TODO:  
 ' - fix lines 228, 229, If (lineStatusStr(i, 0) = "Green") And (lineStatusStr(i, 1) = "Green") And (lineStatusStr(i, 2) = "Green") And (lineStatusStr(i, 3) = "Green") And (lineStatusStr(i, 4) = "Green") Then myLabel.ForeColor = Color.FromArgb(0, 0, 0)
-' - 0 min doesn't appear on andon 
-' - fix  timer tick exception - alarmStartTime 355
 ' - copy Terminal 01 to 02-04
 ' - remove reading nOfLines from first line of production_lines.txt 
 ' - create variables for positioning of nameLabels and lineLabels
@@ -325,9 +323,9 @@ Public Class Andon
         For i = 0 To nOfLines - 1
             For j = 0 To alarmTypes - 1
                 Dim myLabel As Label = CType(Controls("lineLabel" & i * alarmTypes + j), Label)
-                '		If lineStatusStr(i, j) = "Yellow" Or lineStatusStr(i, j) = "Red" Then
-                '		If DateDiff(DateInterval.Minute, alarmStartTime(i, j), DateTime.Now) > 9 Then myLabel.Text = DateDiff(DateInterval.Minute, alarmStartTime(i, j), DateTime.Now) Else myLabel.Text = DateDiff(DateInterval.Minute, alarmStartTime(i, j), DateTime.Now) & " min"
-                'End If
+                If lineStatusStr(i, j) = "Yellow" Or lineStatusStr(i, j) = "Red" Then
+                    If DateDiff(DateInterval.Minute, alarmStartTime(i, j), DateTime.Now) > 9 Then myLabel.Text = DateDiff(DateInterval.Minute, alarmStartTime(i, j), DateTime.Now) Else myLabel.Text = DateDiff(DateInterval.Minute, alarmStartTime(i, j), DateTime.Now) & " min"
+                End If
             Next
         Next
 
