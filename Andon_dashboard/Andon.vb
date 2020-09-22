@@ -312,11 +312,7 @@ Public Class Andon
             For j = 0 To alarmTypes - 1
                 If lineStatusStr(i, j) <> "Green" Then someAlarmsExist = True
             Next
-            If Not someAlarmsExist Then
-                myLabel.ForeColor = Color.FromArgb(0, 0, 0)
-            Else
-                myLabel.ForeColor = Color.FromArgb(255, 0, 0)
-            End If
+            If Not someAlarmsExist Then myLabel.ForeColor = Color.FromArgb(0, 0, 0)
         Next
 
     End Sub

@@ -33,3 +33,4 @@ C:\Users\plano\source\repos\eAndon\terminal01\obj\Debug\terminal01.vbproj.CoreCo
 C:\Users\plano\source\repos\eAndon\terminal01\obj\Debug\terminal01.exe
 C:\Users\plano\source\repos\eAndon\terminal01\obj\Debug\terminal01.xml
 C:\Users\plano\source\repos\eAndon\terminal01\obj\Debug\terminal01.pdb
+C:\Users\plano\Source\Repos\eAndon\terminal01\obj\Debug\terminal01.vbprojAssemblyReference.cache
