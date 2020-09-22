@@ -2,7 +2,6 @@ C:\Users\plano\Source\Repos\eAndon\terminal04\bin\Debug\terminal04.exe.config
 C:\Users\plano\Source\Repos\eAndon\terminal04\bin\Debug\terminal04.exe
 C:\Users\plano\Source\Repos\eAndon\terminal04\bin\Debug\terminal04.pdb
 C:\Users\plano\Source\Repos\eAndon\terminal04\bin\Debug\terminal04.xml
-C:\Users\plano\Source\Repos\eAndon\terminal04\obj\Debug\terminal04.vbprojAssemblyReference.cache
 C:\Users\plano\Source\Repos\eAndon\terminal04\obj\Debug\terminal04.Form1.resources
 C:\Users\plano\Source\Repos\eAndon\terminal04\obj\Debug\terminal04.Resources.resources
 C:\Users\plano\Source\Repos\eAndon\terminal04\obj\Debug\terminal04.vbproj.GenerateResource.cache

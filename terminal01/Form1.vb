@@ -157,7 +157,7 @@ Public Class Form1
 		lineNo = 1
 		For i As Integer = 0 To lineCount - 1 'Create labels and set properties
 			newbox4 = New Label With {
-				.Size = New Drawing.Size(rectWidth, rectHeight),
+				.Size = New Drawing.Size(rectWidth / 2 + 10, rectHeight),
 				.Location = New Point(originHor - 30, originVer + 155 + i * spacingVer),
 				.Font = New Font("Arial", 12, FontStyle.Bold),
 				.TextAlign = ContentAlignment.MiddleLeft
@@ -171,9 +171,9 @@ Public Class Form1
 
 			newbox5 = New Label With {
 				.Size = New Drawing.Size(rectWidth + 50, rectHeight),
-				.Location = New Point(originHor + 20, originVer + 155 + i * spacingVer),
+				.Location = New Point(originHor + 30, originVer + 155 + i * spacingVer),
 				.Font = New Font("Arial", 12, FontStyle.Bold),
-				.TextAlign = ContentAlignment.MiddleCenter
+				.TextAlign = ContentAlignment.MiddleLeft
 			}
 			' Draw line labels
 			newbox5.Name = "lineLabel" & i & "2"

@@ -24,40 +24,9 @@ Partial Class Form1
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
-        Me.PictureBox5 = New System.Windows.Forms.PictureBox()
-        Me.PictureBox4 = New System.Windows.Forms.PictureBox()
-        Me.PictureBox3 = New System.Windows.Forms.PictureBox()
-        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.TextBox2 = New System.Windows.Forms.TextBox()
-        Me.TextBox3 = New System.Windows.Forms.TextBox()
-        Me.TextBox4 = New System.Windows.Forms.TextBox()
-        Me.TextBox5 = New System.Windows.Forms.TextBox()
-        Me.TextLbl11 = New System.Windows.Forms.TextBox()
-        Me.TextLbl12 = New System.Windows.Forms.TextBox()
-        Me.PictureBox11 = New System.Windows.Forms.PictureBox()
-        Me.TextBox8 = New System.Windows.Forms.TextBox()
-        Me.TBox2 = New System.Windows.Forms.TextBox()
-        Me.TBox3 = New System.Windows.Forms.TextBox()
-        Me.TBox4 = New System.Windows.Forms.TextBox()
-        Me.TBox5 = New System.Windows.Forms.TextBox()
-        Me.TBox1 = New System.Windows.Forms.TextBox()
+        Me.PictureBoxLogo = New System.Windows.Forms.PictureBox()
+        Me.TextBoxIns = New System.Windows.Forms.TextBox()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
-        Me.TBox6 = New System.Windows.Forms.TextBox()
-        Me.TBox7 = New System.Windows.Forms.TextBox()
-        Me.TBox8 = New System.Windows.Forms.TextBox()
-        Me.TBox9 = New System.Windows.Forms.TextBox()
-        Me.TBox10 = New System.Windows.Forms.TextBox()
-        Me.TextLbl21 = New System.Windows.Forms.TextBox()
-        Me.TextLbl22 = New System.Windows.Forms.TextBox()
-        Me.TBox11 = New System.Windows.Forms.TextBox()
-        Me.TBox12 = New System.Windows.Forms.TextBox()
-        Me.TBox13 = New System.Windows.Forms.TextBox()
-        Me.TBox14 = New System.Windows.Forms.TextBox()
-        Me.TBox15 = New System.Windows.Forms.TextBox()
-        Me.TextLbl31 = New System.Windows.Forms.TextBox()
-        Me.TextLbl32 = New System.Windows.Forms.TextBox()
         Me.TBox16 = New System.Windows.Forms.TextBox()
         Me.TBox17 = New System.Windows.Forms.TextBox()
         Me.TBox18 = New System.Windows.Forms.TextBox()
@@ -107,8 +76,6 @@ Partial Class Form1
         Me.TextLbl82 = New System.Windows.Forms.TextBox()
         Me.TextLbl92 = New System.Windows.Forms.TextBox()
         Me.TextLbl102 = New System.Windows.Forms.TextBox()
-        Me.PictureBox6 = New System.Windows.Forms.PictureBox()
-        Me.PictureBox7 = New System.Windows.Forms.PictureBox()
         Me.PictureBox8 = New System.Windows.Forms.PictureBox()
         Me.TextBox6 = New System.Windows.Forms.TextBox()
         Me.PictureBox9 = New System.Windows.Forms.PictureBox()
@@ -117,14 +84,7 @@ Partial Class Form1
         Me.PictureBox13 = New System.Windows.Forms.PictureBox()
         Me.PictureBox14 = New System.Windows.Forms.PictureBox()
         Me.PictureBox15 = New System.Windows.Forms.PictureBox()
-        CType(Me.PictureBox5, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBox11, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBox6, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBox7, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PictureBoxLogo, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox8, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox9, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox10, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -134,437 +94,34 @@ Partial Class Form1
         CType(Me.PictureBox15, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
-        'PictureBox5
+        'PictureBoxLogo
         '
-        Me.PictureBox5.Location = New System.Drawing.Point(1017, 144)
-        Me.PictureBox5.Margin = New System.Windows.Forms.Padding(4)
-        Me.PictureBox5.Name = "PictureBox5"
-        Me.PictureBox5.Size = New System.Drawing.Size(117, 85)
-        Me.PictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.PictureBox5.TabIndex = 12
-        Me.PictureBox5.TabStop = False
+        Me.PictureBoxLogo.Location = New System.Drawing.Point(43, 89)
+        Me.PictureBoxLogo.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.PictureBoxLogo.Name = "PictureBoxLogo"
+        Me.PictureBoxLogo.Size = New System.Drawing.Size(221, 63)
+        Me.PictureBoxLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.PictureBoxLogo.TabIndex = 15
+        Me.PictureBoxLogo.TabStop = False
         '
-        'PictureBox4
+        'TextBoxIns
         '
-        Me.PictureBox4.Location = New System.Drawing.Point(871, 144)
-        Me.PictureBox4.Margin = New System.Windows.Forms.Padding(4)
-        Me.PictureBox4.Name = "PictureBox4"
-        Me.PictureBox4.Size = New System.Drawing.Size(117, 85)
-        Me.PictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.PictureBox4.TabIndex = 11
-        Me.PictureBox4.TabStop = False
-        '
-        'PictureBox3
-        '
-        Me.PictureBox3.Location = New System.Drawing.Point(725, 144)
-        Me.PictureBox3.Margin = New System.Windows.Forms.Padding(4)
-        Me.PictureBox3.Name = "PictureBox3"
-        Me.PictureBox3.Size = New System.Drawing.Size(117, 85)
-        Me.PictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.PictureBox3.TabIndex = 10
-        Me.PictureBox3.TabStop = False
-        '
-        'PictureBox2
-        '
-        Me.PictureBox2.Location = New System.Drawing.Point(579, 144)
-        Me.PictureBox2.Margin = New System.Windows.Forms.Padding(4)
-        Me.PictureBox2.Name = "PictureBox2"
-        Me.PictureBox2.Size = New System.Drawing.Size(117, 85)
-        Me.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.PictureBox2.TabIndex = 9
-        Me.PictureBox2.TabStop = False
-        '
-        'PictureBox1
-        '
-        Me.PictureBox1.Location = New System.Drawing.Point(429, 144)
-        Me.PictureBox1.Margin = New System.Windows.Forms.Padding(4)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(117, 85)
-        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.PictureBox1.TabIndex = 8
-        Me.PictureBox1.TabStop = False
-        '
-        'TextBox1
-        '
-        Me.TextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox1.Location = New System.Drawing.Point(419, 89)
-        Me.TextBox1.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.TextBox1.Multiline = True
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(127, 49)
-        Me.TextBox1.TabIndex = 13
-        Me.TextBox1.TabStop = False
-        Me.TextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'TextBox2
-        '
-        Me.TextBox2.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox2.Location = New System.Drawing.Point(570, 90)
-        Me.TextBox2.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.TextBox2.Multiline = True
-        Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(126, 47)
-        Me.TextBox2.TabIndex = 13
-        Me.TextBox2.TabStop = False
-        Me.TextBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'TextBox3
-        '
-        Me.TextBox3.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox3.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox3.Location = New System.Drawing.Point(725, 90)
-        Me.TextBox3.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.TextBox3.Multiline = True
-        Me.TextBox3.Name = "TextBox3"
-        Me.TextBox3.Size = New System.Drawing.Size(117, 47)
-        Me.TextBox3.TabIndex = 13
-        Me.TextBox3.TabStop = False
-        Me.TextBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'TextBox4
-        '
-        Me.TextBox4.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox4.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox4.Location = New System.Drawing.Point(860, 90)
-        Me.TextBox4.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.TextBox4.Multiline = True
-        Me.TextBox4.Name = "TextBox4"
-        Me.TextBox4.Size = New System.Drawing.Size(128, 47)
-        Me.TextBox4.TabIndex = 13
-        Me.TextBox4.TabStop = False
-        Me.TextBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'TextBox5
-        '
-        Me.TextBox5.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox5.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox5.Location = New System.Drawing.Point(994, 88)
-        Me.TextBox5.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.TextBox5.Multiline = True
-        Me.TextBox5.Name = "TextBox5"
-        Me.TextBox5.Size = New System.Drawing.Size(193, 49)
-        Me.TextBox5.TabIndex = 13
-        Me.TextBox5.TabStop = False
-        Me.TextBox5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'TextLbl11
-        '
-        Me.TextLbl11.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextLbl11.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextLbl11.Location = New System.Drawing.Point(28, 236)
-        Me.TextLbl11.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.TextLbl11.Multiline = True
-        Me.TextLbl11.Name = "TextLbl11"
-        Me.TextLbl11.Size = New System.Drawing.Size(97, 50)
-        Me.TextLbl11.TabIndex = 13
-        Me.TextLbl11.TabStop = False
-        Me.TextLbl11.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'TextLbl12
-        '
-        Me.TextLbl12.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextLbl12.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextLbl12.Location = New System.Drawing.Point(145, 236)
-        Me.TextLbl12.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.TextLbl12.Multiline = True
-        Me.TextLbl12.Name = "TextLbl12"
-        Me.TextLbl12.Size = New System.Drawing.Size(257, 50)
-        Me.TextLbl12.TabIndex = 13
-        Me.TextLbl12.TabStop = False
-        Me.TextLbl12.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'PictureBox11
-        '
-        Me.PictureBox11.Location = New System.Drawing.Point(43, 89)
-        Me.PictureBox11.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.PictureBox11.Name = "PictureBox11"
-        Me.PictureBox11.Size = New System.Drawing.Size(221, 63)
-        Me.PictureBox11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.PictureBox11.TabIndex = 15
-        Me.PictureBox11.TabStop = False
-        '
-        'TextBox8
-        '
-        Me.TextBox8.BackColor = System.Drawing.SystemColors.MenuBar
-        Me.TextBox8.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox8.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox8.Location = New System.Drawing.Point(43, 11)
-        Me.TextBox8.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.TextBox8.Multiline = True
-        Me.TextBox8.Name = "TextBox8"
-        Me.TextBox8.Size = New System.Drawing.Size(1091, 68)
-        Me.TextBox8.TabIndex = 13
-        Me.TextBox8.TabStop = False
-        Me.TextBox8.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'TBox2
-        '
-        Me.TBox2.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TBox2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TBox2.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.TBox2.Location = New System.Drawing.Point(579, 236)
-        Me.TBox2.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.TBox2.Multiline = True
-        Me.TBox2.Name = "TBox2"
-        Me.TBox2.Size = New System.Drawing.Size(117, 50)
-        Me.TBox2.TabIndex = 13
-        Me.TBox2.TabStop = False
-        Me.TBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'TBox3
-        '
-        Me.TBox3.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TBox3.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TBox3.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.TBox3.Location = New System.Drawing.Point(725, 236)
-        Me.TBox3.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.TBox3.Multiline = True
-        Me.TBox3.Name = "TBox3"
-        Me.TBox3.Size = New System.Drawing.Size(117, 50)
-        Me.TBox3.TabIndex = 13
-        Me.TBox3.TabStop = False
-        Me.TBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'TBox4
-        '
-        Me.TBox4.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TBox4.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TBox4.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.TBox4.Location = New System.Drawing.Point(871, 236)
-        Me.TBox4.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.TBox4.Multiline = True
-        Me.TBox4.Name = "TBox4"
-        Me.TBox4.Size = New System.Drawing.Size(117, 50)
-        Me.TBox4.TabIndex = 13
-        Me.TBox4.TabStop = False
-        Me.TBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'TBox5
-        '
-        Me.TBox5.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TBox5.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TBox5.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.TBox5.Location = New System.Drawing.Point(1017, 236)
-        Me.TBox5.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.TBox5.Multiline = True
-        Me.TBox5.Name = "TBox5"
-        Me.TBox5.Size = New System.Drawing.Size(117, 50)
-        Me.TBox5.TabIndex = 13
-        Me.TBox5.TabStop = False
-        Me.TBox5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'TBox1
-        '
-        Me.TBox1.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TBox1.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.TBox1.Location = New System.Drawing.Point(429, 236)
-        Me.TBox1.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.TBox1.Multiline = True
-        Me.TBox1.Name = "TBox1"
-        Me.TBox1.Size = New System.Drawing.Size(117, 50)
-        Me.TBox1.TabIndex = 13
-        Me.TBox1.TabStop = False
-        Me.TBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.TextBoxIns.BackColor = System.Drawing.SystemColors.MenuBar
+        Me.TextBoxIns.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBoxIns.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBoxIns.Location = New System.Drawing.Point(43, 11)
+        Me.TextBoxIns.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.TextBoxIns.Multiline = True
+        Me.TextBoxIns.Name = "TextBoxIns"
+        Me.TextBoxIns.Size = New System.Drawing.Size(1091, 68)
+        Me.TextBoxIns.TabIndex = 13
+        Me.TextBoxIns.TabStop = False
+        Me.TextBoxIns.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'Timer1
         '
         Me.Timer1.Enabled = True
         Me.Timer1.Interval = 15000
-        '
-        'TBox6
-        '
-        Me.TBox6.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TBox6.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TBox6.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.TBox6.Location = New System.Drawing.Point(429, 293)
-        Me.TBox6.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.TBox6.Multiline = True
-        Me.TBox6.Name = "TBox6"
-        Me.TBox6.Size = New System.Drawing.Size(117, 50)
-        Me.TBox6.TabIndex = 13
-        Me.TBox6.TabStop = False
-        Me.TBox6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'TBox7
-        '
-        Me.TBox7.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TBox7.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TBox7.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.TBox7.Location = New System.Drawing.Point(579, 293)
-        Me.TBox7.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.TBox7.Multiline = True
-        Me.TBox7.Name = "TBox7"
-        Me.TBox7.Size = New System.Drawing.Size(117, 50)
-        Me.TBox7.TabIndex = 13
-        Me.TBox7.TabStop = False
-        Me.TBox7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'TBox8
-        '
-        Me.TBox8.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TBox8.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TBox8.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.TBox8.Location = New System.Drawing.Point(725, 293)
-        Me.TBox8.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.TBox8.Multiline = True
-        Me.TBox8.Name = "TBox8"
-        Me.TBox8.Size = New System.Drawing.Size(117, 50)
-        Me.TBox8.TabIndex = 13
-        Me.TBox8.TabStop = False
-        Me.TBox8.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'TBox9
-        '
-        Me.TBox9.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TBox9.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TBox9.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.TBox9.Location = New System.Drawing.Point(871, 293)
-        Me.TBox9.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.TBox9.Multiline = True
-        Me.TBox9.Name = "TBox9"
-        Me.TBox9.Size = New System.Drawing.Size(117, 50)
-        Me.TBox9.TabIndex = 13
-        Me.TBox9.TabStop = False
-        Me.TBox9.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'TBox10
-        '
-        Me.TBox10.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TBox10.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TBox10.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.TBox10.Location = New System.Drawing.Point(1017, 293)
-        Me.TBox10.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.TBox10.Multiline = True
-        Me.TBox10.Name = "TBox10"
-        Me.TBox10.Size = New System.Drawing.Size(117, 50)
-        Me.TBox10.TabIndex = 13
-        Me.TBox10.TabStop = False
-        Me.TBox10.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'TextLbl21
-        '
-        Me.TextLbl21.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextLbl21.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextLbl21.Location = New System.Drawing.Point(28, 293)
-        Me.TextLbl21.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.TextLbl21.Multiline = True
-        Me.TextLbl21.Name = "TextLbl21"
-        Me.TextLbl21.Size = New System.Drawing.Size(97, 50)
-        Me.TextLbl21.TabIndex = 13
-        Me.TextLbl21.TabStop = False
-        Me.TextLbl21.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'TextLbl22
-        '
-        Me.TextLbl22.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextLbl22.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextLbl22.Location = New System.Drawing.Point(145, 293)
-        Me.TextLbl22.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.TextLbl22.Multiline = True
-        Me.TextLbl22.Name = "TextLbl22"
-        Me.TextLbl22.Size = New System.Drawing.Size(257, 50)
-        Me.TextLbl22.TabIndex = 13
-        Me.TextLbl22.TabStop = False
-        Me.TextLbl22.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'TBox11
-        '
-        Me.TBox11.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TBox11.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TBox11.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.TBox11.Location = New System.Drawing.Point(429, 350)
-        Me.TBox11.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.TBox11.Multiline = True
-        Me.TBox11.Name = "TBox11"
-        Me.TBox11.Size = New System.Drawing.Size(117, 50)
-        Me.TBox11.TabIndex = 13
-        Me.TBox11.TabStop = False
-        Me.TBox11.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'TBox12
-        '
-        Me.TBox12.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TBox12.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TBox12.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.TBox12.Location = New System.Drawing.Point(579, 350)
-        Me.TBox12.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.TBox12.Multiline = True
-        Me.TBox12.Name = "TBox12"
-        Me.TBox12.Size = New System.Drawing.Size(117, 50)
-        Me.TBox12.TabIndex = 13
-        Me.TBox12.TabStop = False
-        Me.TBox12.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'TBox13
-        '
-        Me.TBox13.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TBox13.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TBox13.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.TBox13.Location = New System.Drawing.Point(725, 350)
-        Me.TBox13.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.TBox13.Multiline = True
-        Me.TBox13.Name = "TBox13"
-        Me.TBox13.Size = New System.Drawing.Size(117, 50)
-        Me.TBox13.TabIndex = 13
-        Me.TBox13.TabStop = False
-        Me.TBox13.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'TBox14
-        '
-        Me.TBox14.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TBox14.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TBox14.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.TBox14.Location = New System.Drawing.Point(871, 350)
-        Me.TBox14.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.TBox14.Multiline = True
-        Me.TBox14.Name = "TBox14"
-        Me.TBox14.Size = New System.Drawing.Size(117, 50)
-        Me.TBox14.TabIndex = 13
-        Me.TBox14.TabStop = False
-        Me.TBox14.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'TBox15
-        '
-        Me.TBox15.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TBox15.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TBox15.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.TBox15.Location = New System.Drawing.Point(1017, 350)
-        Me.TBox15.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.TBox15.Multiline = True
-        Me.TBox15.Name = "TBox15"
-        Me.TBox15.Size = New System.Drawing.Size(117, 50)
-        Me.TBox15.TabIndex = 13
-        Me.TBox15.TabStop = False
-        Me.TBox15.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'TextLbl31
-        '
-        Me.TextLbl31.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextLbl31.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextLbl31.Location = New System.Drawing.Point(28, 350)
-        Me.TextLbl31.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.TextLbl31.Multiline = True
-        Me.TextLbl31.Name = "TextLbl31"
-        Me.TextLbl31.Size = New System.Drawing.Size(97, 50)
-        Me.TextLbl31.TabIndex = 13
-        Me.TextLbl31.TabStop = False
-        Me.TextLbl31.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'TextLbl32
-        '
-        Me.TextLbl32.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextLbl32.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextLbl32.Location = New System.Drawing.Point(145, 350)
-        Me.TextLbl32.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.TextLbl32.Multiline = True
-        Me.TextLbl32.Name = "TextLbl32"
-        Me.TextLbl32.Size = New System.Drawing.Size(257, 50)
-        Me.TextLbl32.TabIndex = 13
-        Me.TextLbl32.TabStop = False
-        Me.TextLbl32.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'TBox16
         '
@@ -1238,28 +795,6 @@ Partial Class Form1
         Me.TextLbl102.TabStop = False
         Me.TextLbl102.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
-        'PictureBox6
-        '
-        Me.PictureBox6.Anchor = System.Windows.Forms.AnchorStyles.Top
-        Me.PictureBox6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.PictureBox6.Location = New System.Drawing.Point(43, 289)
-        Me.PictureBox6.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.PictureBox6.Name = "PictureBox6"
-        Me.PictureBox6.Size = New System.Drawing.Size(1093, 1)
-        Me.PictureBox6.TabIndex = 16
-        Me.PictureBox6.TabStop = False
-        '
-        'PictureBox7
-        '
-        Me.PictureBox7.Anchor = System.Windows.Forms.AnchorStyles.Top
-        Me.PictureBox7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.PictureBox7.Location = New System.Drawing.Point(43, 346)
-        Me.PictureBox7.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.PictureBox7.Name = "PictureBox7"
-        Me.PictureBox7.Size = New System.Drawing.Size(1093, 1)
-        Me.PictureBox7.TabIndex = 16
-        Me.PictureBox7.TabStop = False
-        '
         'PictureBox8
         '
         Me.PictureBox8.Anchor = System.Windows.Forms.AnchorStyles.Top
@@ -1363,36 +898,24 @@ Partial Class Form1
         Me.Controls.Add(Me.PictureBox10)
         Me.Controls.Add(Me.PictureBox9)
         Me.Controls.Add(Me.PictureBox8)
-        Me.Controls.Add(Me.PictureBox7)
-        Me.Controls.Add(Me.PictureBox6)
-        Me.Controls.Add(Me.PictureBox11)
-        Me.Controls.Add(Me.TextBox5)
-        Me.Controls.Add(Me.TextBox4)
-        Me.Controls.Add(Me.TextBox3)
-        Me.Controls.Add(Me.TextBox2)
+        Me.Controls.Add(Me.PictureBoxLogo)
         Me.Controls.Add(Me.TextLbl102)
         Me.Controls.Add(Me.TextLbl52)
         Me.Controls.Add(Me.TextBox6)
         Me.Controls.Add(Me.TextLbl92)
         Me.Controls.Add(Me.TextLbl42)
         Me.Controls.Add(Me.TextLbl82)
-        Me.Controls.Add(Me.TextLbl32)
         Me.Controls.Add(Me.TextLbl72)
-        Me.Controls.Add(Me.TextLbl22)
         Me.Controls.Add(Me.TextLbl62)
-        Me.Controls.Add(Me.TextLbl12)
-        Me.Controls.Add(Me.TextBox8)
+        Me.Controls.Add(Me.TextBoxIns)
         Me.Controls.Add(Me.TextLbl101)
         Me.Controls.Add(Me.TextLbl51)
         Me.Controls.Add(Me.TextLbl91)
         Me.Controls.Add(Me.TextLbl41)
         Me.Controls.Add(Me.TextLbl81)
-        Me.Controls.Add(Me.TextLbl31)
         Me.Controls.Add(Me.TextLbl71)
-        Me.Controls.Add(Me.TextLbl21)
         Me.Controls.Add(Me.TextLbl61)
         Me.Controls.Add(Me.TBox50)
-        Me.Controls.Add(Me.TextLbl11)
         Me.Controls.Add(Me.TBox49)
         Me.Controls.Add(Me.TBox25)
         Me.Controls.Add(Me.TBox45)
@@ -1402,65 +925,37 @@ Partial Class Form1
         Me.Controls.Add(Me.TBox40)
         Me.Controls.Add(Me.TBox19)
         Me.Controls.Add(Me.TBox48)
-        Me.Controls.Add(Me.TBox15)
         Me.Controls.Add(Me.TBox39)
         Me.Controls.Add(Me.TBox23)
         Me.Controls.Add(Me.TBox43)
-        Me.Controls.Add(Me.TBox14)
         Me.Controls.Add(Me.TBox35)
         Me.Controls.Add(Me.TBox18)
         Me.Controls.Add(Me.TBox47)
-        Me.Controls.Add(Me.TBox10)
         Me.Controls.Add(Me.TBox38)
         Me.Controls.Add(Me.TBox22)
         Me.Controls.Add(Me.TBox42)
-        Me.Controls.Add(Me.TBox13)
         Me.Controls.Add(Me.TBox34)
         Me.Controls.Add(Me.TBox17)
         Me.Controls.Add(Me.TBox46)
-        Me.Controls.Add(Me.TBox9)
         Me.Controls.Add(Me.TBox37)
         Me.Controls.Add(Me.TBox21)
         Me.Controls.Add(Me.TBox41)
-        Me.Controls.Add(Me.TBox12)
         Me.Controls.Add(Me.TBox33)
         Me.Controls.Add(Me.TBox16)
         Me.Controls.Add(Me.TBox36)
-        Me.Controls.Add(Me.TBox8)
         Me.Controls.Add(Me.TBox32)
-        Me.Controls.Add(Me.TBox11)
         Me.Controls.Add(Me.TBox31)
-        Me.Controls.Add(Me.TBox7)
         Me.Controls.Add(Me.TBox30)
-        Me.Controls.Add(Me.TBox6)
         Me.Controls.Add(Me.TBox29)
-        Me.Controls.Add(Me.TBox5)
         Me.Controls.Add(Me.TBox28)
-        Me.Controls.Add(Me.TBox4)
         Me.Controls.Add(Me.TBox26)
-        Me.Controls.Add(Me.TBox3)
         Me.Controls.Add(Me.TBox27)
-        Me.Controls.Add(Me.TBox1)
-        Me.Controls.Add(Me.TBox2)
-        Me.Controls.Add(Me.TextBox1)
-        Me.Controls.Add(Me.PictureBox5)
-        Me.Controls.Add(Me.PictureBox4)
-        Me.Controls.Add(Me.PictureBox3)
-        Me.Controls.Add(Me.PictureBox2)
-        Me.Controls.Add(Me.PictureBox1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.Name = "Form1"
         Me.Text = "Andon"
-        CType(Me.PictureBox5, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBox11, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBox6, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBox7, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBoxLogo, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox8, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox9, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox10, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1472,41 +967,9 @@ Partial Class Form1
         Me.PerformLayout()
 
     End Sub
-
-    Friend WithEvents PictureBox5 As PictureBox
-    Friend WithEvents PictureBox4 As PictureBox
-    Friend WithEvents PictureBox3 As PictureBox
-    Friend WithEvents PictureBox2 As PictureBox
-    Friend WithEvents PictureBox1 As PictureBox
-    Friend WithEvents TextBox1 As TextBox
-    Friend WithEvents TextBox2 As TextBox
-    Friend WithEvents TextBox3 As TextBox
-    Friend WithEvents TextBox4 As TextBox
-    Friend WithEvents TextBox5 As TextBox
-    Friend WithEvents TextLbl11 As TextBox
-    Friend WithEvents TextLbl12 As TextBox
-    Friend WithEvents PictureBox11 As PictureBox
-    Friend WithEvents TextBox8 As TextBox
-    Friend WithEvents TBox2 As TextBox
-    Friend WithEvents TBox3 As TextBox
-    Friend WithEvents TBox4 As TextBox
-    Friend WithEvents TBox5 As TextBox
-    Friend WithEvents TBox1 As TextBox
+    Friend WithEvents PictureBoxLogo As PictureBox
+    Friend WithEvents TextBoxIns As TextBox
     Friend WithEvents Timer1 As Timer
-    Friend WithEvents TBox6 As TextBox
-    Friend WithEvents TBox7 As TextBox
-    Friend WithEvents TBox8 As TextBox
-    Friend WithEvents TBox9 As TextBox
-    Friend WithEvents TBox10 As TextBox
-    Friend WithEvents TextLbl21 As TextBox
-    Friend WithEvents TextLbl22 As TextBox
-    Friend WithEvents TBox11 As TextBox
-    Friend WithEvents TBox12 As TextBox
-    Friend WithEvents TBox13 As TextBox
-    Friend WithEvents TBox14 As TextBox
-    Friend WithEvents TBox15 As TextBox
-    Friend WithEvents TextLbl31 As TextBox
-    Friend WithEvents TextLbl32 As TextBox
     Friend WithEvents TBox16 As TextBox
     Friend WithEvents TBox17 As TextBox
     Friend WithEvents TBox18 As TextBox
@@ -1556,8 +1019,6 @@ Partial Class Form1
     Friend WithEvents TextLbl82 As TextBox
     Friend WithEvents TextLbl92 As TextBox
     Friend WithEvents TextLbl102 As TextBox
-    Friend WithEvents PictureBox6 As PictureBox
-    Friend WithEvents PictureBox7 As PictureBox
     Friend WithEvents PictureBox8 As PictureBox
     Friend WithEvents TextBox6 As TextBox
     Friend WithEvents PictureBox9 As PictureBox

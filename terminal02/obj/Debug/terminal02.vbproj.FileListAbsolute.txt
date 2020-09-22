@@ -1,4 +1,3 @@
-C:\Users\plano\Source\Repos\eAndon\terminal02\obj\Debug\terminal02.vbprojAssemblyReference.cache
 C:\Users\plano\Source\Repos\eAndon\terminal02\obj\Debug\terminal02.Form1.resources
 C:\Users\plano\Source\Repos\eAndon\terminal02\obj\Debug\terminal02.Resources.resources
 C:\Users\plano\Source\Repos\eAndon\terminal02\obj\Debug\terminal02.vbproj.GenerateResource.cache

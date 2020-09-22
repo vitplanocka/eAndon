@@ -1,19 +1,18 @@
 ﻿Imports System.IO
 
 'TODO:  
-' - fix If (lineStatusStr(i, 0) = "Green") And (lineStatusStr(i, 1) = "Green") And (lineStatusStr(i, 2) = "Green") And (lineStatusStr(i, 3) = "Green") And (lineStatusStr(i, 4) = "Green") Then myLabel.ForeColor = Color.FromArgb(0, 0, 0)
-' - copy Terminal 01 to 02-04
 ' - remove reading nOfLines from first line of production_lines.txt 
 ' - create variables for positioning of nameLabels and lineLabels
 ' - add a column with line name 
 ' - create a label with details of last alarm
+' - add grid view / lay-out view
 ' - make creation of Terminals dynamic
 
 
 Public Class Andon
 
     Public nOfLines As Integer = 0                                        ' number of displayed lines
-    Public alarmTypes As Integer = 0                                      ' number of displayed alarm types
+    Public alarmTypes As Integer = 0                                      ' number of displayed alarm types (columns)
     Public lineLabels(nOfLines - 1, 3) As String                          ' #, line number, line name for displayed lines
     Public nOfPreviousAlarms As Integer                                   ' number of previous displayed alarms 
     Public nOfAlarms As Integer                                           ' number of displayed alarms
@@ -306,10 +305,18 @@ Public Class Andon
             End If
         End If
 
-        ' Remove last alarm label if all alarms have been solved
+        Dim someAlarmsExist As Boolean
         For i = 0 To nOfLines - 1
             Dim myLabel As Label = CType(Controls("nameLabel" & i), Label)
-            If (lineStatusStr(i, 0) = "Green") And (lineStatusStr(i, 1) = "Green") And (lineStatusStr(i, 2) = "Green") And (lineStatusStr(i, 3) = "Green") And (lineStatusStr(i, 4) = "Green") Then myLabel.ForeColor = Color.FromArgb(0, 0, 0)
+            someAlarmsExist = False
+            For j = 0 To alarmTypes - 1
+                If lineStatusStr(i, j) <> "Green" Then someAlarmsExist = True
+            Next
+            If Not someAlarmsExist Then
+                myLabel.ForeColor = Color.FromArgb(0, 0, 0)
+            Else
+                myLabel.ForeColor = Color.FromArgb(255, 0, 0)
+            End If
         Next
 
     End Sub

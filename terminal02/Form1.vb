@@ -1,5 +1,8 @@
 ﻿Imports System.IO
 
+'TODO:  
+' - 
+
 Public Class Form1
 	Public terminalName As String = Reflection.Assembly.GetExecutingAssembly().GetName().Name    ' Get name of current file
 	Public lineCount As Integer = 0                   ' Number of lines displayed on this form
@@ -10,29 +13,9 @@ Public Class Form1
 	Public noOfColors As Integer = 2                  ' default is 2 but we will read it from settings file
 	Public lineLabels(100, 3) As String               ' #, line number, line name, output file name 
 	Public lineStatusStr(20, 20) As String            ' Green, Yellow, Red
-	Public logofile As String
-	Public alarmfile As String
-	Public instructions As String
-	Public icon1lbl As String
-	Public icon2lbl As String
-	Public icon3lbl As String
-	Public icon4lbl As String
-	Public icon5lbl As String
-	Public icon6lbl As String
-	Public icon7lbl As String
-	Public icon8lbl As String
-	Public icon9lbl As String
-	Public icon10lbl As String
-	Public icon1imgfile As String
-	Public icon2imgfile As String
-	Public icon3imgfile As String
-	Public icon4imgfile As String
-	Public icon5imgfile As String
-	Public icon6imgfile As String
-	Public icon7imgfile As String
-	Public icon8imgfile As String
-	Public icon9imgfile As String
-	Public icon10imgfile As String
+	Public alarmfile As String                        ' alarm sound filename
+	Public iconLbl(alarmTypes) As String              ' labels for alarm types
+	Public iconImgFile(alarmTypes) As String          ' image filenames for alarm types   
 
 	Private Sub Andon_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load  ' Things to do when app starts
 
@@ -43,7 +26,7 @@ Public Class Form1
 
 		' Read Settings from Text File
 		Dim rootpath As String = Application.StartupPath
-		Using MyReader As New Microsoft.VisualBasic.FileIO.TextFieldParser("Assets/settings.txt")
+		Using MyReader As New FileIO.TextFieldParser("Assets/settings.txt")
 			' Number of alarm types to display
 			Dim lineReader() As String = MyReader.ReadLine().Split(":")
 			alarmTypes = CInt(lineReader(1).ToString().Trim().TrimStart())
@@ -57,36 +40,21 @@ Public Class Form1
 			lineReader = MyReader.ReadLine().Split(":")
 			alarmfile = "Assets/" & lineReader(1).ToString().Trim().TrimStart()
 			' Terminal usage instruction
-			instructions = MyReader.ReadLine()
-			' Alarm type descriptions
-			icon1lbl = MyReader.ReadLine()
-			icon2lbl = MyReader.ReadLine()
-			icon3lbl = MyReader.ReadLine()
-			icon4lbl = MyReader.ReadLine()
-			icon5lbl = MyReader.ReadLine()
-			icon6lbl = MyReader.ReadLine()
-			icon7lbl = MyReader.ReadLine()
-			icon8lbl = MyReader.ReadLine()
-			icon9lbl = MyReader.ReadLine()
-			icon10lbl = MyReader.ReadLine()
-			' Alarm type icons
-			icon1imgfile = MyReader.ReadLine()
-			icon2imgfile = MyReader.ReadLine()
-			icon3imgfile = MyReader.ReadLine()
-			icon4imgfile = MyReader.ReadLine()
-			icon5imgfile = MyReader.ReadLine()
-			icon6imgfile = MyReader.ReadLine()
-			icon7imgfile = MyReader.ReadLine()
-			icon8imgfile = MyReader.ReadLine()
-			icon9imgfile = MyReader.ReadLine()
-			icon10imgfile = MyReader.ReadLine()
-
-
-			'	PopulateAutoInfo()
+			lineReader = MyReader.ReadLine().Split(":")
+			TextBoxIns.Text = lineReader(1).ToString().Trim().TrimStart()
+			' Alarm type descriptions and icons
+			ReDim iconLbl(alarmTypes)
+			ReDim iconImgFile(alarmTypes)
+			For i = 0 To alarmTypes
+				lineReader = MyReader.ReadLine().Split(":")
+				iconLbl(i) = lineReader(1).ToString().Trim().TrimStart()
+				lineReader = MyReader.ReadLine().Split(":")
+				iconImgFile(i) = "Assets/" & lineReader(1).ToString().Trim().TrimStart()
+			Next
 		End Using
 
 		' Read line labels from text file
-		Using MyReader As New Microsoft.VisualBasic.FileIO.TextFieldParser("Assets/production_lines.txt")
+		Using MyReader As New FileIO.TextFieldParser("Assets/production_lines.txt")
 
 			MyReader.TextFieldType = FileIO.FieldType.Delimited
 			MyReader.SetDelimiters(";")
@@ -115,54 +83,118 @@ Public Class Form1
 			End While
 		End Using
 
-		' Alarm labels
-		Dim newbox As Label
+		' Set positioning of dynamic labels and fields
+		Dim originHor As Int16 = 50    ' origin of coordinates horizontal
+		Dim originVer As Int16 = 10    ' origin of coordinates vertical
+		Dim rectWidth As Int16 = 80    ' width of 1 alarm field
+		Dim rectHeight As Int16 = 40   ' height of 1 alarm field
+		Dim spacingHor As Int16 = rectWidth + 13   ' spacing between same corners of adjacent alarm fields
+		Dim spacingVer As Int16 = rectHeight + 5   ' spacing between same corners of adjacent alarm fields
+
+		' Create dynamic Label alarm descriptions
+		Dim newbox3 As Label
+		For i As Integer = 0 To alarmTypes - 1 'Create labels and set properties
+			newbox3 = New Label With {
+				.Size = New Drawing.Size(rectWidth, rectHeight + 20),
+				.Location = New Point(originHor + 150 + i * spacingHor, originVer + 45),
+				.TextAlign = ContentAlignment.MiddleCenter,
+				.Font = New Font("Arial", 8, FontStyle.Bold),
+				.Text = iconLbl(i)
+			}
+			' Draw alarm labels
+			newbox3.Name = "alarmDescription" & i
+			newbox3.BorderStyle = BorderStyle.None
+			Controls.Add(newbox3)
+		Next
+		PictureBoxLogo.Select()  ' Set focus on logo to prevent selecting text of TextBoxes
+
+		' Create dynamic PictureBox alarm labels
+		Dim newbox As PictureBox
+		For i As Integer = 0 To alarmTypes - 1 'Create labels and set properties
+			newbox = New PictureBox With {
+				.Size = New Drawing.Size(rectWidth, rectHeight + 10),
+				.Location = New Point(originHor + 150 + i * spacingHor, originVer + 100),
+				.ImageLocation = iconImgFile(i),
+				.SizeMode = PictureBoxSizeMode.StretchImage
+			}
+			' Draw alarm labels
+			newbox.Name = "alarmLabel" & i
+			newbox.BorderStyle = BorderStyle.None
+			Controls.Add(newbox)
+		Next
+
+		' Create dynamic alarm labels, add handlers
+		Dim newbox2 As Label
 		Dim y As Int32 = 0
 		Dim lineNo As Int32 = 1
-		For i As Integer = 0 To (lineCount * alarmTypes) - 1 'Create labels and set properties
-			'set Y
+		For i As Integer = 0 To lineCount * alarmTypes - 1 'Create labels and set properties
+			'set vertical offset
 			If (i / lineNo) = alarmTypes Then
-				y += 25
+				y += spacingVer
 				lineNo += 1
 			End If
 
-			newbox = New Label With {
-				.Size = New Drawing.Size(40, 20),
-				.Location = New Point(100 + (i Mod alarmTypes) * 53, 55 + y),
-				.Font = New Font("Arial", 8),
+			newbox2 = New Label With {
+				.Size = New Drawing.Size(rectWidth, rectHeight),
+				.Location = New Point(originHor + 150 + (i Mod alarmTypes) * spacingHor, originVer + 155 + y),
+				.Font = New Font("Arial", 11, FontStyle.Bold),
 				.TextAlign = ContentAlignment.MiddleCenter
-				}
+			}
 			' Draw alarm labels
-			newbox.Name = "lineLabel" & i
-			newbox.Text = ""
-			newbox.BorderStyle = BorderStyle.FixedSingle
-			newbox.BackColor = Color.White
-			Controls.Add(newbox)
+			newbox2.Name = "lineLabel" & i
+			newbox2.Text = ""
+			newbox2.BorderStyle = BorderStyle.FixedSingle
+			newbox2.BackColor = Color.White
+			AddHandler newbox2.MouseEnter, AddressOf Label_MouseEnter
+			AddHandler newbox2.MouseLeave, AddressOf Label_MouseLeave
+			AddHandler newbox2.Click, AddressOf Label_Click
+			Controls.Add(newbox2)
+		Next
+
+		' Create dynamic line labels
+		Dim newbox4, newbox5 As Label
+		y = 0
+		lineNo = 1
+		For i As Integer = 0 To lineCount - 1 'Create labels and set properties
+			newbox4 = New Label With {
+				.Size = New Drawing.Size(rectWidth / 2 + 10, rectHeight),
+				.Location = New Point(originHor - 30, originVer + 155 + i * spacingVer),
+				.Font = New Font("Arial", 12, FontStyle.Bold),
+				.TextAlign = ContentAlignment.MiddleLeft
+			}
+			' Draw line labels
+			newbox4.Name = "lineLabel" & i & "1"
+			newbox4.Text = lineLabels(displayedLines(i), 1)
+			newbox4.BorderStyle = BorderStyle.None
+			newbox4.BackColor = Color.White
+			Controls.Add(newbox4)
+
+			newbox5 = New Label With {
+				.Size = New Drawing.Size(rectWidth + 50, rectHeight),
+				.Location = New Point(originHor + 30, originVer + 155 + i * spacingVer),
+				.Font = New Font("Arial", 12, FontStyle.Bold),
+				.TextAlign = ContentAlignment.MiddleLeft
+			}
+			' Draw line labels
+			newbox5.Name = "lineLabel" & i & "2"
+			newbox5.Text = lineLabels(displayedLines(i), 2)
+			newbox5.BorderStyle = BorderStyle.None
+			newbox5.BackColor = Color.White
+			Controls.Add(newbox5)
 		Next
 
 		' Set window text
 		Me.Text = terminalName
 
-		' Update line labels in form
-		For i = 0 To lineCount - 1
-			Dim myBox As TextBox = CType(Me.Controls("TextLbl" & i + 1 & "1"), TextBox)
-			If myBox Is Nothing Then
-			Else
-				myBox.Text = lineLabels(displayedLines(i), 1)
-				myBox = CType(Me.Controls("TextLbl" & i + 1 & "2"), TextBox)
-				myBox.Text = lineLabels(displayedLines(i), 2)
-			End If
-		Next
-
+		' Initialize everything to green
 		For i = 0 To lineCount - 1
 			For j = 0 To alarmTypes - 1
 				lineStatusStr(i, j) = "Green"
 			Next
 		Next
 		For i = 0 To lineCount * alarmTypes - 1
-			Dim myBox As TextBox = CType(Me.Controls("TBox" & i + 1), TextBox)
+			Dim myBox As Label = CType(Me.Controls("lineLabel" & i), Label)
 			If myBox Is Nothing Then
-
 			Else
 				myBox.BackColor = Color.FromArgb(0, 255, 0)
 				myBox.BorderStyle = BorderStyle.FixedSingle
@@ -170,7 +202,151 @@ Public Class Form1
 		Next
 
 		' Create initial text file
-		'	Update_Fields(sender, e)
+		Update_Fields(sender, e)
+	End Sub
+
+	Private Sub Label_Click(sender As Object, e As System.EventArgs)
+		sender.Cursor = Cursors.Hand
+		' If button is clicked, update the fields and change colour
+		Update_Fields(sender, e)
+	End Sub
+
+	Private Sub Label_MouseEnter(sender As Object, e As System.EventArgs)
+		sender.Cursor = Cursors.Hand
+	End Sub
+
+	Private Sub Label_MouseLeave(sender As Object, e As System.EventArgs)
+		sender.Cursor = Cursors.Default
+	End Sub
+
+
+	Private Sub LogAlarmInfo(line As String, controlObj As String, color As String, alarmLength As Long)
+		Try
+			Dim alarmType As Integer
+			Using outputFile As New StreamWriter("Data/alarmlog_" & terminalName & ".txt", True)
+				Dim sb As New System.Text.StringBuilder
+				If (CInt(controlObj.Remove(0, 9)) Mod alarmTypes) = 0 Then
+					alarmType = alarmTypes
+				Else alarmType = (CInt(controlObj.Remove(0, 9)) Mod alarmTypes)
+				End If
+				sb.Append("Event DateTime : " & DateTime.Now & ";")
+				sb.Append(" Line : " & line & ";")
+				sb.Append(" Alarm type : " & alarmType & ";")
+				sb.Append(" New Color : " & color & ";")
+				sb.Append(" Length of alarm (minutes) : " & alarmLength)
+				outputFile.WriteLine(sb.ToString())
+			End Using
+			Exit Try
+		Catch ex As Exception
+			MessageBox.Show(ex.Message)
+		End Try
+
+	End Sub
+	Private Sub Update_Fields(sender As Object, e As EventArgs)
+		' Alarm was clicked, update the fields and export text file
+
+		' If alarm is switched on, set starting time in alarmStartTime and write initial label in text box
+		For i As Integer = 0 To lineCount - 1
+			For j As Integer = 0 To alarmTypes - 1
+				Dim myBox As Label = CType(Me.Controls("lineLabel" & i * alarmTypes + j), Label)
+				If sender Is myBox Then
+					If noOfColors = 3 Then
+						If lineStatusStr(i, j) = "Red" Then
+							lineStatusStr(i, j) = "Green"
+						ElseIf lineStatusStr(i, j) = "Green" Then
+							lineStatusStr(i, j) = "Yellow"
+						ElseIf lineStatusStr(i, j) = "Yellow" Then
+							lineStatusStr(i, j) = "Red"
+						End If
+					ElseIf noOfColors = 2 Then
+						If lineStatusStr(i, j) = "Red" Then
+							lineStatusStr(i, j) = "Green"
+						ElseIf lineStatusStr(i, j) = "Green" Then
+							lineStatusStr(i, j) = "Red"
+						End If
+					End If
+
+					If lineStatusStr(i, j) = "Red" Then
+						If noOfColors = 2 Then                     ' in case we switch from yellow to red, we continue the yellow alarm length 
+							alarmStartDateTime(i, j) = DateTime.Now
+							myBox.Text = "0 min"
+							PictureBoxLogo.Select()
+						End If
+						myBox.ForeColor = Color.White
+						LogAlarmInfo(lineLabels(displayedLines(i), 1), myBox.Name, lineStatusStr(i, j), 0)
+
+					ElseIf lineStatusStr(i, j) = "Yellow" Then
+						alarmStartDateTime(i, j) = DateTime.Now
+						myBox.Text = "0 min"
+						myBox.ForeColor = Color.Black
+						PictureBoxLogo.Select()
+						LogAlarmInfo(lineLabels(displayedLines(i), 1), myBox.Name, lineStatusStr(i, j), 0)
+
+					ElseIf lineStatusStr(i, j) = "Green" Then
+						alarmEndDateTime(i, j) = DateTime.Now
+						myBox.Text = ""
+						PictureBoxLogo.Select()
+						LogAlarmInfo(lineLabels(displayedLines(i), 1), myBox.Name, lineStatusStr(i, j), DateDiff(DateInterval.Minute, alarmStartDateTime(i, j), alarmEndDateTime(i, j)))
+					Else
+						myBox.Text = ""
+						PictureBoxLogo.Select()
+					End If
+				End If
+			Next
+		Next
+
+		' Update background colours of TextBoxes
+		For i = 0 To lineCount - 1
+			For j = 0 To alarmTypes - 1
+				Dim myBox As Label = CType(Me.Controls("lineLabel" & i * alarmTypes + j), Label)
+				If myBox Is Nothing Then
+				Else
+					If lineStatusStr(i, j) = "Green" Then
+						myBox.BackColor = Color.FromArgb(0, 255, 0)
+					ElseIf lineStatusStr(i, j) = "Yellow" Then
+						myBox.BackColor = Color.FromArgb(255, 192, 0)
+					ElseIf lineStatusStr(i, j) = "Red" Then
+						myBox.BackColor = Color.FromArgb(255, 0, 0)
+					End If
+				End If
+			Next
+		Next
+
+		' Write alarm status to text file
+		Try
+			Using outputFile As New StreamWriter("Data/" & terminalName & ".txt")
+				For i = 0 To lineCount - 1
+					outputFile.WriteLine(lineLabels(displayedLines(i), 0))
+					outputFile.WriteLine(lineLabels(displayedLines(i), 1))
+					Try
+						For j = 0 To alarmTypes - 1
+							outputFile.WriteLine(lineStatusStr(i, j))
+						Next
+					Catch ex As Exception
+
+					End Try
+				Next
+			End Using
+			Exit Try
+		Catch ex As Exception
+			Threading.Thread.Sleep(100)
+			Update_Fields(sender, e)
+		End Try
+	End Sub
+
+	Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
+		' Periodically update the text file and the labels for time since alarm was activated
+		Update_Fields(sender, e)
+		Dim i, j As Integer
+		For i = 0 To lineCount - 1
+			For j = 0 To alarmTypes - 1
+				Dim myBox As Label = CType(Me.Controls("lineLabel" & i * alarmTypes + j), Label)
+				Try
+					If lineStatusStr(i, j) = "Yellow" Or lineStatusStr(i, j) = "Red" Then myBox.Text = "" & DateDiff(DateInterval.Minute, alarmStartDateTime(i, j), DateTime.Now) & " min"
+				Catch ex As Exception
+				End Try
+			Next
+		Next
 	End Sub
 
 End Class

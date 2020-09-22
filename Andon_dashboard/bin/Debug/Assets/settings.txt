@@ -1,5 +1,5 @@
-﻿Number of alarm types to display : 5
-Number of status colours : 3
+﻿Number of alarm types to display in columns in grid view : 5
+Number of status colours (2 = Green, Red, 3 = Green, Yellow, Red) : 3
 Image file for company logo : logo.png
 Alarm sound file : alarm.wav
 Instructions : IN CASE OF PROBLEM CLICK ON APPROPRIATE GREEN FIELD.    ORANGE FIELD MEANS LINE HAS A PROBLEM BUT IS STILL RUNNING. RED MEANS THAT LINE HAS STOPPED.    AFTER PROBLEM IS SOLVED, CLICK THE FIELD AGAIN AND CHANGE IT TO GREEN. 
