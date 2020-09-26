@@ -113,7 +113,7 @@ Public Class Andon
 
             newbox = New Label With {
                 .Size = New Size(40, 20),
-                .Location = New Point(100 + (i Mod alarmTypes) * 53, 55 + y),
+                .Location = New Point(250 + (i Mod alarmTypes) * 53, 55 + y),
                 .Font = New Font("Arial", 8),
                 .TextAlign = ContentAlignment.MiddleCenter
             }
@@ -130,7 +130,7 @@ Public Class Andon
         For i As Integer = 0 To alarmTypes - 1 'Create labels and set properties
             newbox2 = New PictureBox With {
                 .Size = New Drawing.Size(40, 30),
-                .Location = New Point(100 + i * 53, 10),
+                .Location = New Point(250 + i * 53, 10),
                 .ImageLocation = iconImgFile(i),
                 .SizeMode = PictureBoxSizeMode.StretchImage
             }
@@ -140,16 +140,16 @@ Public Class Andon
             Controls.Add(newbox2)
         Next
 
-        'Line Labels
+        ' Create Priority Line Labels
         For i As Integer = 0 To nOfLines - 1 'Create labels and set properties
             newbox = New Label With {
-                .Size = New Size(64 + (alarmTypes * 54), 29),
+                .Size = New Size(220 + (alarmTypes * 54), 29),
                 .Location = New Point(20, 50 + (i * 25)),
                 .Font = New Font("Arial", 14),
                 .TextAlign = ContentAlignment.MiddleLeft
             }
             ' Draw alarm labels
-            newbox.Name = "nameLabel" & i
+            newbox.Name = "prioLabel" & i
             newbox.Text = lineLabels(i, 1)
             newbox.BorderStyle = BorderStyle.None
             newbox.BackColor = Color.White
@@ -160,7 +160,7 @@ Public Class Andon
         ' Set tooltips for line nubmers
         Dim toolTip1 As New ToolTip()
         For i = 0 To nOfLines - 1
-            Dim myLabel As Label = CType(Controls("nameLabel" & i), Label)
+            Dim myLabel As Label = CType(Controls("prioLabel" & i), Label)
             toolTip1.SetToolTip(myLabel, lineLabels(i, 2))
         Next
 
@@ -183,10 +183,13 @@ Public Class Andon
             If Not oldFile Then File.SetLastWriteTime("Data/" & fri.ToString, DateTime.Now)
         Next fri
 
+        If soundOn = True Then LabelSound.Text = "Sound is on" Else LabelSound.Text = "Sound is off"
+
         ' Update line visualization (active lines and priority lines)
         Timer1_Tick(sender, e)
 
     End Sub
+
 
     Private Sub UpdateFields(sender As Object, e As FileSystemEventArgs)
         ' Update alarm fields according to the current text files
@@ -295,19 +298,19 @@ Public Class Andon
             Next
             For i = 0 To nOfLines - 1
                 ' Remove previous marking of last alarm 
-                Dim myLabel As Label = CType(Controls("nameLabel" & i), Label)
+                Dim myLabel As Label = CType(Controls("prioLabel" & i), Label)
                 myLabel.ForeColor = Color.FromArgb(0, 0, 0)
             Next
             ' Mark last alarm
             If lastAlarmLineNr > -1 Then
-                Dim myLabel2 As Label = CType(Controls("nameLabel" & lastAlarmLineNr), Label)
+                Dim myLabel2 As Label = CType(Controls("prioLabel" & lastAlarmLineNr), Label)
                 myLabel2.ForeColor = Color.FromArgb(255, 0, 0)
             End If
         End If
 
         Dim someAlarmsExist As Boolean
         For i = 0 To nOfLines - 1
-            Dim myLabel As Label = CType(Controls("nameLabel" & i), Label)
+            Dim myLabel As Label = CType(Controls("prioLabel" & i), Label)
             someAlarmsExist = False
             For j = 0 To alarmTypes - 1
                 If lineStatusStr(i, j) <> "Green" Then someAlarmsExist = True
@@ -344,7 +347,7 @@ Public Class Andon
 
         ' Mark priority lines
         For i = 0 To nOfLines - 1
-            Dim myLbl As Label = CType(Controls("nameLabel" & i), Label)
+            Dim myLbl As Label = CType(Controls("prioLabel" & i), Label)
             myLbl.BackColor = Color.FromArgb(255, 255, 255)
         Next
 
@@ -371,7 +374,7 @@ Public Class Andon
 
         For i = 0 To nOfLines - 1
             If priorityLines(i) > -1 Then
-                Dim myLbl As Label = CType(Controls("nameLabel" & priorityLines(i)), Label)
+                Dim myLbl As Label = CType(Controls("prioLabel" & priorityLines(i)), Label)
                 myLbl.BackColor = Color.FromArgb(252, 228, 214)
             End If
         Next
@@ -379,7 +382,13 @@ Public Class Andon
 
     Private Sub PictureBox9_Click(sender As Object, e As EventArgs) Handles PictureBoxSound.Click
         ' Toggle sound on/off
-        If soundOn Then PictureBoxSound.Image = Image.FromFile("Assets/soundoff.png") Else PictureBoxSound.Image = Image.FromFile("Assets/soundon.png")
+        If soundOn Then
+            PictureBoxSound.Image = Image.FromFile("Assets/soundoff.png")
+            LabelSound.Text = "Sound is off"
+        Else
+            PictureBoxSound.Image = Image.FromFile("Assets/soundon.png")
+            LabelSound.Text = "Sound is on"
+        End If
         soundOn = Not soundOn
     End Sub
 

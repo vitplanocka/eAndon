@@ -51,6 +51,9 @@ Partial Class Andon
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.Label16 = New System.Windows.Forms.Label()
+        Me.Label17 = New System.Windows.Forms.Label()
+        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.LabelSound = New System.Windows.Forms.Label()
         CType(Me.PictureBoxLogo, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.watcher2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBoxSound, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -61,11 +64,13 @@ Partial Class Andon
         CType(Me.PictureBox90, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox80, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
+        Me.GroupBox2.SuspendLayout()
         Me.SuspendLayout()
         '
         'PictureBoxLogo
         '
-        Me.PictureBoxLogo.Location = New System.Drawing.Point(677, 11)
+        Me.PictureBoxLogo.Anchor = System.Windows.Forms.AnchorStyles.Top
+        Me.PictureBoxLogo.Location = New System.Drawing.Point(995, 16)
         Me.PictureBoxLogo.Margin = New System.Windows.Forms.Padding(2)
         Me.PictureBoxLogo.Name = "PictureBoxLogo"
         Me.PictureBoxLogo.Size = New System.Drawing.Size(166, 63)
@@ -89,7 +94,7 @@ Partial Class Andon
         '
         Me.PictureBoxSound.BackgroundImage = CType(resources.GetObject("PictureBoxSound.BackgroundImage"), System.Drawing.Image)
         Me.PictureBoxSound.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.PictureBoxSound.Location = New System.Drawing.Point(390, 598)
+        Me.PictureBoxSound.Location = New System.Drawing.Point(116, 23)
         Me.PictureBoxSound.Name = "PictureBoxSound"
         Me.PictureBoxSound.Size = New System.Drawing.Size(60, 58)
         Me.PictureBoxSound.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -334,7 +339,7 @@ Partial Class Andon
         '
         'GroupBox1
         '
-        Me.GroupBox1.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.GroupBox1.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.GroupBox1.BackColor = System.Drawing.SystemColors.ButtonHighlight
         Me.GroupBox1.Controls.Add(Me.TextBox13)
         Me.GroupBox1.Controls.Add(Me.TextBox12)
@@ -357,8 +362,8 @@ Partial Class Andon
         Me.GroupBox1.Controls.Add(Me.Label68)
         Me.GroupBox1.Controls.Add(Me.Label67)
         Me.GroupBox1.Controls.Add(Me.Label64)
-        Me.GroupBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox1.Location = New System.Drawing.Point(560, 452)
+        Me.GroupBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GroupBox1.Location = New System.Drawing.Point(561, 207)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(600, 204)
         Me.GroupBox1.TabIndex = 18
@@ -390,14 +395,52 @@ Partial Class Andon
         Me.Label16.Text = "Line nr."
         Me.Label16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
+        'Label17
+        '
+        Me.Label17.AutoSize = True
+        Me.Label17.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label17.Location = New System.Drawing.Point(116, 16)
+        Me.Label17.MinimumSize = New System.Drawing.Size(50, 28)
+        Me.Label17.Name = "Label17"
+        Me.Label17.Size = New System.Drawing.Size(125, 29)
+        Me.Label17.TabIndex = 2
+        Me.Label17.Text = "Line name"
+        Me.Label17.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'GroupBox2
+        '
+        Me.GroupBox2.Anchor = System.Windows.Forms.AnchorStyles.Top
+        Me.GroupBox2.Controls.Add(Me.PictureBoxSound)
+        Me.GroupBox2.Controls.Add(Me.LabelSound)
+        Me.GroupBox2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GroupBox2.Location = New System.Drawing.Point(560, 96)
+        Me.GroupBox2.Name = "GroupBox2"
+        Me.GroupBox2.Size = New System.Drawing.Size(601, 105)
+        Me.GroupBox2.TabIndex = 20
+        Me.GroupBox2.TabStop = False
+        Me.GroupBox2.Text = "Controls"
+        '
+        'LabelSound
+        '
+        Me.LabelSound.AutoSize = True
+        Me.LabelSound.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelSound.Location = New System.Drawing.Point(200, 39)
+        Me.LabelSound.MinimumSize = New System.Drawing.Size(50, 28)
+        Me.LabelSound.Name = "LabelSound"
+        Me.LabelSound.Size = New System.Drawing.Size(125, 29)
+        Me.LabelSound.TabIndex = 2
+        Me.LabelSound.Text = "Line name"
+        Me.LabelSound.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
         'Andon
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.ButtonHighlight
         Me.ClientSize = New System.Drawing.Size(1215, 686)
-        Me.Controls.Add(Me.PictureBoxSound)
+        Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.PictureBoxLogo)
+        Me.Controls.Add(Me.Label17)
         Me.Controls.Add(Me.Label16)
         Me.Controls.Add(Me.GroupBox1)
         Me.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -415,6 +458,8 @@ Partial Class Andon
         CType(Me.PictureBox80, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
+        Me.GroupBox2.ResumeLayout(False)
+        Me.GroupBox2.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -446,4 +491,7 @@ Partial Class Andon
     Friend WithEvents Label64 As Label
     Friend WithEvents Label16 As Label
     Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents GroupBox2 As GroupBox
+    Friend WithEvents LabelSound As Label
+    Friend WithEvents Label17 As Label
 End Class
