@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class Andon
     Inherits System.Windows.Forms.Form
 
     'Formulář přepisuje metodu Dispose, aby vyčistil seznam součástí.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class Andon
     'POZNÁMKA: Následující procedura je vyžadována Návrhářem Windows Form
     'Může být upraveno pomocí Návrháře Windows Form.  
     'Neupravovat pomocí editoru kódu
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Andon))
@@ -51,7 +51,6 @@ Partial Class Andon
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.Label16 = New System.Windows.Forms.Label()
-        Me.Label17 = New System.Windows.Forms.Label()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.LabelSound = New System.Windows.Forms.Label()
         CType(Me.PictureBoxLogo, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -70,10 +69,10 @@ Partial Class Andon
         'PictureBoxLogo
         '
         Me.PictureBoxLogo.Anchor = System.Windows.Forms.AnchorStyles.Top
-        Me.PictureBoxLogo.Location = New System.Drawing.Point(995, 16)
+        Me.PictureBoxLogo.Location = New System.Drawing.Point(994, 20)
         Me.PictureBoxLogo.Margin = New System.Windows.Forms.Padding(2)
         Me.PictureBoxLogo.Name = "PictureBoxLogo"
-        Me.PictureBoxLogo.Size = New System.Drawing.Size(166, 63)
+        Me.PictureBoxLogo.Size = New System.Drawing.Size(175, 96)
         Me.PictureBoxLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.PictureBoxLogo.TabIndex = 9
         Me.PictureBoxLogo.TabStop = False
@@ -94,9 +93,9 @@ Partial Class Andon
         '
         Me.PictureBoxSound.BackgroundImage = CType(resources.GetObject("PictureBoxSound.BackgroundImage"), System.Drawing.Image)
         Me.PictureBoxSound.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.PictureBoxSound.Location = New System.Drawing.Point(116, 23)
+        Me.PictureBoxSound.Location = New System.Drawing.Point(24, 35)
         Me.PictureBoxSound.Name = "PictureBoxSound"
-        Me.PictureBoxSound.Size = New System.Drawing.Size(60, 58)
+        Me.PictureBoxSound.Size = New System.Drawing.Size(45, 45)
         Me.PictureBoxSound.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.PictureBoxSound.TabIndex = 19
         Me.PictureBoxSound.TabStop = False
@@ -191,7 +190,7 @@ Partial Class Andon
         'PictureBox120
         '
         Me.PictureBox120.Image = CType(resources.GetObject("PictureBox120.Image"), System.Drawing.Image)
-        Me.PictureBox120.Location = New System.Drawing.Point(368, 162)
+        Me.PictureBox120.Location = New System.Drawing.Point(368, 160)
         Me.PictureBox120.Name = "PictureBox120"
         Me.PictureBox120.Size = New System.Drawing.Size(55, 29)
         Me.PictureBox120.TabIndex = 19
@@ -211,7 +210,7 @@ Partial Class Andon
         Me.Label66.AutoSize = True
         Me.Label66.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label66.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.Label66.Location = New System.Drawing.Point(6, 61)
+        Me.Label66.Location = New System.Drawing.Point(6, 64)
         Me.Label66.MinimumSize = New System.Drawing.Size(0, 28)
         Me.Label66.Name = "Label66"
         Me.Label66.Size = New System.Drawing.Size(102, 28)
@@ -301,7 +300,7 @@ Partial Class Andon
         Me.TextBox11.BackColor = System.Drawing.Color.Lime
         Me.TextBox11.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox11.ForeColor = System.Drawing.SystemColors.InactiveCaptionText
-        Me.TextBox11.Location = New System.Drawing.Point(295, 108)
+        Me.TextBox11.Location = New System.Drawing.Point(305, 109)
         Me.TextBox11.Margin = New System.Windows.Forms.Padding(2)
         Me.TextBox11.Multiline = True
         Me.TextBox11.Name = "TextBox11"
@@ -315,7 +314,7 @@ Partial Class Andon
         Me.TextBox12.BackColor = System.Drawing.Color.DarkOrange
         Me.TextBox12.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox12.ForeColor = System.Drawing.SystemColors.InactiveCaptionText
-        Me.TextBox12.Location = New System.Drawing.Point(295, 136)
+        Me.TextBox12.Location = New System.Drawing.Point(305, 137)
         Me.TextBox12.Margin = New System.Windows.Forms.Padding(2)
         Me.TextBox12.Multiline = True
         Me.TextBox12.Name = "TextBox12"
@@ -329,7 +328,7 @@ Partial Class Andon
         Me.TextBox13.BackColor = System.Drawing.Color.Red
         Me.TextBox13.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox13.ForeColor = System.Drawing.SystemColors.InactiveCaptionText
-        Me.TextBox13.Location = New System.Drawing.Point(295, 165)
+        Me.TextBox13.Location = New System.Drawing.Point(305, 166)
         Me.TextBox13.Margin = New System.Windows.Forms.Padding(2)
         Me.TextBox13.Multiline = True
         Me.TextBox13.Name = "TextBox13"
@@ -363,7 +362,7 @@ Partial Class Andon
         Me.GroupBox1.Controls.Add(Me.Label67)
         Me.GroupBox1.Controls.Add(Me.Label64)
         Me.GroupBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox1.Location = New System.Drawing.Point(561, 207)
+        Me.GroupBox1.Location = New System.Drawing.Point(569, 121)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(600, 204)
         Me.GroupBox1.TabIndex = 18
@@ -390,22 +389,10 @@ Partial Class Andon
         Me.Label16.Location = New System.Drawing.Point(18, 16)
         Me.Label16.MinimumSize = New System.Drawing.Size(50, 28)
         Me.Label16.Name = "Label16"
-        Me.Label16.Size = New System.Drawing.Size(92, 29)
+        Me.Label16.Size = New System.Drawing.Size(234, 29)
         Me.Label16.TabIndex = 2
-        Me.Label16.Text = "Line nr."
+        Me.Label16.Text = "Line nr.     Line name"
         Me.Label16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'Label17
-        '
-        Me.Label17.AutoSize = True
-        Me.Label17.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label17.Location = New System.Drawing.Point(116, 16)
-        Me.Label17.MinimumSize = New System.Drawing.Size(50, 28)
-        Me.Label17.Name = "Label17"
-        Me.Label17.Size = New System.Drawing.Size(125, 29)
-        Me.Label17.TabIndex = 2
-        Me.Label17.Text = "Line name"
-        Me.Label17.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'GroupBox2
         '
@@ -413,9 +400,9 @@ Partial Class Andon
         Me.GroupBox2.Controls.Add(Me.PictureBoxSound)
         Me.GroupBox2.Controls.Add(Me.LabelSound)
         Me.GroupBox2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox2.Location = New System.Drawing.Point(560, 96)
+        Me.GroupBox2.Location = New System.Drawing.Point(569, 16)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(601, 105)
+        Me.GroupBox2.Size = New System.Drawing.Size(413, 105)
         Me.GroupBox2.TabIndex = 20
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Controls"
@@ -424,12 +411,12 @@ Partial Class Andon
         '
         Me.LabelSound.AutoSize = True
         Me.LabelSound.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelSound.Location = New System.Drawing.Point(200, 39)
+        Me.LabelSound.Location = New System.Drawing.Point(79, 43)
         Me.LabelSound.MinimumSize = New System.Drawing.Size(50, 28)
         Me.LabelSound.Name = "LabelSound"
-        Me.LabelSound.Size = New System.Drawing.Size(125, 29)
+        Me.LabelSound.Size = New System.Drawing.Size(83, 29)
         Me.LabelSound.TabIndex = 2
-        Me.LabelSound.Text = "Line name"
+        Me.LabelSound.Text = "Sound"
         Me.LabelSound.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'Andon
@@ -440,7 +427,6 @@ Partial Class Andon
         Me.ClientSize = New System.Drawing.Size(1215, 686)
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.PictureBoxLogo)
-        Me.Controls.Add(Me.Label17)
         Me.Controls.Add(Me.Label16)
         Me.Controls.Add(Me.GroupBox1)
         Me.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -493,5 +479,4 @@ Partial Class Andon
     Friend WithEvents TextBox1 As TextBox
     Friend WithEvents GroupBox2 As GroupBox
     Friend WithEvents LabelSound As Label
-    Friend WithEvents Label17 As Label
 End Class

@@ -2,9 +2,8 @@
 
 'TODO:  
 ' - remove reading nOfLines from first line of production_lines.txt 
+' - remove first column from production line files
 ' - create variables for positioning of nameLabels and lineLabels
-' - add a column with line name 
-' - create a label with details of last alarm
 ' - add grid view / lay-out view
 ' - make creation of Terminals dynamic
 
@@ -125,7 +124,7 @@ Public Class Andon
             Controls.Add(newbox)
         Next
 
-        ' Create dynamic PictureBox alarm labels
+        ' Create dynamic alarm column labels
         Dim newbox2 As PictureBox
         For i As Integer = 0 To alarmTypes - 1 'Create labels and set properties
             newbox2 = New PictureBox With {
@@ -148,9 +147,8 @@ Public Class Andon
                 .Font = New Font("Arial", 14),
                 .TextAlign = ContentAlignment.MiddleLeft
             }
-            ' Draw alarm labels
             newbox.Name = "prioLabel" & i
-            newbox.Text = lineLabels(i, 1)
+            newbox.Text = lineLabels(i, 1) & "          " & lineLabels(i, 2)
             newbox.BorderStyle = BorderStyle.None
             newbox.BackColor = Color.White
             newbox.SendToBack()
