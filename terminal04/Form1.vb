@@ -5,14 +5,14 @@
 
 Public Class Form1
 	Public terminalName As String = Reflection.Assembly.GetExecutingAssembly().GetName().Name    ' Get name of current file
-	Public lineCount As Integer = 0                   ' Number of lines displayed on this form
+	Public workstationCount As Integer = 0            ' Number of workstations displayed on this form
 	Public alarmTypes As Integer = 0                  ' Number of displayed alarm types
-	Public displayedLines(10) As Integer              ' Numbers or lines from production_lines.txt displayed on this form
+	Public displayedLines(10) As Integer              ' Numbers or workstations from production_lines.txt displayed on this form
 	Public alarmStartDateTime(10, 20) As DateTime     ' When alarm was pressed last time
 	Public alarmEndDateTime(10, 20) As DateTime       ' When alarm was turned off
 	Public noOfColors As Integer = 2                  ' default is 2 but we will read it from settings file
-	Public lineLabels(100, 3) As String               ' #, line number, line name, output file name 
-	Public lineStatusStr(20, 20) As String            ' Green, Yellow, Red
+	Public workstationLabels(100, 3) As String        ' #, workstation number, workstation name, output file name 
+	Public workstationStatus(20, 20) As String        ' Green, Yellow, Red
 	Public alarmfile As String                        ' alarm sound filename
 	Public iconLbl(alarmTypes) As String              ' labels for alarm types
 	Public iconImgFile(alarmTypes) As String          ' image filenames for alarm types   
@@ -53,15 +53,14 @@ Public Class Form1
 			Next
 		End Using
 
-		' Read line labels from text file
-		Using MyReader As New FileIO.TextFieldParser("Assets/production_lines.txt")
-
+		' Read workstation labels from text file
+		Using MyReader As New FileIO.TextFieldParser("Assets/Workstations_terminals.txt")
 			MyReader.TextFieldType = FileIO.FieldType.Delimited
 			MyReader.SetDelimiters(";")
 
-			MyReader.ReadLine()          ' number of lines from configuration file
+			MyReader.ReadLine()          ' number of workstations from configuration file
+			MyReader.ReadLine()          ' Skip format legend
 			Dim i As Integer = 0
-
 			Dim currentRow As String()
 			While Not MyReader.EndOfData
 				Try
@@ -69,12 +68,12 @@ Public Class Form1
 					currentRow = MyReader.ReadFields()
 					If currentRow(3) = terminalName & ".txt" Then
 						' Parse line into strings '
-						lineLabels(i, 0) = currentRow(0)
-						lineLabels(i, 1) = currentRow(1)
-						lineLabels(i, 2) = currentRow(2)
-						lineLabels(i, 3) = currentRow(3)
-						displayedLines(lineCount) = CInt(currentRow(0))
-						lineCount += 1
+						workstationLabels(i, 0) = currentRow(0)
+						workstationLabels(i, 1) = currentRow(1)
+						workstationLabels(i, 2) = currentRow(2)
+						workstationLabels(i, 3) = currentRow(3)
+						displayedLines(workstationCount) = CInt(currentRow(0))
+						workstationCount += 1
 					End If
 					i += 1
 				Catch ex As Microsoft.VisualBasic.FileIO.MalformedLineException
@@ -127,7 +126,7 @@ Public Class Form1
 		Dim newbox2 As Label
 		Dim y As Int32 = 0
 		Dim lineNo As Int32 = 1
-		For i As Integer = 0 To lineCount * alarmTypes - 1 'Create labels and set properties
+		For i As Integer = 0 To workstationCount * alarmTypes - 1 'Create labels and set properties
 			'set vertical offset
 			If (i / lineNo) = alarmTypes Then
 				y += spacingVer
@@ -151,20 +150,19 @@ Public Class Form1
 			Controls.Add(newbox2)
 		Next
 
-		' Create dynamic line labels
+		' Create dynamic workstation labels
 		Dim newbox4, newbox5 As Label
 		y = 0
 		lineNo = 1
-		For i As Integer = 0 To lineCount - 1 'Create labels and set properties
+		For i As Integer = 0 To workstationCount - 1 'Create labels and set properties
 			newbox4 = New Label With {
 				.Size = New Drawing.Size(rectWidth / 2 + 10, rectHeight),
 				.Location = New Point(originHor - 30, originVer + 155 + i * spacingVer),
 				.Font = New Font("Arial", 12, FontStyle.Bold),
 				.TextAlign = ContentAlignment.MiddleLeft
 			}
-			' Draw line labels
 			newbox4.Name = "lineLabel" & i & "1"
-			newbox4.Text = lineLabels(displayedLines(i), 1)
+			newbox4.Text = workstationLabels(displayedLines(i), 1)
 			newbox4.BorderStyle = BorderStyle.None
 			newbox4.BackColor = Color.White
 			Controls.Add(newbox4)
@@ -175,9 +173,8 @@ Public Class Form1
 				.Font = New Font("Arial", 12, FontStyle.Bold),
 				.TextAlign = ContentAlignment.MiddleLeft
 			}
-			' Draw line labels
 			newbox5.Name = "lineLabel" & i & "2"
-			newbox5.Text = lineLabels(displayedLines(i), 2)
+			newbox5.Text = workstationLabels(displayedLines(i), 2)
 			newbox5.BorderStyle = BorderStyle.None
 			newbox5.BackColor = Color.White
 			Controls.Add(newbox5)
@@ -187,12 +184,12 @@ Public Class Form1
 		Me.Text = terminalName
 
 		' Initialize everything to green
-		For i = 0 To lineCount - 1
+		For i = 0 To workstationCount - 1
 			For j = 0 To alarmTypes - 1
-				lineStatusStr(i, j) = "Green"
+				workstationStatus(i, j) = "Green"
 			Next
 		Next
-		For i = 0 To lineCount * alarmTypes - 1
+		For i = 0 To workstationCount * alarmTypes - 1
 			Dim myBox As Label = CType(Me.Controls("lineLabel" & i), Label)
 			If myBox Is Nothing Then
 			Else
@@ -246,47 +243,47 @@ Public Class Form1
 		' Alarm was clicked, update the fields and export text file
 
 		' If alarm is switched on, set starting time in alarmStartTime and write initial label in text box
-		For i As Integer = 0 To lineCount - 1
+		For i As Integer = 0 To workstationCount - 1
 			For j As Integer = 0 To alarmTypes - 1
 				Dim myBox As Label = CType(Me.Controls("lineLabel" & i * alarmTypes + j), Label)
 				If sender Is myBox Then
 					If noOfColors = 3 Then
-						If lineStatusStr(i, j) = "Red" Then
-							lineStatusStr(i, j) = "Green"
-						ElseIf lineStatusStr(i, j) = "Green" Then
-							lineStatusStr(i, j) = "Yellow"
-						ElseIf lineStatusStr(i, j) = "Yellow" Then
-							lineStatusStr(i, j) = "Red"
+						If workstationStatus(i, j) = "Red" Then
+							workstationStatus(i, j) = "Green"
+						ElseIf workstationStatus(i, j) = "Green" Then
+							workstationStatus(i, j) = "Yellow"
+						ElseIf workstationStatus(i, j) = "Yellow" Then
+							workstationStatus(i, j) = "Red"
 						End If
 					ElseIf noOfColors = 2 Then
-						If lineStatusStr(i, j) = "Red" Then
-							lineStatusStr(i, j) = "Green"
-						ElseIf lineStatusStr(i, j) = "Green" Then
-							lineStatusStr(i, j) = "Red"
+						If workstationStatus(i, j) = "Red" Then
+							workstationStatus(i, j) = "Green"
+						ElseIf workstationStatus(i, j) = "Green" Then
+							workstationStatus(i, j) = "Red"
 						End If
 					End If
 
-					If lineStatusStr(i, j) = "Red" Then
+					If workstationStatus(i, j) = "Red" Then
 						If noOfColors = 2 Then                     ' in case we switch from yellow to red, we continue the yellow alarm length 
 							alarmStartDateTime(i, j) = DateTime.Now
 							myBox.Text = "0 min"
 							PictureBoxLogo.Select()
 						End If
 						myBox.ForeColor = Color.White
-						LogAlarmInfo(lineLabels(displayedLines(i), 1), myBox.Name, lineStatusStr(i, j), 0)
+						LogAlarmInfo(workstationLabels(displayedLines(i), 1), myBox.Name, workstationStatus(i, j), 0)
 
-					ElseIf lineStatusStr(i, j) = "Yellow" Then
+					ElseIf workstationStatus(i, j) = "Yellow" Then
 						alarmStartDateTime(i, j) = DateTime.Now
 						myBox.Text = "0 min"
 						myBox.ForeColor = Color.Black
 						PictureBoxLogo.Select()
-						LogAlarmInfo(lineLabels(displayedLines(i), 1), myBox.Name, lineStatusStr(i, j), 0)
+						LogAlarmInfo(workstationLabels(displayedLines(i), 1), myBox.Name, workstationStatus(i, j), 0)
 
-					ElseIf lineStatusStr(i, j) = "Green" Then
+					ElseIf workstationStatus(i, j) = "Green" Then
 						alarmEndDateTime(i, j) = DateTime.Now
 						myBox.Text = ""
 						PictureBoxLogo.Select()
-						LogAlarmInfo(lineLabels(displayedLines(i), 1), myBox.Name, lineStatusStr(i, j), DateDiff(DateInterval.Minute, alarmStartDateTime(i, j), alarmEndDateTime(i, j)))
+						LogAlarmInfo(workstationLabels(displayedLines(i), 1), myBox.Name, workstationStatus(i, j), DateDiff(DateInterval.Minute, alarmStartDateTime(i, j), alarmEndDateTime(i, j)))
 					Else
 						myBox.Text = ""
 						PictureBoxLogo.Select()
@@ -296,16 +293,16 @@ Public Class Form1
 		Next
 
 		' Update background colours of TextBoxes
-		For i = 0 To lineCount - 1
+		For i = 0 To workstationCount - 1
 			For j = 0 To alarmTypes - 1
 				Dim myBox As Label = CType(Me.Controls("lineLabel" & i * alarmTypes + j), Label)
 				If myBox Is Nothing Then
 				Else
-					If lineStatusStr(i, j) = "Green" Then
+					If workstationStatus(i, j) = "Green" Then
 						myBox.BackColor = Color.FromArgb(0, 255, 0)
-					ElseIf lineStatusStr(i, j) = "Yellow" Then
+					ElseIf workstationStatus(i, j) = "Yellow" Then
 						myBox.BackColor = Color.FromArgb(255, 192, 0)
-					ElseIf lineStatusStr(i, j) = "Red" Then
+					ElseIf workstationStatus(i, j) = "Red" Then
 						myBox.BackColor = Color.FromArgb(255, 0, 0)
 					End If
 				End If
@@ -315,12 +312,12 @@ Public Class Form1
 		' Write alarm status to text file
 		Try
 			Using outputFile As New StreamWriter("Data/" & terminalName & ".txt")
-				For i = 0 To lineCount - 1
-					outputFile.WriteLine(lineLabels(displayedLines(i), 0))
-					outputFile.WriteLine(lineLabels(displayedLines(i), 1))
+				For i = 0 To workstationCount - 1
+					outputFile.WriteLine(workstationLabels(displayedLines(i), 0))
+					outputFile.WriteLine(workstationLabels(displayedLines(i), 1))
 					Try
 						For j = 0 To alarmTypes - 1
-							outputFile.WriteLine(lineStatusStr(i, j))
+							outputFile.WriteLine(workstationStatus(i, j))
 						Next
 					Catch ex As Exception
 
@@ -338,11 +335,11 @@ Public Class Form1
 		' Periodically update the text file and the labels for time since alarm was activated
 		Update_Fields(sender, e)
 		Dim i, j As Integer
-		For i = 0 To lineCount - 1
+		For i = 0 To workstationCount - 1
 			For j = 0 To alarmTypes - 1
 				Dim myBox As Label = CType(Me.Controls("lineLabel" & i * alarmTypes + j), Label)
 				Try
-					If lineStatusStr(i, j) = "Yellow" Or lineStatusStr(i, j) = "Red" Then myBox.Text = "" & DateDiff(DateInterval.Minute, alarmStartDateTime(i, j), DateTime.Now) & " min"
+					If workstationStatus(i, j) = "Yellow" Or workstationStatus(i, j) = "Red" Then myBox.Text = "" & DateDiff(DateInterval.Minute, alarmStartDateTime(i, j), DateTime.Now) & " min"
 				Catch ex As Exception
 				End Try
 			Next

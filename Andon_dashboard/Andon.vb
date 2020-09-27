@@ -1,30 +1,28 @@
 ﻿Imports System.IO
 
 'TODO:  
-' - remove reading nOfLines from first line of production_lines.txt 
-' - remove first column from production line files
-' - create variables for positioning of nameLabels and lineLabels
-' - add grid view / lay-out view
+' - create variables for positioning of nameLabels and workstationLabels
+' - add grid view / lay-out view option
 ' - make creation of Terminals dynamic
 
 
 Public Class Andon
 
-    Public nOfLines As Integer = 0                                        ' number of displayed lines
-    Public alarmTypes As Integer = 0                                      ' number of displayed alarm types (columns)
-    Public lineLabels(nOfLines - 1, 3) As String                          ' #, line number, line name for displayed lines
-    Public nOfPreviousAlarms As Integer                                   ' number of previous displayed alarms 
-    Public nOfAlarms As Integer                                           ' number of displayed alarms
-    Public lineStatusStr(nOfLines - 1, alarmTypes - 1) As String          ' current status of alarms for all lines
-    Public previousLineStatusStr(nOfLines - 1, alarmTypes - 1) As String  ' previous status of alarms for all lines
-    Public alarmStartTime(nOfLines - 1, alarmTypes - 1) As Date           ' date of last start of yellow or red alarm
-    Public oldFile As Boolean                                             ' is the file change date too old to display in dashboard?
-    Public maxDelay As Integer = 1                                        ' text files older than x minutes are ignored
-    Public soundOn As Boolean = False                                     ' do alarms play a sound?
-    Public priorityLines(nOfLines) As Integer                             ' array of lines that are highlighted as priority
-    Public alarmfile As String                                            ' alarm sound filename
-    Public iconLbl(alarmTypes) As String                                  ' labels for alarm types
-    Public iconImgFile(alarmTypes) As String                              ' image filenames for alarm types  
+    Public nOfLines As Integer = 0                                            ' number of displayed lines
+    Public alarmTypes As Integer = 0                                          ' number of displayed alarm types (columns)
+    Public workstationLabels(nOfLines - 1, 3) As String                       ' #, line number, line name for displayed lines
+    Public nOfPreviousAlarms As Integer                                       ' number of previous displayed alarms 
+    Public nOfAlarms As Integer                                               ' number of displayed alarms
+    Public workstationStatus(nOfLines - 1, alarmTypes - 1) As String          ' current status of alarms for all lines
+    Public previousworkstationStatus(nOfLines - 1, alarmTypes - 1) As String  ' previous status of alarms for all lines
+    Public alarmStartTime(nOfLines - 1, alarmTypes - 1) As Date               ' date of last start of yellow or red alarm
+    Public oldFile As Boolean                                                 ' is the file change date too old to display in dashboard?
+    Public maxDelay As Integer = 1                                            ' text files older than x minutes are ignored
+    Public soundOn As Boolean = False                                         ' do alarms play a sound?
+    Public priorityLines(nOfLines) As Integer                                 ' array of lines that are highlighted as priority
+    Public alarmfile As String                                                ' alarm sound filename
+    Public iconLbl(alarmTypes) As String                                      ' labels for alarm types
+    Public iconImgFile(alarmTypes) As String                                  ' image filenames for alarm types  
 
     Private Sub Andon_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         ' Things to do when app starts
@@ -67,15 +65,14 @@ Public Class Andon
         End Using
 
         ' Load the line labels
-        Using MyReader As New FileIO.TextFieldParser("Assets/production_lines.txt")
+        Using MyReader As New FileIO.TextFieldParser("Assets/Workstations_terminals.txt")
             MyReader.TextFieldType = FileIO.FieldType.Delimited
             MyReader.SetDelimiters(";")
-
             nOfLines = MyReader.ReadLine
-            ReDim lineLabels(nOfLines - 1, 3)
-
-            lineStatusStr = New String(nOfLines - 1, alarmTypes - 1) {}
-            previousLineStatusStr = New String(nOfLines - 1, alarmTypes - 1) {}
+            ReDim workstationLabels(nOfLines - 1, 3)
+            MyReader.ReadLine()  ' Skip format legend
+            workstationStatus = New String(nOfLines - 1, alarmTypes - 1) {}
+            previousworkstationStatus = New String(nOfLines - 1, alarmTypes - 1) {}
             Dim i As Integer = 0
 
             Dim currentRow As String()
@@ -84,10 +81,9 @@ Public Class Andon
                     ' Read row as an array of strings '
                     currentRow = MyReader.ReadFields()
                     ' Parse line into strings '
-                    lineLabels(i, 0) = currentRow(0)
-                    lineLabels(i, 1) = currentRow(1)
-                    lineLabels(i, 2) = currentRow(2)
-                    lineLabels(i, 3) = currentRow(3)
+                    workstationLabels(i, 0) = currentRow(0)
+                    workstationLabels(i, 1) = currentRow(1)
+                    workstationLabels(i, 2) = currentRow(2)
                     i += 1
                 Catch ex As FileIO.MalformedLineException
                     MsgBox("Line " & ex.Message & "is not valid and will be skipped.")
@@ -113,7 +109,7 @@ Public Class Andon
             newbox = New Label With {
                 .Size = New Size(40, 20),
                 .Location = New Point(250 + (i Mod alarmTypes) * 53, 55 + y),
-                .Font = New Font("Arial", 8),
+                .Font = New Font("Arial", 8, FontStyle.Bold),
                 .TextAlign = ContentAlignment.MiddleCenter
             }
             ' Draw alarm labels
@@ -148,7 +144,7 @@ Public Class Andon
                 .TextAlign = ContentAlignment.MiddleLeft
             }
             newbox.Name = "prioLabel" & i
-            newbox.Text = lineLabels(i, 1) & "          " & lineLabels(i, 2)
+            newbox.Text = workstationLabels(i, 1) & "          " & workstationLabels(i, 2)
             newbox.BorderStyle = BorderStyle.None
             newbox.BackColor = Color.White
             newbox.SendToBack()
@@ -159,14 +155,14 @@ Public Class Andon
         Dim toolTip1 As New ToolTip()
         For i = 0 To nOfLines - 1
             Dim myLabel As Label = CType(Controls("prioLabel" & i), Label)
-            toolTip1.SetToolTip(myLabel, lineLabels(i, 2))
+            toolTip1.SetToolTip(myLabel, workstationLabels(i, 2))
         Next
 
         ' Set everything to green
         For i = 0 To nOfLines - 1
             For j = 0 To alarmTypes - 1
-                lineStatusStr(i, j) = "Green"
-                previousLineStatusStr(i, j) = "Green"
+                workstationStatus(i, j) = "Green"
+                previousworkstationStatus(i, j) = "Green"
             Next
         Next
 
@@ -196,7 +192,7 @@ Public Class Andon
         Dim i As Integer
         For i = 0 To nOfLines - 1
             For j = 0 To alarmTypes - 1
-                previousLineStatusStr(i, j) = lineStatusStr(i, j)
+                previousworkstationStatus(i, j) = workstationStatus(i, j)
             Next
         Next
 
@@ -211,7 +207,7 @@ Public Class Andon
                     inputFile.ReadLine()
                     For i = 0 To alarmTypes - 1
                         Try
-                            lineStatusStr(CInt(lineNumber), i) = inputFile.ReadLine()
+                            workstationStatus(CInt(lineNumber), i) = inputFile.ReadLine()
                         Catch ex As Exception
                         End Try
                     Next
@@ -219,17 +215,17 @@ Public Class Andon
                     Try
                         For i = 0 To alarmTypes - 1
                             Dim myLabel As Label = CType(Me.Controls("lineLabel" & lineNumber * alarmTypes + i), Label)
-                            If lineStatusStr(CInt(lineNumber), i) = "Green" Then
+                            If workstationStatus(CInt(lineNumber), i) = "Green" Then
                                 myLabel.BackColor = Color.FromArgb(0, 255, 0)
-                            ElseIf lineStatusStr(CInt(lineNumber), i) = "Yellow" Then
+                            ElseIf workstationStatus(CInt(lineNumber), i) = "Yellow" Then
                                 myLabel.BackColor = Color.FromArgb(255, 192, 0)
-                            ElseIf lineStatusStr(CInt(lineNumber), i) = "Red" Then
+                            ElseIf workstationStatus(CInt(lineNumber), i) = "Red" Then
                                 myLabel.BackColor = Color.FromArgb(255, 0, 0)
                             End If
 
 
                             'Display time since last alarm
-                            If (lineStatusStr(CInt(lineNumber), i) = "Yellow") And (previousLineStatusStr(CInt(lineNumber), i) = "Green") Then   ' it's a new alarm
+                            If (workstationStatus(CInt(lineNumber), i) = "Yellow") And (previousworkstationStatus(CInt(lineNumber), i) = "Green") Then   ' it's a new alarm
                                 Try
                                     alarmStartTime(CInt(lineNumber), i) = Date.Now
                                 Catch ex As Exception
@@ -239,7 +235,7 @@ Public Class Andon
                                 myLabel.Text = "0 min"
                                 myLabel.ForeColor = Color.Black
                                 PictureBoxLogo.Select() ' Remove the cursor from updated field
-                            ElseIf (lineStatusStr(CInt(lineNumber), i) = "Red") And (previousLineStatusStr(CInt(lineNumber), i) = "Yellow") Then   ' it's a new alarm
+                            ElseIf (workstationStatus(CInt(lineNumber), i) = "Red") And (previousworkstationStatus(CInt(lineNumber), i) = "Yellow") Then   ' it's a new alarm
                                 Try
                                     alarmStartTime(CInt(lineNumber), i) = Date.Now
                                 Catch ex As Exception
@@ -249,10 +245,10 @@ Public Class Andon
                                 myLabel.Text = "0 min"
                                 myLabel.ForeColor = Color.White
                                 PictureBoxLogo.Select() ' Remove the cursor from updated field
-                            ElseIf (lineStatusStr(CInt(lineNumber), i) = "Green" And previousLineStatusStr(CInt(lineNumber), i) = "Red") Then  ' we're going from red to green
+                            ElseIf (workstationStatus(CInt(lineNumber), i) = "Green" And previousworkstationStatus(CInt(lineNumber), i) = "Red") Then  ' we're going from red to green
                                 myLabel.Text = ""
                                 PictureBoxLogo.Select() ' Remove the cursor from updated field
-                            ElseIf (lineStatusStr(CInt(lineNumber), i) = "Green" And previousLineStatusStr(CInt(lineNumber), i) = "Green") Then  ' in case of initialization on startup, we must remove all labels
+                            ElseIf (workstationStatus(CInt(lineNumber), i) = "Green" And previousworkstationStatus(CInt(lineNumber), i) = "Green") Then  ' in case of initialization on startup, we must remove all labels
                                 myLabel.Text = ""
                                 PictureBoxLogo.Select() ' Remove the cursor from updated field
                             End If
@@ -274,8 +270,8 @@ Public Class Andon
         nOfAlarms = 0
         For i = 0 To nOfLines - 1
             For j = 0 To alarmTypes - 1
-                If lineStatusStr(i, j) = "Yellow" Then nOfAlarms += 1
-                If lineStatusStr(i, j) = "Red" Then nOfAlarms += 2
+                If workstationStatus(i, j) = "Yellow" Then nOfAlarms += 1
+                If workstationStatus(i, j) = "Red" Then nOfAlarms += 2
             Next
         Next
         If nOfAlarms > nOfPreviousAlarms Then
@@ -285,9 +281,9 @@ Public Class Andon
             For i = 0 To nOfLines - 1
                 ' Identify the last alarm
                 For j = 0 To alarmTypes - 1
-                    If (previousLineStatusStr(i, j) = "Green" And lineStatusStr(i, j) = "Yellow") Then alarmWorsened = True
-                    If (previousLineStatusStr(i, j) = "Yellow" And lineStatusStr(i, j) = "Red") Then alarmWorsened = True
-                    If (previousLineStatusStr(i, j) = "Green" And lineStatusStr(i, j) = "Red") Then alarmWorsened = True
+                    If (previousworkstationStatus(i, j) = "Green" And workstationStatus(i, j) = "Yellow") Then alarmWorsened = True
+                    If (previousworkstationStatus(i, j) = "Yellow" And workstationStatus(i, j) = "Red") Then alarmWorsened = True
+                    If (previousworkstationStatus(i, j) = "Green" And workstationStatus(i, j) = "Red") Then alarmWorsened = True
                 Next
                 If alarmWorsened Then
                     lastAlarmLineNr = i
@@ -311,7 +307,7 @@ Public Class Andon
             Dim myLabel As Label = CType(Controls("prioLabel" & i), Label)
             someAlarmsExist = False
             For j = 0 To alarmTypes - 1
-                If lineStatusStr(i, j) <> "Green" Then someAlarmsExist = True
+                If workstationStatus(i, j) <> "Green" Then someAlarmsExist = True
             Next
             If Not someAlarmsExist Then myLabel.ForeColor = Color.FromArgb(0, 0, 0)
         Next
@@ -337,7 +333,7 @@ Public Class Andon
         For i = 0 To nOfLines - 1
             For j = 0 To alarmTypes - 1
                 Dim myLabel As Label = CType(Controls("lineLabel" & i * alarmTypes + j), Label)
-                If lineStatusStr(i, j) = "Yellow" Or lineStatusStr(i, j) = "Red" Then
+                If workstationStatus(i, j) = "Yellow" Or workstationStatus(i, j) = "Red" Then
                     If DateDiff(DateInterval.Minute, alarmStartTime(i, j), DateTime.Now) > 9 Then myLabel.Text = DateDiff(DateInterval.Minute, alarmStartTime(i, j), DateTime.Now) Else myLabel.Text = DateDiff(DateInterval.Minute, alarmStartTime(i, j), DateTime.Now) & " min"
                 End If
             Next
@@ -359,7 +355,7 @@ Public Class Andon
                 Try
                     Dim prioLine As String = MyReader.ReadLine()
                     For i = 0 To nOfLines - 1
-                        If lineLabels(i, 1) = prioLine Then
+                        If workstationLabels(i, 1) = prioLine Then
                             priorityLines(j) = i
                             j += 1
                         End If
