@@ -6,16 +6,16 @@
 Public Class Form1
 	Public terminalName As String = Reflection.Assembly.GetExecutingAssembly().GetName().Name    ' Get name of current file
 	Public workstationCount As Integer = 0                   ' Number of lines displayed on this form
-	Public alarmTypes As Integer = 0                  ' Number of displayed alarm types
-	Public displayedLines(10) As Integer              ' Numbers or lines from production_lines.txt displayed on this form
-	Public alarmStartDateTime(10, 20) As DateTime     ' When alarm was pressed last time
-	Public alarmEndDateTime(10, 20) As DateTime       ' When alarm was turned off
-	Public noOfColors As Integer = 2                  ' default is 2 but we will read it from settings file
+	Public alarmTypes As Integer = 0                         ' Number of displayed alarm types
+	Public displayedLines(10) As Integer                     ' Numbers or lines from production_lines.txt displayed on this form
+	Public alarmStartDateTime(10, 20) As DateTime            ' When alarm was pressed last time
+	Public alarmEndDateTime(10, 20) As DateTime              ' When alarm was turned off
+	Public noOfColors As Integer                             ' 2 = Green, Red, 3 = Green, Yellow, Red
 	Public workstationLabels(100, 3) As String               ' #, line number, line name, output file name 
-	Public workstationStatus(20, 20) As String            ' Green, Yellow, Red
-	Public alarmfile As String                        ' alarm sound filename
-	Public iconLbl(alarmTypes) As String              ' labels for alarm types
-	Public iconImgFile(alarmTypes) As String          ' image filenames for alarm types   
+	Public workstationStatus(20, 20) As String               ' Green, Yellow, Red
+	Public alarmfile As String                               ' alarm sound filename
+	Public iconLbl(alarmTypes) As String                     ' labels for alarm types
+	Public iconImgFile(alarmTypes) As String                 ' image filenames for alarm types   
 
 	Private Sub Andon_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load  ' Things to do when app starts
 
@@ -84,7 +84,7 @@ Public Class Form1
 		End Using
 
 		' Set positioning of dynamic labels and fields
-		Dim originHor As Int16 = 50    ' origin of coordinates horizontal
+		Dim originHor As Int16 = 100    ' origin of coordinates horizontal
 		Dim originVer As Int16 = 10    ' origin of coordinates vertical
 		Dim rectWidth As Int16 = 80    ' width of 1 alarm field
 		Dim rectHeight As Int16 = 40   ' height of 1 alarm field

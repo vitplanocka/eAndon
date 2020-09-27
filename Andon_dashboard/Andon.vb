@@ -108,7 +108,7 @@ Public Class Andon
 
             newbox = New Label With {
                 .Size = New Size(40, 20),
-                .Location = New Point(250 + (i Mod alarmTypes) * 53, 55 + y),
+                .Location = New Point(270 + (i Mod alarmTypes) * 53, 55 + y),
                 .Font = New Font("Arial", 8, FontStyle.Bold),
                 .TextAlign = ContentAlignment.MiddleCenter
             }
@@ -125,7 +125,7 @@ Public Class Andon
         For i As Integer = 0 To alarmTypes - 1 'Create labels and set properties
             newbox2 = New PictureBox With {
                 .Size = New Drawing.Size(40, 30),
-                .Location = New Point(250 + i * 53, 10),
+                .Location = New Point(270 + i * 53, 10),
                 .ImageLocation = iconImgFile(i),
                 .SizeMode = PictureBoxSizeMode.StretchImage
             }
@@ -138,8 +138,8 @@ Public Class Andon
         ' Create Priority Line Labels
         For i As Integer = 0 To nOfLines - 1 'Create labels and set properties
             newbox = New Label With {
-                .Size = New Size(220 + (alarmTypes * 54), 29),
-                .Location = New Point(20, 50 + (i * 25)),
+                .Size = New Size(240 + (alarmTypes * 54), 29),
+                .Location = New Point(20, 50 + (i * 25) - 2 * Math.Ceiling(i / 1000)),
                 .Font = New Font("Arial", 14),
                 .TextAlign = ContentAlignment.MiddleLeft
             }
@@ -178,6 +178,7 @@ Public Class Andon
         Next fri
 
         If soundOn = True Then LabelSound.Text = "Sound is on" Else LabelSound.Text = "Sound is off"
+        PictureBoxLogo.Select()  ' Set focus on logo to prevent selecting text of TextBoxes
 
         ' Update line visualization (active lines and priority lines)
         Timer1_Tick(sender, e)

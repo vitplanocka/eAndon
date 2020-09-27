@@ -5,17 +5,17 @@
 
 Public Class Form1
 	Public terminalName As String = Reflection.Assembly.GetExecutingAssembly().GetName().Name    ' Get name of current file
-	Public workstationCount As Integer = 0            ' Number of workstations displayed on this form
-	Public alarmTypes As Integer = 0                  ' Number of displayed alarm types
-	Public displayedLines(10) As Integer              ' Numbers or workstations from production_lines.txt displayed on this form
-	Public alarmStartDateTime(10, 20) As DateTime     ' When alarm was pressed last time
-	Public alarmEndDateTime(10, 20) As DateTime       ' When alarm was turned off
-	Public noOfColors As Integer = 2                  ' default is 2 but we will read it from settings file
-	Public workstationLabels(100, 3) As String        ' #, workstation number, workstation name, output file name 
-	Public workstationStatus(20, 20) As String        ' Green, Yellow, Red
-	Public alarmfile As String                        ' alarm sound filename
-	Public iconLbl(alarmTypes) As String              ' labels for alarm types
-	Public iconImgFile(alarmTypes) As String          ' image filenames for alarm types   
+	Public workstationCount As Integer = 0                   ' Number of lines displayed on this form
+	Public alarmTypes As Integer = 0                         ' Number of displayed alarm types
+	Public displayedLines(10) As Integer                     ' Numbers or lines from production_lines.txt displayed on this form
+	Public alarmStartDateTime(10, 20) As DateTime            ' When alarm was pressed last time
+	Public alarmEndDateTime(10, 20) As DateTime              ' When alarm was turned off
+	Public noOfColors As Integer                             ' 2 = Green, Red, 3 = Green, Yellow, Red
+	Public workstationLabels(100, 3) As String               ' #, line number, line name, output file name 
+	Public workstationStatus(20, 20) As String               ' Green, Yellow, Red
+	Public alarmfile As String                               ' alarm sound filename
+	Public iconLbl(alarmTypes) As String                     ' labels for alarm types
+	Public iconImgFile(alarmTypes) As String                 ' image filenames for alarm types   
 
 	Private Sub Andon_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load  ' Things to do when app starts
 
@@ -53,12 +53,13 @@ Public Class Form1
 			Next
 		End Using
 
-		' Read workstation labels from text file
+		' Read line labels from text file
 		Using MyReader As New FileIO.TextFieldParser("Assets/Workstations_terminals.txt")
+
 			MyReader.TextFieldType = FileIO.FieldType.Delimited
 			MyReader.SetDelimiters(";")
 
-			MyReader.ReadLine()          ' number of workstations from configuration file
+			MyReader.ReadLine()          ' number of lines from configuration file
 			MyReader.ReadLine()          ' Skip format legend
 			Dim i As Integer = 0
 			Dim currentRow As String()
@@ -83,7 +84,7 @@ Public Class Form1
 		End Using
 
 		' Set positioning of dynamic labels and fields
-		Dim originHor As Int16 = 50    ' origin of coordinates horizontal
+		Dim originHor As Int16 = 100    ' origin of coordinates horizontal
 		Dim originVer As Int16 = 10    ' origin of coordinates vertical
 		Dim rectWidth As Int16 = 80    ' width of 1 alarm field
 		Dim rectHeight As Int16 = 40   ' height of 1 alarm field
@@ -150,7 +151,7 @@ Public Class Form1
 			Controls.Add(newbox2)
 		Next
 
-		' Create dynamic workstation labels
+		' Create dynamic line labels
 		Dim newbox4, newbox5 As Label
 		y = 0
 		lineNo = 1
@@ -161,6 +162,7 @@ Public Class Form1
 				.Font = New Font("Arial", 12, FontStyle.Bold),
 				.TextAlign = ContentAlignment.MiddleLeft
 			}
+			' Draw line labels
 			newbox4.Name = "lineLabel" & i & "1"
 			newbox4.Text = workstationLabels(displayedLines(i), 1)
 			newbox4.BorderStyle = BorderStyle.None
@@ -173,6 +175,7 @@ Public Class Form1
 				.Font = New Font("Arial", 12, FontStyle.Bold),
 				.TextAlign = ContentAlignment.MiddleLeft
 			}
+			' Draw line labels
 			newbox5.Name = "lineLabel" & i & "2"
 			newbox5.Text = workstationLabels(displayedLines(i), 2)
 			newbox5.BorderStyle = BorderStyle.None

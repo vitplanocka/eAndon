@@ -9,3 +9,4 @@ C:\Users\plano\Source\Repos\eAndon\terminal03\obj\Debug\terminal03.vbproj.CoreCo
 C:\Users\plano\Source\Repos\eAndon\terminal03\obj\Debug\terminal03.exe
 C:\Users\plano\Source\Repos\eAndon\terminal03\obj\Debug\terminal03.xml
 C:\Users\plano\Source\Repos\eAndon\terminal03\obj\Debug\terminal03.pdb
+C:\Users\plano\source\repos\eAndon\terminal03\obj\Debug\terminal03.vbprojAssemblyReference.cache
