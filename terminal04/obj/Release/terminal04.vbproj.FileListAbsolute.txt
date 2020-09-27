@@ -20,3 +20,15 @@ C:\Users\Vit\source\repos\vitplanocka\eAndon\terminal04\obj\Release\terminal04.v
 C:\Users\Vit\source\repos\vitplanocka\eAndon\terminal04\obj\Release\terminal04.exe
 C:\Users\Vit\source\repos\vitplanocka\eAndon\terminal04\obj\Release\terminal04.xml
 C:\Users\Vit\source\repos\vitplanocka\eAndon\terminal04\obj\Release\terminal04.pdb
+C:\Users\plano\source\repos\eAndon\terminal04\bin\Release\terminal04.exe.config
+C:\Users\plano\source\repos\eAndon\terminal04\bin\Release\terminal04.exe
+C:\Users\plano\source\repos\eAndon\terminal04\bin\Release\terminal04.pdb
+C:\Users\plano\source\repos\eAndon\terminal04\bin\Release\terminal04.xml
+C:\Users\plano\source\repos\eAndon\terminal04\obj\Release\terminal04.vbprojAssemblyReference.cache
+C:\Users\plano\source\repos\eAndon\terminal04\obj\Release\terminal04.Form1.resources
+C:\Users\plano\source\repos\eAndon\terminal04\obj\Release\terminal04.Resources.resources
+C:\Users\plano\source\repos\eAndon\terminal04\obj\Release\terminal04.vbproj.GenerateResource.cache
+C:\Users\plano\source\repos\eAndon\terminal04\obj\Release\terminal04.vbproj.CoreCompileInputs.cache
+C:\Users\plano\source\repos\eAndon\terminal04\obj\Release\terminal04.exe
+C:\Users\plano\source\repos\eAndon\terminal04\obj\Release\terminal04.xml
+C:\Users\plano\source\repos\eAndon\terminal04\obj\Release\terminal04.pdb
