@@ -1,6 +1,23 @@
 # eAndon
 
-Implementation of an electronic Andon system that can be used to visualize problems in a production company.
+Implementation of an simple electronic/software Andon system to be used in a production company (factory) to communicate and visualize problems occurring at workstations or production lines.
+The program can be configured do display a range of different problems (technical issues, quality issues, material supply issues, …) and can be also configured to display various configurations of workstations and display screens.
+The program runs on Windows OS and can be used in a situation where there is one or more computer terminals near the production workstations on the shopfloor that can be used to trigger alarms when problems occur at the workstations.
+
+<b>What is an Andon?</b>
+
+Andon in Lean manufacturing is a system designed to alert operators and managers of problems in real time so that corrective measures can be taken immediately. It originates from the Jidoka methodology used in the Toyota Production System, which empowered operators to recognize issues and take the initiative to stop work without waiting for management to make the decision.
+
+Originally, the operator would pull the Andon Cord, which was a rope located above the line, but Andon can take many forms. It can be activated by an operator pulling a cord or pushing a button, or it can be automatically activated by equipment when a problem is detected.
+
+Whether used because of part shortage, equipment malfunction, or a safety concern, the point of Andon in Lean manufacturing is to stop work so that the team can gather together, perform a real-time root cause analysis, and quickly apply a solution. Once the problem is resolved and work continues, the occurrence is logged as part of a continuous improvement system.
+
+<b>Electronic/software Andon</b>
+
+Most modern production facilities implement some kind of computer terminals on the shopfloor to record the production data, allow the operators to access the working instructions, etc. Such terminals can also be used effectively to run an Andon software so that it is not necessary to use physical systems (e.g. an Andon Cord or specialized industrial solutions consisting of custom electronics with buttons and visual displays). The advantage of the electronic/software system is the cost (in case terminals and display screens already exist on the shopfloor, they can be used to run also the software Andon) and flexibility - new types of alarms or new workstations can be added quickly without additional costs.
+
+<b>Diagram of the eAndon</b>
+
 
 
 * [Installation](#Installation)
@@ -30,12 +47,12 @@ In order to customize the setup for the specific use case, edit the following co
  - second line describes the format of the subsequent lines
  - from the third line, a description of each workstation is given: sequential number starting from 0, workstation number, workstation name and terminal that controls the workstation (should always be called terminal01 ~ 04)
 
- 3. <b>priority_lines.txt</b> - this file specifies which workstations should be highlighted in the Andon_dashboard screen. Workstation numbers to be highlighted are entered on separate lines
+ 3. <b>priority_workstations.txt</b> - this file specifies which workstations should be highlighted in the Andon_dashboard screen. Workstation numbers to be highlighted are entered on separate lines
 
 In case you need to set up different arrangement then 1 dashboard and 4 terminal applications, rebuild the program from the source, adding or removing the terminal programs as needed. Each terminal is a separate project, the code of each is the same.
 
 ## Instructions
-1. Put the applications Andon_dashboard.exe, Terminal01.exe ~ 04.exe, file priority_lines and folders /Assets and /Data in one folder to which the terminals have read/write access and the computer displaying Andon_dashboard has at least read access.
+1. Put the applications Andon_dashboard.exe, Terminal01.exe ~ 04.exe, file priority_workstations and folders /Assets and /Data in one folder to which the terminals have read/write access and the computer displaying Andon_dashboard has at least read access.
 
 2. On each terminal, run the appropriate Terminal0#.exe file. On the computer(s) displaying the visualization, run the Andon_dashboard.exe file.
 
@@ -46,11 +63,11 @@ The green field will turn yellow or red (based on settings) and the field will s
 
 The same information will be displayed immediately on the Andon_dashboard visualization.
 
-<img src="https://github.com/vitplanocka/eAndon/blob/master/Screenshots/Andon_dashboard.png" alt="Andon_dashboard displaying triggered alarms" width="600">
+<img src="https://github.com/vitplanocka/eAndon/blob/master/Screenshots/Andon_dashboard.png" alt="Andon_dashboard displaying triggered alarms" width="700">
 
 4. When the alarm at the workstation is resolved, click again the field in Terminal0#.exe so that the status of the alarm returns to green.
 
-5. Logs of the triggered alarms are saved in the /Data folder in the alarmlog_terminal0#.txt files. 
+5. Logs of the triggered alarms are saved in the /Data folder in the alarmlog_terminal0#.txt files.
 
 ## License
 This project is licensed under the <a href="https://github.com/vitplanocka/eAndon/blob/master/LICENSE">MIT license</a>
