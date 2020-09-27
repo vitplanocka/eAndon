@@ -350,7 +350,7 @@ Public Class Andon
             priorityLines(i) = -1
         Next
 
-        Using MyReader As New Microsoft.VisualBasic.FileIO.TextFieldParser("priority_lines.txt")
+        Using MyReader As New Microsoft.VisualBasic.FileIO.TextFieldParser("priority_workstations.txt")
             j = 0
             While Not MyReader.EndOfData
                 Try
