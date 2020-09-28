@@ -20,7 +20,10 @@ Most modern production facilities implement some kind of computer terminals on t
 
 <b>Diagram of the eAndon</b>
 
+The illustration below shows a typical setup where there are several networked terminals (each running a separate Andon terminal application), each terminal handles one or more workstations.
+There is one or more dashboards (TV display in a production hall, laptop computer used by factory staff, …) that display the total shopfloor overview.
 
+<img src="https://github.com/vitplanocka/eAndon/blob/master/Screenshots/Andon_diagram.png" alt="Diagram of Andon_dashboard and terminals" width="700">
 
 * [Installation](#Installation)
 
