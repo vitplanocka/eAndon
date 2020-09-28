@@ -1,12 +1,12 @@
 # eAndon
 
-Implementation of an simple electronic/software Andon system to be used in a production company (factory) to communicate and visualize problems occurring at workstations or production lines.
-The program can be configured do display a range of different problems (technical issues, quality issues, material supply issues, …) and can be also configured to display various configurations of workstations and display screens.
-The program runs on Windows OS and can be used in a situation where there is one or more computer terminals near the production workstations on the shopfloor that can be used to trigger alarms when problems occur at the workstations.
+Implementation of a simple electronic/software Andon system to be used in a production company (factory) to communicate and visualize problems occurring at workstations or production lines.
+The program can be configured to display a range of different problems (technical issues, quality issues, material supply issues, …) and can be also configured to display various configurations of workstations and display screens.
+The program runs on Windows OS and can be used in a situation where there are computer terminals near the production workstations on the shopfloor that can be used to trigger alarms when problems occur at the workstations.
 
 <img src="https://github.com/vitplanocka/eAndon/blob/master/Screenshots/eAndon_overview.png" alt="Andon_dashboard and terminal application displaying triggered alarms" width="800">
 
-<b>What is an Andon?</b>
+<b>What is Andon?</b>
 
 Andon in Lean manufacturing is a system designed to alert operators and managers of problems in real time so that corrective measures can be taken immediately. It originates from the Jidoka methodology used in the Toyota Production System, which empowered operators to recognize issues and take the initiative to stop work without waiting for management to make the decision.
 
