@@ -12,7 +12,7 @@ Andon in Lean manufacturing is a system designed to alert operators and managers
 
 Originally, the operator would pull the Andon Cord, which was a rope located above the line, but Andon can take many forms. It can be activated by an operator pulling a cord or pushing a button, or it can be automatically activated by equipment when a problem is detected.
 
-<img src="https://github.com/vitplanocka/eAndon/blob/master/Screenshots/andon_cord.png" alt="Operator pulling an Andon Cord">
+<img src="https://github.com/vitplanocka/eAndon/blob/master/Screenshots/andon_cord2.png" alt="Operator pulling an Andon Cord">
 
 Whether used because of part shortage, equipment malfunction, or a safety concern, the point of Andon in Lean manufacturing is to stop work so that the team can gather together, perform a real-time root cause analysis, and quickly apply a solution. Once the problem is resolved and work continues, the occurrence is logged as part of a continuous improvement system.
 
