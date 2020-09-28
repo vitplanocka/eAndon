@@ -4,7 +4,7 @@ Implementation of an simple electronic/software Andon system to be used in a pro
 The program can be configured do display a range of different problems (technical issues, quality issues, material supply issues, …) and can be also configured to display various configurations of workstations and display screens.
 The program runs on Windows OS and can be used in a situation where there is one or more computer terminals near the production workstations on the shopfloor that can be used to trigger alarms when problems occur at the workstations.
 
-<img src="https://github.com/vitplanocka/eAndon/blob/master/Screenshots/eAndon_overview.png" alt="Andon_dashboard and terminal application displaying triggered alarms" width="700">
+<img src="https://github.com/vitplanocka/eAndon/blob/master/Screenshots/eAndon_overview.png" alt="Andon_dashboard and terminal application displaying triggered alarms" width="800">
 
 <b>What is an Andon?</b>
 
@@ -64,11 +64,11 @@ In case you need to set up different arrangement then 1 dashboard and 4 terminal
 3. When alarm occurs on some workstation, on the relevant terminal click the green field in Terminal0#.exe corresponding to the workstation and type of alarm.
 The green field will turn yellow or red (based on settings) and the field will start to show a counter with amount of minutes since the alarm was triggered.
 
-<img src="https://github.com/vitplanocka/eAndon/blob/master/Screenshots/terminal02.png" alt="terminal02 showing triggering of an alarm" width="600">
+<img src="https://github.com/vitplanocka/eAndon/blob/master/Screenshots/terminal02.png" alt="terminal02 showing triggering of an alarm" width="700">
 
 The same information will be displayed immediately on the Andon_dashboard visualization.
 
-<img src="https://github.com/vitplanocka/eAndon/blob/master/Screenshots/Andon_dashboard.png" alt="Andon_dashboard displaying triggered alarms" width="700">
+<img src="https://github.com/vitplanocka/eAndon/blob/master/Screenshots/Andon_dashboard.png" alt="Andon_dashboard displaying triggered alarms" width="800">
 
 4. When the alarm at the workstation is resolved, click again the field in Terminal0#.exe so that the status of the alarm returns to green.
 
