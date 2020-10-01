@@ -74,7 +74,7 @@ The same information will be displayed immediately on the Andon_dashboard visual
 
 4. When the alarm at the workstation is resolved, click again the field in Terminal0#.exe so that the status of the alarm returns to green.
 
-5. Logs of the triggered alarms are saved in the /Data folder in the alarmlog_terminal0#.txt files.
+5. Logs of the triggered alarms are saved in the /Logs folder in the alarmlog_terminal0#.txt files.
 
 ## License
 This project is licensed under the <a href="https://github.com/vitplanocka/eAndon/blob/master/LICENSE">MIT license</a>
