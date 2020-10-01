@@ -223,7 +223,7 @@ Public Class Form1
 	Private Sub LogAlarmInfo(line As String, controlObj As String, color As String, alarmLength As Long)
 		Try
 			Dim alarmType As Integer
-			Using outputFile As New StreamWriter("Data/alarmlog_" & terminalName & ".txt", True)
+			Using outputFile As New StreamWriter("Logs/alarmlog_" & terminalName & ".txt", True)
 				Dim sb As New System.Text.StringBuilder
 				If (CInt(controlObj.Remove(0, 9)) Mod alarmTypes) = 0 Then
 					alarmType = alarmTypes
