@@ -84,8 +84,8 @@ Public Class Form1
 		End Using
 
 		' Set positioning of dynamic labels and fields
-		Dim originHor As Int16 = 100    ' origin of coordinates horizontal
-		Dim originVer As Int16 = 10    ' origin of coordinates vertical
+		Dim originHor As Int16 = 65    ' origin of coordinates horizontal
+		Dim originVer As Int16 = 15    ' origin of coordinates vertical
 		Dim rectWidth As Int16 = 80    ' width of 1 alarm field
 		Dim rectHeight As Int16 = 40   ' height of 1 alarm field
 		Dim spacingHor As Int16 = rectWidth + 13   ' spacing between same corners of adjacent alarm fields
@@ -95,8 +95,8 @@ Public Class Form1
 		Dim newbox3 As Label
 		For i As Integer = 0 To alarmTypes - 1 'Create labels and set properties
 			newbox3 = New Label With {
-				.Size = New Drawing.Size(rectWidth, rectHeight + 20),
-				.Location = New Point(originHor + 150 + i * spacingHor, originVer + 45),
+				.Size = New Drawing.Size(rectWidth, rectHeight),
+				.Location = New Point(originHor + 150 + i * spacingHor, originVer + 110),
 				.TextAlign = ContentAlignment.MiddleCenter,
 				.Font = New Font("Arial", 8, FontStyle.Bold),
 				.Text = iconLbl(i)
@@ -111,9 +111,10 @@ Public Class Form1
 		' Create dynamic PictureBox alarm labels
 		Dim newbox As PictureBox
 		For i As Integer = 0 To alarmTypes - 1 'Create labels and set properties
+			Dim img = Image.FromFile(iconImgFile(i))
 			newbox = New PictureBox With {
-				.Size = New Drawing.Size(rectWidth, rectHeight + 10),
-				.Location = New Point(originHor + 150 + i * spacingHor, originVer + 100),
+				.Size = New Drawing.Size(img.Size.Width, img.Size.Height),
+				.Location = New Point(originHor + 160 + i * spacingHor, originVer + 50),
 				.ImageLocation = iconImgFile(i),
 				.SizeMode = PictureBoxSizeMode.StretchImage
 			}
@@ -162,24 +163,22 @@ Public Class Form1
 				.Font = New Font("Arial", 12, FontStyle.Bold),
 				.TextAlign = ContentAlignment.MiddleLeft
 			}
-			' Draw line labels
 			newbox4.Name = "lineLabel" & i & "1"
 			newbox4.Text = workstationLabels(displayedLines(i), 1)
 			newbox4.BorderStyle = BorderStyle.None
-			newbox4.BackColor = Color.White
+			newbox4.BackColor = Color.LightGray
 			Controls.Add(newbox4)
 
 			newbox5 = New Label With {
-				.Size = New Drawing.Size(rectWidth + 50, rectHeight),
-				.Location = New Point(originHor + 30, originVer + 155 + i * spacingVer),
+				.Size = New Drawing.Size(rectWidth + 40, rectHeight),
+				.Location = New Point(originHor + 25, originVer + 155 + i * spacingVer),
 				.Font = New Font("Arial", 12, FontStyle.Bold),
 				.TextAlign = ContentAlignment.MiddleLeft
 			}
-			' Draw line labels
 			newbox5.Name = "lineLabel" & i & "2"
 			newbox5.Text = workstationLabels(displayedLines(i), 2)
 			newbox5.BorderStyle = BorderStyle.None
-			newbox5.BackColor = Color.White
+			newbox5.BackColor = Color.LightGray
 			Controls.Add(newbox5)
 		Next
 

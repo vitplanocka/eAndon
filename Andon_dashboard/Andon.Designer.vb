@@ -99,7 +99,7 @@ Partial Class Andon
         Me.PictureBoxSound.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.PictureBoxSound.Location = New System.Drawing.Point(24, 35)
         Me.PictureBoxSound.Name = "PictureBoxSound"
-        Me.PictureBoxSound.Size = New System.Drawing.Size(45, 45)
+        Me.PictureBoxSound.Size = New System.Drawing.Size(60, 48)
         Me.PictureBoxSound.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.PictureBoxSound.TabIndex = 19
         Me.PictureBoxSound.TabStop = False
@@ -454,7 +454,7 @@ Partial Class Andon
         '
         Me.LabelSound.AutoSize = True
         Me.LabelSound.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelSound.Location = New System.Drawing.Point(79, 43)
+        Me.LabelSound.Location = New System.Drawing.Point(90, 45)
         Me.LabelSound.MinimumSize = New System.Drawing.Size(50, 28)
         Me.LabelSound.Name = "LabelSound"
         Me.LabelSound.Size = New System.Drawing.Size(83, 29)
@@ -475,7 +475,7 @@ Partial Class Andon
         Me.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "Andon"
-        Me.Text = "eAndon"
+        Me.Text = "eAndon dashboard"
         CType(Me.PictureBoxLogo, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.watcher2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBoxSound, System.ComponentModel.ISupportInitialize).EndInit()

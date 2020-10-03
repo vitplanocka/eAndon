@@ -25,7 +25,6 @@ C:\Users\plano\source\repos\eAndon\terminal02\bin\Release\terminal02.exe.config
 C:\Users\plano\source\repos\eAndon\terminal02\bin\Release\terminal02.exe
 C:\Users\plano\source\repos\eAndon\terminal02\bin\Release\terminal02.pdb
 C:\Users\plano\source\repos\eAndon\terminal02\bin\Release\terminal02.xml
-C:\Users\plano\source\repos\eAndon\terminal02\obj\Release\terminal02.vbprojAssemblyReference.cache
 C:\Users\plano\source\repos\eAndon\terminal02\obj\Release\terminal02.Form1.resources
 C:\Users\plano\source\repos\eAndon\terminal02\obj\Release\terminal02.Resources.resources
 C:\Users\plano\source\repos\eAndon\terminal02\obj\Release\terminal02.vbproj.GenerateResource.cache
@@ -33,3 +32,8 @@ C:\Users\plano\source\repos\eAndon\terminal02\obj\Release\terminal02.vbproj.Core
 C:\Users\plano\source\repos\eAndon\terminal02\obj\Release\terminal02.exe
 C:\Users\plano\source\repos\eAndon\terminal02\obj\Release\terminal02.xml
 C:\Users\plano\source\repos\eAndon\terminal02\obj\Release\terminal02.pdb
+C:\Users\plano\Source\Repos\eAndon\Andon_dashboard\bin\Release\terminal02.exe.config
+C:\Users\plano\Source\Repos\eAndon\Andon_dashboard\bin\Release\terminal02.exe
+C:\Users\plano\Source\Repos\eAndon\Andon_dashboard\bin\Release\terminal02.pdb
+C:\Users\plano\Source\Repos\eAndon\Andon_dashboard\bin\Release\terminal02.xml
+C:\Users\plano\Source\Repos\eAndon\terminal02\obj\Release\terminal02.vbprojAssemblyReference.cache

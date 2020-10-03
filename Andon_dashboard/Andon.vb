@@ -123,9 +123,10 @@ Public Class Andon
         ' Create dynamic alarm column labels
         Dim newbox2 As PictureBox
         For i As Integer = 0 To alarmTypes - 1 'Create labels and set properties
+            Dim img = Image.FromFile(iconImgFile(i))
             newbox2 = New PictureBox With {
-                .Size = New Drawing.Size(40, 30),
-                .Location = New Point(270 + i * 53, 10),
+                .Size = New Drawing.Size(img.Size.Width * 0.7, img.Size.Height * 0.7),
+                .Location = New Point(270 + i * 53, 0),
                 .ImageLocation = iconImgFile(i),
                 .SizeMode = PictureBoxSizeMode.StretchImage
             }
@@ -385,10 +386,10 @@ Public Class Andon
     Private Sub PictureBox9_Click(sender As Object, e As EventArgs) Handles PictureBoxSound.Click
         ' Toggle sound on/off
         If soundOn Then
-            PictureBoxSound.Image = Image.FromFile("Assets/soundoff.png")
+            PictureBoxSound.Image = Image.FromFile("Assets/Soundoff.jpg")
             LabelSound.Text = "Sound is off"
         Else
-            PictureBoxSound.Image = Image.FromFile("Assets/soundon.png")
+            PictureBoxSound.Image = Image.FromFile("Assets/Soundon.jpg")
             LabelSound.Text = "Sound is on"
         End If
         soundOn = Not soundOn
