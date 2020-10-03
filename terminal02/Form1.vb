@@ -10,7 +10,7 @@ Public Class Form1
 	Public displayedLines(10) As Integer                     ' Numbers or lines from production_lines.txt displayed on this form
 	Public alarmStartDateTime(10, 20) As DateTime            ' When alarm was pressed last time
 	Public alarmEndDateTime(10, 20) As DateTime              ' When alarm was turned off
-	Public noOfColors As Integer                             ' 2 = Green, Red, 3 = Green, Yellow, Red
+	Public noOfColors As Integer                             ' 2 = Green and Red, 3 = Green, Yellow and Red
 	Public workstationLabels(100, 3) As String               ' #, line number, line name, output file name 
 	Public workstationStatus(20, 20) As String               ' Green, Yellow, Red
 	Public alarmfile As String                               ' alarm sound filename
@@ -41,7 +41,12 @@ Public Class Form1
 			alarmfile = "Assets/" & lineReader(1).ToString().Trim().TrimStart()
 			' Terminal usage instruction
 			lineReader = MyReader.ReadLine().Split(":")
-			TextBoxIns.Text = lineReader(1).ToString().Trim().TrimStart()
+			Dim strArr(), instrText As String
+			strArr = lineReader(1).ToString().Split("|")
+			For i = 0 To strArr.Length - 1
+				instrText = instrText & strArr(i) & vbCrLf
+			Next
+			TextBoxIns.Text = instrText
 			' Alarm type descriptions and icons
 			ReDim iconLbl(alarmTypes)
 			ReDim iconImgFile(alarmTypes)
@@ -85,11 +90,15 @@ Public Class Form1
 
 		' Set positioning of dynamic labels and fields
 		Dim originHor As Int16 = 65    ' origin of coordinates horizontal
-		Dim originVer As Int16 = 15    ' origin of coordinates vertical
+		Dim originVer As Int16 = 35    ' origin of coordinates vertical
 		Dim rectWidth As Int16 = 80    ' width of 1 alarm field
 		Dim rectHeight As Int16 = 40   ' height of 1 alarm field
 		Dim spacingHor As Int16 = rectWidth + 13   ' spacing between same corners of adjacent alarm fields
 		Dim spacingVer As Int16 = rectHeight + 5   ' spacing between same corners of adjacent alarm fields
+
+		' Adjust width and height of form
+		Me.Size = New Size(300 + alarmTypes * spacingHor, 250 + workstationCount * spacingVer)
+		TextBoxIns.Width = 200 + alarmTypes * spacingHor
 
 		' Create dynamic Label alarm descriptions
 		Dim newbox3 As Label
@@ -165,20 +174,20 @@ Public Class Form1
 			}
 			newbox4.Name = "lineLabel" & i & "1"
 			newbox4.Text = workstationLabels(displayedLines(i), 1)
-			newbox4.BorderStyle = BorderStyle.None
-			newbox4.BackColor = Color.LightGray
+			newbox4.BorderStyle = BorderStyle.FixedSingle
+			newbox4.BackColor = Color.FromArgb(240, 240, 240)
 			Controls.Add(newbox4)
 
 			newbox5 = New Label With {
-				.Size = New Drawing.Size(rectWidth + 40, rectHeight),
+				.Size = New Drawing.Size(rectWidth + 35, rectHeight),
 				.Location = New Point(originHor + 25, originVer + 155 + i * spacingVer),
 				.Font = New Font("Arial", 12, FontStyle.Bold),
 				.TextAlign = ContentAlignment.MiddleLeft
 			}
 			newbox5.Name = "lineLabel" & i & "2"
 			newbox5.Text = workstationLabels(displayedLines(i), 2)
-			newbox5.BorderStyle = BorderStyle.None
-			newbox5.BackColor = Color.LightGray
+			newbox5.BorderStyle = BorderStyle.FixedSingle
+			newbox5.BackColor = Color.FromArgb(240, 240, 240)
 			Controls.Add(newbox5)
 		Next
 

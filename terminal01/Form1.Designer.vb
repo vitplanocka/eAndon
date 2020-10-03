@@ -39,7 +39,7 @@ Partial Class Form1
         '
         'PictureBoxLogo
         '
-        Me.PictureBoxLogo.Location = New System.Drawing.Point(43, 111)
+        Me.PictureBoxLogo.Location = New System.Drawing.Point(43, 135)
         Me.PictureBoxLogo.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.PictureBoxLogo.Name = "PictureBoxLogo"
         Me.PictureBoxLogo.Size = New System.Drawing.Size(221, 63)
@@ -49,17 +49,16 @@ Partial Class Form1
         '
         'TextBoxIns
         '
-        Me.TextBoxIns.BackColor = System.Drawing.SystemColors.MenuBar
+        Me.TextBoxIns.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.TextBoxIns.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBoxIns.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBoxIns.Location = New System.Drawing.Point(43, 11)
         Me.TextBoxIns.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.TextBoxIns.Multiline = True
         Me.TextBoxIns.Name = "TextBoxIns"
-        Me.TextBoxIns.Size = New System.Drawing.Size(1190, 68)
+        Me.TextBoxIns.Size = New System.Drawing.Size(1190, 92)
         Me.TextBoxIns.TabIndex = 13
         Me.TextBoxIns.TabStop = False
-        Me.TextBoxIns.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'Timer1
         '

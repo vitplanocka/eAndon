@@ -22,10 +22,11 @@ Partial Class Form1
     'Neupravovat pomocí editoru kódu
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
         Me.PictureBoxLogo = New System.Windows.Forms.PictureBox()
         Me.TextBoxIns = New System.Windows.Forms.TextBox()
-        Me.Timer1 = New System.Windows.Forms.Timer()
+        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.TBox46 = New System.Windows.Forms.TextBox()
         Me.TBox47 = New System.Windows.Forms.TextBox()
         Me.TBox48 = New System.Windows.Forms.TextBox()
@@ -38,27 +39,26 @@ Partial Class Form1
         '
         'PictureBoxLogo
         '
-        Me.PictureBoxLogo.Location = New System.Drawing.Point(43, 112)
+        Me.PictureBoxLogo.Location = New System.Drawing.Point(43, 135)
         Me.PictureBoxLogo.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.PictureBoxLogo.Name = "PictureBoxLogo"
         Me.PictureBoxLogo.Size = New System.Drawing.Size(221, 63)
-        Me.PictureBoxLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.PictureBoxLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.PictureBoxLogo.TabIndex = 15
         Me.PictureBoxLogo.TabStop = False
         '
         'TextBoxIns
         '
-        Me.TextBoxIns.BackColor = System.Drawing.SystemColors.MenuBar
+        Me.TextBoxIns.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.TextBoxIns.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBoxIns.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBoxIns.Location = New System.Drawing.Point(43, 11)
         Me.TextBoxIns.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.TextBoxIns.Multiline = True
         Me.TextBoxIns.Name = "TextBoxIns"
-        Me.TextBoxIns.Size = New System.Drawing.Size(1091, 68)
+        Me.TextBoxIns.Size = New System.Drawing.Size(1190, 92)
         Me.TextBoxIns.TabIndex = 13
         Me.TextBoxIns.TabStop = False
-        Me.TextBoxIns.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'Timer1
         '
@@ -166,7 +166,7 @@ Partial Class Form1
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.HighlightText
-        Me.ClientSize = New System.Drawing.Size(1199, 733)
+        Me.ClientSize = New System.Drawing.Size(1261, 347)
         Me.Controls.Add(Me.PictureBoxLogo)
         Me.Controls.Add(Me.TextLbl102)
         Me.Controls.Add(Me.TextBoxIns)

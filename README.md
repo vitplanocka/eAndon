@@ -59,7 +59,7 @@ In order to customize the setup for the specific use case, edit the following co
 In case you need to set up different arrangement then 1 dashboard and 4 terminal applications, rebuild the program from the source, adding or removing the terminal programs as needed. Each terminal is a separate project, the code of each is the same.
 
 ## Instructions
-1. Put the applications Andon_dashboard.exe, Terminal01.exe ~ 04.exe, file priority_workstations and folders /Assets and /Data in one folder to which the terminals have read/write access and the computer displaying Andon_dashboard has at least read access.
+1. Start with applications Andon_dashboard.exe, Terminal01.exe ~ 04.exe, file priority_workstations.txt and sub-folders /Assets, /Data and /Logs in one folder to which the terminals have read/write access and the computer displaying Andon_dashboard has at least read access.
 
 2. On each terminal, run the appropriate Terminal0#.exe file. On the computer(s) displaying the visualization, run the Andon_dashboard.exe file.
 

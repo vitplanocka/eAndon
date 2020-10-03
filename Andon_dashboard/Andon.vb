@@ -4,6 +4,7 @@
 ' - create variables for positioning of nameLabels and workstationLabels
 ' - add grid view / lay-out view option
 ' - make creation of Terminals dynamic
+' - instuction box - add colours for Green, Yellow, Red
 
 
 Public Class Andon
