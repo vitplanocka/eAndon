@@ -24,7 +24,6 @@ C:\Users\plano\Source\Repos\eAndon\Andon_dashboard\bin\Release\Andon_dashboard.e
 C:\Users\plano\Source\Repos\eAndon\Andon_dashboard\bin\Release\Andon_dashboard.exe
 C:\Users\plano\Source\Repos\eAndon\Andon_dashboard\bin\Release\Andon_dashboard.pdb
 C:\Users\plano\Source\Repos\eAndon\Andon_dashboard\bin\Release\Andon_dashboard.xml
-C:\Users\plano\Source\Repos\eAndon\Andon_dashboard\obj\Release\Andon_dashboard.vbprojAssemblyReference.cache
 C:\Users\plano\Source\Repos\eAndon\Andon_dashboard\obj\Release\Andon_dashboard.Andon.resources
 C:\Users\plano\Source\Repos\eAndon\Andon_dashboard\obj\Release\Andon_dashboard.Resources.resources
 C:\Users\plano\Source\Repos\eAndon\Andon_dashboard\obj\Release\Andon_dashboard.vbproj.GenerateResource.cache
