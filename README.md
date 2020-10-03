@@ -66,7 +66,7 @@ In case you need to set up different arrangement then 1 dashboard and 4 terminal
 3. When alarm occurs on some workstation, on the relevant terminal click the green field in Terminal0#.exe corresponding to the workstation and type of alarm.
 The green field will turn yellow or red (based on settings) and the field will start to show a counter with amount of minutes since the alarm was triggered.
 
-<img src="https://github.com/vitplanocka/eAndon/blob/master/Screenshots/terminal02.png" alt="terminal02 showing triggering of an alarm" width="700">
+<img src="https://github.com/vitplanocka/eAndon/blob/master/Screenshots/term02.png" alt="terminal02 showing triggering of an alarm" width="700">
 
 The same information will be displayed immediately on the Andon_dashboard visualization.
 
