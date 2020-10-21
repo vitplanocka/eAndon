@@ -329,6 +329,7 @@ Public Class Form1
 					Try
 						For j = 0 To alarmTypes - 1
 							outputFile.WriteLine(workstationStatus(i, j))
+							outputFile.WriteLine(alarmStartDateTime(i, j))
 						Next
 					Catch ex As Exception
 

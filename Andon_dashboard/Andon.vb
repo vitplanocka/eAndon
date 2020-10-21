@@ -4,7 +4,8 @@
 ' - create variables for positioning of nameLabels and workstationLabels
 ' - add grid view / lay-out view option
 ' - make creation of Terminals dynamic
-' - instuction box - add colours for Green, Yellow, Red
+' - instruction box - add colours for Green, Yellow, Red
+' - add time stamp to text files
 
 
 Public Class Andon
@@ -169,11 +170,11 @@ Public Class Andon
         Next
 
         ' Initialize all alarm start times to Now to handle situation when dashboard is loaded after an alarm is triggered
-        For i = 0 To nOfLines - 1
-            For j = 0 To alarmTypes - 1
-                alarmStartTime(i, j) = DateTime.Now
-            Next
-        Next
+        'For i = 0 To nOfLines - 1
+        'For j = 0 To alarmTypes - 1
+        'alarmStartTime(i, j) = DateTime.Now
+        'Next
+        'Next
 
         ' Ignore old files. If it's a current file, trigger update of alert fields
         Dim di As New DirectoryInfo("Data/")
@@ -218,6 +219,7 @@ Public Class Andon
                     For i = 0 To alarmTypes - 1
                         Try
                             workstationStatus(CInt(lineNumber), i) = inputFile.ReadLine()
+                            alarmStartTime(CInt(lineNumber), i) = inputFile.ReadLine()
                         Catch ex As Exception
                         End Try
                     Next
@@ -236,22 +238,10 @@ Public Class Andon
 
                             'Display time since last alarm
                             If (workstationStatus(CInt(lineNumber), i) = "Yellow") And (previousworkstationStatus(CInt(lineNumber), i) = "Green") Then   ' it's a new alarm
-                                Try
-                                    alarmStartTime(CInt(lineNumber), i) = Date.Now
-                                Catch ex As Exception
-                                    Debug.WriteLine("Exception : " + ex.StackTrace)
-                                End Try
-
                                 myLabel.Text = "0 min"
                                 myLabel.ForeColor = Color.Black
                                 PictureBoxLogo.Select() ' Remove the cursor from updated field
                             ElseIf (workstationStatus(CInt(lineNumber), i) = "Red") And (previousworkstationStatus(CInt(lineNumber), i) = "Yellow") Then   ' it's a new alarm
-                                Try
-                                    alarmStartTime(CInt(lineNumber), i) = Date.Now
-                                Catch ex As Exception
-                                    Debug.WriteLine("Exception : " + ex.StackTrace)
-                                End Try
-
                                 myLabel.Text = "0 min"
                                 myLabel.ForeColor = Color.White
                                 PictureBoxLogo.Select() ' Remove the cursor from updated field
