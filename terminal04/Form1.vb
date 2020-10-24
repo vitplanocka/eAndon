@@ -51,7 +51,7 @@ Public Class Form1
 			' Alarm type descriptions and icons
 			ReDim iconLbl(alarmTypes)
 			ReDim iconImgFile(alarmTypes)
-			For i = 0 To alarmTypes
+			For i = 0 To alarmTypes - 1
 				lineReader = MyReader.ReadLine().Split(":")
 				iconLbl(i) = lineReader(1).ToString().Trim().TrimStart()
 				lineReader = MyReader.ReadLine().Split(":")

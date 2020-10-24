@@ -59,7 +59,7 @@ Public Class Andon
             ' Alarm type descriptions and icons
             ReDim iconLbl(alarmTypes)
             ReDim iconImgFile(alarmTypes)
-            For i = 0 To alarmTypes
+            For i = 0 To alarmTypes - 1
                 MyReader.ReadLine()
                 lineReader = MyReader.ReadLine().Split(":")
                 iconImgFile(i) = "Assets/" & lineReader(1).ToString().Trim().TrimStart()
