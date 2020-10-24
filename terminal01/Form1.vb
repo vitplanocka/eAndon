@@ -345,8 +345,7 @@ Public Class Form1
 	End Sub
 
 	Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
-		' Periodically update the text file and the labels for time since alarm was activated
-		Update_Fields(sender, e)
+		' Periodically update the labels for time since alarm was activated
 		Dim i, j As Integer
 		For i = 0 To workstationCount - 1
 			For j = 0 To alarmTypes - 1
