@@ -42,6 +42,7 @@ Public Class Form1
 			' Terminal usage instruction
 			lineReader = MyReader.ReadLine().Split(":")
 			Dim strArr(), instrText As String
+			instrText = ""
 			strArr = lineReader(1).ToString().Split("|")
 			For i = 0 To strArr.Length - 1
 				instrText = instrText & strArr(i) & vbCrLf
@@ -329,7 +330,7 @@ Public Class Form1
 					Try
 						For j = 0 To alarmTypes - 1
 							outputFile.WriteLine(workstationStatus(i, j))
-							outputFile.WriteLine(alarmStartDateTime(i, j))
+							outputFile.WriteLine(alarmStartDateTime(i, j).ToString("s"))  ' Save the alarm date and time in ISO format
 						Next
 					Catch ex As Exception
 

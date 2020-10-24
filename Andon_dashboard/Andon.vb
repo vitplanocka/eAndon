@@ -5,7 +5,7 @@
 ' - add grid view / lay-out view option
 ' - make creation of Terminals dynamic
 ' - instruction box - add colours for Green, Yellow, Red
-' - add time stamp to text files
+
 
 
 Public Class Andon
@@ -169,13 +169,6 @@ Public Class Andon
             Next
         Next
 
-        ' Initialize all alarm start times to Now to handle situation when dashboard is loaded after an alarm is triggered
-        'For i = 0 To nOfLines - 1
-        'For j = 0 To alarmTypes - 1
-        'alarmStartTime(i, j) = DateTime.Now
-        'Next
-        'Next
-
         ' Ignore old files. If it's a current file, trigger update of alert fields
         Dim di As New DirectoryInfo("Data/")
         ' Get a reference to each file in that directory.
@@ -219,7 +212,7 @@ Public Class Andon
                     For i = 0 To alarmTypes - 1
                         Try
                             workstationStatus(CInt(lineNumber), i) = inputFile.ReadLine()
-                            alarmStartTime(CInt(lineNumber), i) = inputFile.ReadLine()
+                            alarmStartTime(CInt(lineNumber), i) = Date.ParseExact(inputFile.ReadLine(), "s", Nothing)  ' Read date time in ISO format
                         Catch ex As Exception
                         End Try
                     Next
