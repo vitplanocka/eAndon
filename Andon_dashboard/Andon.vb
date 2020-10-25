@@ -19,7 +19,7 @@ Public Class Andon
     Public previousworkstationStatus(nOfLines - 1, alarmTypes - 1) As String  ' previous status of alarms for all lines
     Public alarmStartTime(nOfLines - 1, alarmTypes - 1) As Date               ' date of last start of yellow or red alarm
     Public oldFile As Boolean                                                 ' is the file change date too old to display in dashboard?
-    Public maxDelay As Integer = 1                                            ' text files older than x minutes are ignored
+    Public maxDelay As Integer = 60                                           ' text files terminal0*.txt older than x minutes are ignored
     Public soundOn As Boolean = False                                         ' do alarms play a sound?
     Public priorityLines(nOfLines) As Integer                                 ' array of lines that are highlighted as priority
     Public alarmfile As String                                                ' alarm sound filename

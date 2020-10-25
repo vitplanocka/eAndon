@@ -34,6 +34,7 @@ Partial Class Form1
         Me.TBox50 = New System.Windows.Forms.TextBox()
         Me.TextLbl101 = New System.Windows.Forms.TextBox()
         Me.TextLbl102 = New System.Windows.Forms.TextBox()
+        Me.Timer2 = New System.Windows.Forms.Timer(Me.components)
         CType(Me.PictureBoxLogo, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -161,6 +162,11 @@ Partial Class Form1
         Me.TextLbl102.TabStop = False
         Me.TextLbl102.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
+        'Timer2
+        '
+        Me.Timer2.Enabled = True
+        Me.Timer2.Interval = 900000
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
@@ -196,4 +202,5 @@ Partial Class Form1
     Friend WithEvents TBox50 As TextBox
     Friend WithEvents TextLbl101 As TextBox
     Friend WithEvents TextLbl102 As TextBox
+    Friend WithEvents Timer2 As Timer
 End Class

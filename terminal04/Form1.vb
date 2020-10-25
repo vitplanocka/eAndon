@@ -358,4 +358,8 @@ Public Class Form1
 		Next
 	End Sub
 
+	Private Sub Timer2_Tick(sender As Object, e As EventArgs) Handles Timer2.Tick
+		' Periodically refresh the text files so that the status remains visible to the dashboard
+		Update_Fields(sender, e)
+	End Sub
 End Class
