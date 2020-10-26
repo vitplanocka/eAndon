@@ -185,6 +185,7 @@ Partial Class Form1
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.MaximizeBox = False
         Me.Name = "Form1"
         Me.Text = "Andon"
         CType(Me.PictureBoxLogo, System.ComponentModel.ISupportInitialize).EndInit()
