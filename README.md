@@ -75,6 +75,8 @@ The same information will be displayed immediately on the Andon_dashboard visual
 
 5. Logs of the triggered alarms are saved in the /Logs folder in the alarmlog_terminal0#.txt files.
 
+6. Both the dashboard and the terminal programs have an information text box that can be used to display current information for operators (e.g. the target and result from previous day and plan for the current production day). The text displayed in this text box is read out from the text file InfoTextForOperators.rtf where it can be manually or automatically adjusted as needed.
+
 ## License
 This project is licensed under the <a href="https://github.com/vitplanocka/eAndon/blob/master/LICENSE">MIT license</a>
 
