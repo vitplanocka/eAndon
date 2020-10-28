@@ -10,12 +10,12 @@ Public Class Form1
 	Public displayedLines(10) As Integer                     ' Numbers or lines from production_lines.txt displayed on this form
 	Public alarmStartDateTime(10, 20) As DateTime            ' When alarm was pressed last time
 	Public alarmEndDateTime(10, 20) As DateTime              ' When alarm was turned off
-	'Public noOfColors As Integer                             ' 2 = Green and Red, 3 = Green, Yellow and Red
 	Public workstationLabels(100, 3) As String               ' #, line number, line name, output file name 
 	Public workstationStatus(20, 20) As String               ' Green, Yellow, Red
 	Public alarmfile As String                               ' alarm sound filename
 	Public iconLbl(alarmTypes) As String                     ' labels for alarm types
-	Public iconImgFile(alarmTypes) As String                 ' image filenames for alarm types   
+	Public iconImgFile(alarmTypes) As String                 ' image filenames for alarm types
+	Public alarmTypesString(4) As String                     ' labels for the Alarm_type form
 
 	Private Sub Andon_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load  ' Things to do when app starts
 
@@ -45,6 +45,11 @@ Public Class Form1
 				instrText = instrText & strArr(i) & vbCrLf
 			Next
 			TextBoxIns.Text = instrText
+			' Labels for the Alarm_type form
+			For i = 0 To 3
+				lineReader = MyReader.ReadLine().Split(":")
+				alarmTypesString(i) = lineReader(1).ToString().Trim().TrimStart()
+			Next
 			' Alarm type descriptions and icons
 			ReDim iconLbl(alarmTypes)
 			ReDim iconImgFile(alarmTypes)
@@ -257,34 +262,32 @@ Public Class Form1
 				Dim myBox As Label = CType(Me.Controls("lineLabel" & i * alarmTypes + j), Label)
 				If sender Is myBox Then
 
-					If workstationStatus(i, j) = "Red" Then
+					If workstationStatus(i, j) <> "Green" Then    ' We are cancelling a yellow or red alarm
 						workstationStatus(i, j) = "Green"
-					ElseIf workstationStatus(i, j) = "Green" Then
-						workstationStatus(i, j) = "Yellow"
-					ElseIf workstationStatus(i, j) = "Yellow" Then
-						workstationStatus(i, j) = "Red"
-					End If
-
-
-					If workstationStatus(i, j) = "Red" Then
-						myBox.ForeColor = Color.White
-						LogAlarmInfo(workstationLabels(displayedLines(i), 1), myBox.Name, workstationStatus(i, j), 0)
-
-					ElseIf workstationStatus(i, j) = "Yellow" Then
-						alarmStartDateTime(i, j) = DateTime.Now
-						myBox.Text = "0 min"
-						myBox.ForeColor = Color.Black
-						PictureBoxLogo.Select()
-						LogAlarmInfo(workstationLabels(displayedLines(i), 1), myBox.Name, workstationStatus(i, j), 0)
-
-					ElseIf workstationStatus(i, j) = "Green" Then
 						alarmEndDateTime(i, j) = DateTime.Now
 						myBox.Text = ""
 						PictureBoxLogo.Select()
 						LogAlarmInfo(workstationLabels(displayedLines(i), 1), myBox.Name, workstationStatus(i, j), DateDiff(DateInterval.Minute, alarmStartDateTime(i, j), alarmEndDateTime(i, j)))
-					Else
-						myBox.Text = ""
-						PictureBoxLogo.Select()
+					Else                                          ' We are switching from green to yellow or red alarm
+						Alarm_type.ShowDialog()
+						If Alarm_type.DialogResult = DialogResult.OK Then
+							If Alarm_type.YellowOrRed = "Yellow" Then
+								workstationStatus(i, j) = "Yellow"
+								alarmStartDateTime(i, j) = DateTime.Now
+								myBox.Text = "0 min"
+								myBox.ForeColor = Color.Black
+								PictureBoxLogo.Select()
+								LogAlarmInfo(workstationLabels(displayedLines(i), 1), myBox.Name, workstationStatus(i, j), 0)
+							End If
+							If Alarm_type.YellowOrRed = "Red" Then
+								workstationStatus(i, j) = "Red"
+								alarmStartDateTime(i, j) = DateTime.Now
+								myBox.Text = "0 min"
+								PictureBoxLogo.Select()
+								myBox.ForeColor = Color.White
+								LogAlarmInfo(workstationLabels(displayedLines(i), 1), myBox.Name, workstationStatus(i, j), 0)
+							End If
+						End If
 					End If
 				End If
 			Next

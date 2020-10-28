@@ -6,7 +6,7 @@
 ' - make creation of Terminals dynamic
 ' - instruction box - add colours for Green, Yellow, Red
 ' - add info field?
-' - remove 2/3 alarm types
+
 
 
 
@@ -56,6 +56,10 @@ Public Class Andon
             alarmfile = "Assets/" & lineReader(1).ToString().Trim().TrimStart()
             ' Terminal usage instruction
             MyReader.ReadLine()
+            ' Labels for the Alarm_type form
+            For i = 0 To 3
+                MyReader.ReadLine()
+            Next
             ' Alarm type descriptions and icons
             ReDim iconLbl(alarmTypes)
             ReDim iconImgFile(alarmTypes)
@@ -228,20 +232,16 @@ Public Class Andon
                                 myLabel.BackColor = Color.FromArgb(255, 0, 0)
                             End If
 
-
-                            'Display time since last alarm
+                            ' Display time since last alarm in the alarm field
                             If (workstationStatus(CInt(lineNumber), i) = "Yellow") And (previousworkstationStatus(CInt(lineNumber), i) = "Green") Then   ' it's a new alarm
                                 myLabel.Text = "0 min"
                                 myLabel.ForeColor = Color.Black
                                 PictureBoxLogo.Select() ' Remove the cursor from updated field
-                            ElseIf (workstationStatus(CInt(lineNumber), i) = "Red") And (previousworkstationStatus(CInt(lineNumber), i) = "Yellow") Then   ' it's a new alarm
+                            ElseIf (workstationStatus(CInt(lineNumber), i) = "Red") And (previousworkstationStatus(CInt(lineNumber), i) = "Green") Then   ' it's a new alarm
                                 myLabel.Text = "0 min"
                                 myLabel.ForeColor = Color.White
                                 PictureBoxLogo.Select() ' Remove the cursor from updated field
-                            ElseIf (workstationStatus(CInt(lineNumber), i) = "Green" And previousworkstationStatus(CInt(lineNumber), i) = "Red") Then  ' we're going from red to green
-                                myLabel.Text = ""
-                                PictureBoxLogo.Select() ' Remove the cursor from updated field
-                            ElseIf (workstationStatus(CInt(lineNumber), i) = "Green" And previousworkstationStatus(CInt(lineNumber), i) = "Green") Then  ' in case of initialization on startup, we must remove all labels
+                            ElseIf workstationStatus(CInt(lineNumber), i) = "Green" Then  ' remove all labels
                                 myLabel.Text = ""
                                 PictureBoxLogo.Select() ' Remove the cursor from updated field
                             End If
