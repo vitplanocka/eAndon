@@ -10,7 +10,7 @@ Public Class Form1
 	Public displayedLines(10) As Integer                     ' Numbers or lines from production_lines.txt displayed on this form
 	Public alarmStartDateTime(10, 20) As DateTime            ' When alarm was pressed last time
 	Public alarmEndDateTime(10, 20) As DateTime              ' When alarm was turned off
-	Public noOfColors As Integer                             ' 2 = Green and Red, 3 = Green, Yellow and Red
+	'Public noOfColors As Integer                             ' 2 = Green and Red, 3 = Green, Yellow and Red
 	Public workstationLabels(100, 3) As String               ' #, line number, line name, output file name 
 	Public workstationStatus(20, 20) As String               ' Green, Yellow, Red
 	Public alarmfile As String                               ' alarm sound filename
@@ -30,9 +30,6 @@ Public Class Form1
 			' Number of alarm types to display
 			Dim lineReader() As String = MyReader.ReadLine().Split(":")
 			alarmTypes = CInt(lineReader(1).ToString().Trim().TrimStart())
-			' Number of status colours
-			lineReader = MyReader.ReadLine().Split(":")
-			noOfColors = CInt(lineReader(1).ToString().Trim().TrimStart())
 			' Image file for company logo
 			lineReader = MyReader.ReadLine().Split(":")
 			PictureBoxLogo.ImageLocation = "Assets/" & lineReader(1).ToString().Trim().TrimStart()
@@ -259,28 +256,17 @@ Public Class Form1
 			For j As Integer = 0 To alarmTypes - 1
 				Dim myBox As Label = CType(Me.Controls("lineLabel" & i * alarmTypes + j), Label)
 				If sender Is myBox Then
-					If noOfColors = 3 Then
-						If workstationStatus(i, j) = "Red" Then
+
+					If workstationStatus(i, j) = "Red" Then
 							workstationStatus(i, j) = "Green"
 						ElseIf workstationStatus(i, j) = "Green" Then
 							workstationStatus(i, j) = "Yellow"
 						ElseIf workstationStatus(i, j) = "Yellow" Then
 							workstationStatus(i, j) = "Red"
 						End If
-					ElseIf noOfColors = 2 Then
-						If workstationStatus(i, j) = "Red" Then
-							workstationStatus(i, j) = "Green"
-						ElseIf workstationStatus(i, j) = "Green" Then
-							workstationStatus(i, j) = "Red"
-						End If
-					End If
 
-					If workstationStatus(i, j) = "Red" Then
-						If noOfColors = 2 Then                     ' in case we switch from yellow to red, we continue the yellow alarm length 
-							alarmStartDateTime(i, j) = DateTime.Now
-							myBox.Text = "0 min"
-							PictureBoxLogo.Select()
-						End If
+
+						If workstationStatus(i, j) = "Red" Then
 						myBox.ForeColor = Color.White
 						LogAlarmInfo(workstationLabels(displayedLines(i), 1), myBox.Name, workstationStatus(i, j), 0)
 

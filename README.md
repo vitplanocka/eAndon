@@ -43,7 +43,6 @@ The binaries provided in the release section come with a preconfigured setup tha
 In order to customize the setup for the specific use case, edit the following configuration files:
 1.  <b>Assets/settings.txt</b>  - in this main configuration file, specify the following variables
  -  Number of alarm types to display in columns in grid view - this controls how many columns of alarm will be displayed (default is 5, maximum is 10). Based on the number of alarm types, there should be corresponding icons Icon1.png ~ Icon10.png available in the /Assets folder
- -  Number of status colours (2 = Green, Red, 3 = Green, Yellow, Red) - default is 3
  -  Image file for company logo - filename for logo in the /Assets folder - put the logo you want to use in the /Assets folder
  -  Alarm sound file - filename for the sound played when an alarm is triggered
  -  Instructions - text displayed in the input programs describing their usage

@@ -5,6 +5,8 @@
 ' - add grid view / lay-out view option
 ' - make creation of Terminals dynamic
 ' - instruction box - add colours for Green, Yellow, Red
+' - add info field?
+' - remove 2/3 alarm types
 
 
 
@@ -46,8 +48,6 @@ Public Class Andon
             ' Number of alarm types to display
             Dim lineReader() As String = MyReader.ReadLine().Split(":")
             alarmTypes = CInt(lineReader(1).ToString().Trim().TrimStart())
-            ' Number of status colours
-            MyReader.ReadLine()
             ' Image file for company logo
             lineReader = MyReader.ReadLine().Split(":")
             PictureBoxLogo.ImageLocation = "Assets/" & lineReader(1).ToString().Trim().TrimStart()
