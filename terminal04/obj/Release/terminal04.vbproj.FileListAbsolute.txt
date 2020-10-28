@@ -36,3 +36,4 @@ C:\Users\plano\Source\Repos\eAndon\Andon_dashboard\bin\Release\terminal04.exe
 C:\Users\plano\Source\Repos\eAndon\Andon_dashboard\bin\Release\terminal04.pdb
 C:\Users\plano\Source\Repos\eAndon\Andon_dashboard\bin\Release\terminal04.xml
 C:\Users\plano\source\repos\eAndon\terminal04\obj\Release\terminal04.Alarm_type.resources
+C:\Users\plano\source\repos\eAndon\terminal04\obj\Release\terminal04.vbprojAssemblyReference.cache

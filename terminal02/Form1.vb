@@ -100,8 +100,9 @@ Public Class Form1
 		Dim spacingVer As Int16 = rectHeight + 5   ' spacing between same corners of adjacent alarm fields
 
 		' Adjust width and height of form
-		Me.Size = New Size(300 + alarmTypes * spacingHor, 250 + workstationCount * spacingVer)
+		Me.Size = New Size(300 + alarmTypes * spacingHor, 385 + workstationCount * spacingVer)
 		TextBoxIns.Width = 200 + alarmTypes * spacingHor
+		RichTextBox1.Width = 200 + alarmTypes * spacingHor
 
 		' Create dynamic Label alarm descriptions
 		Dim newbox3 As Label
@@ -211,6 +212,13 @@ Public Class Form1
 				myBox.BorderStyle = BorderStyle.FixedSingle
 			End If
 		Next
+
+		' Update text in InfoBox
+		Try
+			RichTextBox1.LoadFile("InfoTextForOperators.rtf", RichTextBoxStreamType.RichText)
+		Catch ex As Exception
+			System.Diagnostics.Debug.WriteLine("Exception : " + ex.StackTrace)
+		End Try
 
 		' Create initial text file
 		Update_Fields(sender, e)
@@ -350,6 +358,12 @@ Public Class Form1
 	Private Sub Timer2_Tick(sender As Object, e As EventArgs) Handles Timer2.Tick
 		' Periodically refresh the text files so that the status remains visible to the dashboard
 		Update_Fields(sender, e)
+		' Update text in InfoBox
+		Try
+			RichTextBox1.LoadFile("InfoTextForOperators.rtf", RichTextBoxStreamType.RichText)
+		Catch ex As Exception
+			System.Diagnostics.Debug.WriteLine("Exception : " + ex.StackTrace)
+		End Try
 	End Sub
 
 End Class

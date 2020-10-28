@@ -35,6 +35,7 @@ Partial Class Form1
         Me.TextLbl101 = New System.Windows.Forms.TextBox()
         Me.TextLbl102 = New System.Windows.Forms.TextBox()
         Me.Timer2 = New System.Windows.Forms.Timer(Me.components)
+        Me.RichTextBox1 = New System.Windows.Forms.RichTextBox()
         CType(Me.PictureBoxLogo, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -167,12 +168,24 @@ Partial Class Form1
         Me.Timer2.Enabled = True
         Me.Timer2.Interval = 900000
         '
+        'RichTextBox1
+        '
+        Me.RichTextBox1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.RichTextBox1.BackColor = System.Drawing.SystemColors.Menu
+        Me.RichTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.RichTextBox1.Location = New System.Drawing.Point(43, 323)
+        Me.RichTextBox1.Name = "RichTextBox1"
+        Me.RichTextBox1.Size = New System.Drawing.Size(1190, 150)
+        Me.RichTextBox1.TabIndex = 20
+        Me.RichTextBox1.Text = ""
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.HighlightText
-        Me.ClientSize = New System.Drawing.Size(1261, 347)
+        Me.ClientSize = New System.Drawing.Size(1261, 494)
+        Me.Controls.Add(Me.RichTextBox1)
         Me.Controls.Add(Me.PictureBoxLogo)
         Me.Controls.Add(Me.TextLbl102)
         Me.Controls.Add(Me.TextBoxIns)
@@ -204,4 +217,5 @@ Partial Class Form1
     Friend WithEvents TextLbl101 As TextBox
     Friend WithEvents TextLbl102 As TextBox
     Friend WithEvents Timer2 As Timer
+    Friend WithEvents RichTextBox1 As RichTextBox
 End Class

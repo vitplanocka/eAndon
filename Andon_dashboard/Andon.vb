@@ -1,13 +1,13 @@
 ﻿Imports System.IO
 
-'TODO:  
+' TODO:  
 ' - create variables for positioning of nameLabels and workstationLabels
 ' - add grid view / lay-out view option
 ' - make creation of Terminals dynamic
 ' - instruction box - add colours for Green, Yellow, Red
 ' - add info field?
-
-
+' - add translations to UI (Legend)
+' - Adjust height of form dynamically - remove constants
 
 
 Public Class Andon
@@ -32,7 +32,7 @@ Public Class Andon
         ' Things to do when app starts
 
         ' Maximize the window
-        Me.WindowState = FormWindowState.Maximized
+        ' Me.WindowState = FormWindowState.Maximized
 
         'Check Directory is available or not.
         If (Directory.Exists(Application.StartupPath & "/Data") = False) Then
@@ -142,6 +142,9 @@ Public Class Andon
             Controls.Add(newbox2)
         Next
 
+        ' Adjust height of form dynamically
+        Me.Size = New Size(Me.Width, 25 + nOfLines * 30)
+
         ' Create Priority Line Labels
         For i As Integer = 0 To nOfLines - 1 'Create labels and set properties
             newbox = New Label With {
@@ -189,6 +192,13 @@ Public Class Andon
 
         ' Update line visualization (active lines and priority lines)
         Timer1_Tick(sender, e)
+
+        ' Update text in InfoBox
+        Try
+            RichTextBox1.LoadFile("InfoTextForOperators.rtf", RichTextBoxStreamType.RichText)
+        Catch ex As Exception
+            Debug.WriteLine("Exception : " + ex.StackTrace)
+        End Try
 
     End Sub
 
@@ -320,7 +330,6 @@ Public Class Andon
     End Sub
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
-
         ' Periodically update time since alarm was started
         Dim i, j As Integer
         For i = 0 To nOfLines - 1
@@ -386,4 +395,12 @@ Public Class Andon
         PictureBoxSound.Cursor = Cursors.Default
     End Sub
 
+    Private Sub InfoBoxTimer_Tick(sender As Object, e As EventArgs) Handles InfoBoxTimer.Tick
+        ' Update text in InfoBox
+        Try
+            RichTextBox1.LoadFile("InfoTextForOperators.rtf", RichTextBoxStreamType.RichText)
+        Catch ex As Exception
+            System.Diagnostics.Debug.WriteLine("Exception : " + ex.StackTrace)
+        End Try
+    End Sub
 End Class

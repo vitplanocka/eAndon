@@ -37,15 +37,15 @@ Partial Class Andon
         Me.TextBox11 = New System.Windows.Forms.TextBox()
         Me.TextBox12 = New System.Windows.Forms.TextBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.TextBox13 = New System.Windows.Forms.TextBox()
+        Me.LabelSound = New System.Windows.Forms.Label()
         Me.TextBox2 = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.Label16 = New System.Windows.Forms.Label()
-        Me.LabelSound = New System.Windows.Forms.Label()
-        Me.TextBox13 = New System.Windows.Forms.TextBox()
-        Me.Label63 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
-        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
+        Me.Label16 = New System.Windows.Forms.Label()
+        Me.RichTextBox1 = New System.Windows.Forms.RichTextBox()
+        Me.InfoBoxTimer = New System.Windows.Forms.Timer(Me.components)
         CType(Me.PictureBoxLogo, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.watcher2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBoxSound, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -54,7 +54,6 @@ Partial Class Andon
         CType(Me.PictureBox120, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PictureBoxLogo
@@ -171,7 +170,7 @@ Partial Class Andon
         'TextBox12
         '
         Me.TextBox12.Anchor = System.Windows.Forms.AnchorStyles.Top
-        Me.TextBox12.BackColor = System.Drawing.Color.DarkOrange
+        Me.TextBox12.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.TextBox12.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox12.ForeColor = System.Drawing.SystemColors.InactiveCaptionText
         Me.TextBox12.Location = New System.Drawing.Point(271, 56)
@@ -192,10 +191,8 @@ Partial Class Andon
         Me.GroupBox1.Controls.Add(Me.TextBox12)
         Me.GroupBox1.Controls.Add(Me.TextBox11)
         Me.GroupBox1.Controls.Add(Me.TextBox2)
-        Me.GroupBox1.Controls.Add(Me.Label63)
         Me.GroupBox1.Controls.Add(Me.Label1)
         Me.GroupBox1.Controls.Add(Me.PictureBox1)
-        Me.GroupBox1.Controls.Add(Me.PictureBox2)
         Me.GroupBox1.Controls.Add(Me.PictureBox120)
         Me.GroupBox1.Controls.Add(Me.PictureBox110)
         Me.GroupBox1.Controls.Add(Me.PictureBox100)
@@ -211,9 +208,35 @@ Partial Class Andon
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Legend"
         '
+        'TextBox13
+        '
+        Me.TextBox13.Anchor = System.Windows.Forms.AnchorStyles.Top
+        Me.TextBox13.BackColor = System.Drawing.Color.Red
+        Me.TextBox13.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox13.ForeColor = System.Drawing.SystemColors.InactiveCaptionText
+        Me.TextBox13.Location = New System.Drawing.Point(271, 85)
+        Me.TextBox13.Margin = New System.Windows.Forms.Padding(2)
+        Me.TextBox13.Multiline = True
+        Me.TextBox13.Name = "TextBox13"
+        Me.TextBox13.Size = New System.Drawing.Size(49, 24)
+        Me.TextBox13.TabIndex = 13
+        Me.TextBox13.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'LabelSound
+        '
+        Me.LabelSound.AutoSize = True
+        Me.LabelSound.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelSound.Location = New System.Drawing.Point(98, 51)
+        Me.LabelSound.MinimumSize = New System.Drawing.Size(50, 28)
+        Me.LabelSound.Name = "LabelSound"
+        Me.LabelSound.Size = New System.Drawing.Size(83, 29)
+        Me.LabelSound.TabIndex = 2
+        Me.LabelSound.Text = "Sound"
+        Me.LabelSound.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
         'TextBox2
         '
-        Me.TextBox2.BackColor = System.Drawing.Color.DarkOrange
+        Me.TextBox2.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.TextBox2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox2.ForeColor = System.Drawing.SystemColors.InactiveCaptionText
         Me.TextBox2.Location = New System.Drawing.Point(184, 116)
@@ -247,6 +270,19 @@ Partial Class Andon
         Me.PictureBox1.TabIndex = 19
         Me.PictureBox1.TabStop = False
         '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.BackColor = System.Drawing.Color.FromArgb(CType(CType(252, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(214, Byte), Integer))
+        Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.Location = New System.Drawing.Point(395, 111)
+        Me.Label2.MinimumSize = New System.Drawing.Size(0, 28)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(174, 28)
+        Me.Label2.TabIndex = 2
+        Me.Label2.Text = "Priority workstation"
+        Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
         'Label16
         '
         Me.Label16.AutoSize = True
@@ -259,63 +295,21 @@ Partial Class Andon
         Me.Label16.Text = "Number   Workstation name"
         Me.Label16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'LabelSound
+        'RichTextBox1
         '
-        Me.LabelSound.AutoSize = True
-        Me.LabelSound.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelSound.Location = New System.Drawing.Point(98, 51)
-        Me.LabelSound.MinimumSize = New System.Drawing.Size(50, 28)
-        Me.LabelSound.Name = "LabelSound"
-        Me.LabelSound.Size = New System.Drawing.Size(83, 29)
-        Me.LabelSound.TabIndex = 2
-        Me.LabelSound.Text = "Sound"
-        Me.LabelSound.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.RichTextBox1.Anchor = System.Windows.Forms.AnchorStyles.Top
+        Me.RichTextBox1.BackColor = System.Drawing.SystemColors.Menu
+        Me.RichTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.RichTextBox1.Location = New System.Drawing.Point(570, 298)
+        Me.RichTextBox1.Name = "RichTextBox1"
+        Me.RichTextBox1.Size = New System.Drawing.Size(598, 127)
+        Me.RichTextBox1.TabIndex = 19
+        Me.RichTextBox1.Text = ""
         '
-        'TextBox13
+        'InfoBoxTimer
         '
-        Me.TextBox13.Anchor = System.Windows.Forms.AnchorStyles.Top
-        Me.TextBox13.BackColor = System.Drawing.Color.Red
-        Me.TextBox13.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox13.ForeColor = System.Drawing.SystemColors.InactiveCaptionText
-        Me.TextBox13.Location = New System.Drawing.Point(271, 85)
-        Me.TextBox13.Margin = New System.Windows.Forms.Padding(2)
-        Me.TextBox13.Multiline = True
-        Me.TextBox13.Name = "TextBox13"
-        Me.TextBox13.Size = New System.Drawing.Size(49, 24)
-        Me.TextBox13.TabIndex = 13
-        Me.TextBox13.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'Label63
-        '
-        Me.Label63.BackColor = System.Drawing.Color.FromArgb(CType(CType(252, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(214, Byte), Integer))
-        Me.Label63.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label63.ForeColor = System.Drawing.Color.Red
-        Me.Label63.Location = New System.Drawing.Point(266, 112)
-        Me.Label63.Name = "Label63"
-        Me.Label63.Size = New System.Drawing.Size(61, 28)
-        Me.Label63.TabIndex = 12
-        Me.Label63.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(395, 111)
-        Me.Label2.MinimumSize = New System.Drawing.Size(0, 28)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(174, 28)
-        Me.Label2.TabIndex = 2
-        Me.Label2.Text = "Priority workstation"
-        Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'PictureBox2
-        '
-        Me.PictureBox2.Image = CType(resources.GetObject("PictureBox2.Image"), System.Drawing.Image)
-        Me.PictureBox2.Location = New System.Drawing.Point(334, 109)
-        Me.PictureBox2.Name = "PictureBox2"
-        Me.PictureBox2.Size = New System.Drawing.Size(55, 29)
-        Me.PictureBox2.TabIndex = 19
-        Me.PictureBox2.TabStop = False
+        Me.InfoBoxTimer.Enabled = True
+        Me.InfoBoxTimer.Interval = 900000
         '
         'Andon
         '
@@ -323,6 +317,7 @@ Partial Class Andon
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.ButtonHighlight
         Me.ClientSize = New System.Drawing.Size(1215, 686)
+        Me.Controls.Add(Me.RichTextBox1)
         Me.Controls.Add(Me.PictureBoxLogo)
         Me.Controls.Add(Me.Label16)
         Me.Controls.Add(Me.GroupBox1)
@@ -339,7 +334,6 @@ Partial Class Andon
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -363,7 +357,7 @@ Partial Class Andon
     Friend WithEvents Label1 As Label
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents TextBox13 As TextBox
-    Friend WithEvents Label63 As Label
-    Friend WithEvents PictureBox2 As PictureBox
     Friend WithEvents Label2 As Label
+    Friend WithEvents RichTextBox1 As RichTextBox
+    Friend WithEvents InfoBoxTimer As Timer
 End Class
