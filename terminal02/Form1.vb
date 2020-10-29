@@ -12,12 +12,17 @@ Public Class Form1
 	Public alarmEndDateTime(10, 20) As DateTime              ' When alarm was turned off
 	Public workstationLabels(100, 3) As String               ' #, line number, line name, output file name 
 	Public workstationStatus(20, 20) As String               ' Green, Yellow, Red
-	Public alarmfile As String                               ' alarm sound filename
-	Public iconLbl(alarmTypes) As String                     ' labels for alarm types
-	Public iconImgFile(alarmTypes) As String                 ' image filenames for alarm types
-	Public alarmTypesString(4) As String                     ' labels for the Alarm_type form
+	Public alarmfile As String                               ' Alarm sound filename
+	Public iconLbl(alarmTypes) As String                     ' Labels for alarm types
+	Public iconImgFile(alarmTypes) As String                 ' Image filenames for alarm types
+	Public alarmTypesString(4) As String                     ' Labels for the Alarm_type form
+
+	Dim AlarmTypeForm As New Alarm_type                      ' Initialize the Alarm_Type form 
 
 	Private Sub Andon_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load  ' Things to do when app starts
+
+		' Set form location on the screen to upper left corner
+		Me.Location = New Point(100, 100)
 
 		'Check Directory is available or not.
 		If (Directory.Exists(Application.StartupPath & "/Data") = False) Then
@@ -277,9 +282,10 @@ Public Class Form1
 						PictureBoxLogo.Select()
 						LogAlarmInfo(workstationLabels(displayedLines(i), 1), myBox.Name, workstationStatus(i, j), DateDiff(DateInterval.Minute, alarmStartDateTime(i, j), alarmEndDateTime(i, j)))
 					Else                                          ' We are switching from green to yellow or red alarm
-						Alarm_type.ShowDialog()
-						If Alarm_type.DialogResult = DialogResult.OK Then
-							If Alarm_type.YellowOrRed = "Yellow" Then
+						AlarmTypeForm.StartPosition = FormStartPosition.CenterParent
+						AlarmTypeForm.ShowDialog()
+						If AlarmTypeForm.DialogResult = DialogResult.OK Then
+							If AlarmTypeForm.YellowOrRed = "Yellow" Then
 								workstationStatus(i, j) = "Yellow"
 								alarmStartDateTime(i, j) = DateTime.Now
 								myBox.Text = "0 min"
@@ -287,7 +293,7 @@ Public Class Form1
 								PictureBoxLogo.Select()
 								LogAlarmInfo(workstationLabels(displayedLines(i), 1), myBox.Name, workstationStatus(i, j), 0)
 							End If
-							If Alarm_type.YellowOrRed = "Red" Then
+							If AlarmTypeForm.YellowOrRed = "Red" Then
 								workstationStatus(i, j) = "Red"
 								alarmStartDateTime(i, j) = DateTime.Now
 								myBox.Text = "0 min"
