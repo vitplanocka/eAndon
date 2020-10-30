@@ -37,4 +37,3 @@ C:\Users\plano\Source\Repos\eAndon\Andon_dashboard\bin\Release\terminal02.exe
 C:\Users\plano\Source\Repos\eAndon\Andon_dashboard\bin\Release\terminal02.pdb
 C:\Users\plano\Source\Repos\eAndon\Andon_dashboard\bin\Release\terminal02.xml
 C:\Users\plano\source\repos\eAndon\terminal02\obj\Release\terminal02.Alarm_type.resources
-C:\Users\plano\source\repos\eAndon\terminal02\obj\Release\terminal02.vbprojAssemblyReference.cache
