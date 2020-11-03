@@ -8,7 +8,7 @@ The program runs on Windows OS and can be used in a situation where there are co
 
 <b>What is Andon?</b>
 
-Andon in Lean manufacturing is a system designed to alert operators and managers of problems in real time so that corrective measures can be taken immediately. It originates from the Jidoka methodology used in the Toyota Production System, which empowered operators to recognize issues and take the initiative to stop work without waiting for management to make the decision.
+Andon is a popular tool used in Lean Manufacturing. It was originally pioneered by Toyota as a method to visualize problems, help create employee's awareness about targets and non-standard conditions, and promote leadership behavior. It is linked with the Jidōka methodology in the Toyota Production system that encourages operators to recognize a deviation from the standard and stop work and call supervisors or support staff who can help solve the deviation.  In most Japanese factories you will see a variation on the sign「止める・呼ぶ・待つ」- Stop-Call-Wait that reminds operators that this is the expected behavior.
 
 Originally, the operator would pull the Andon Cord, which was a rope located above the line, but Andon can take many forms. It can be activated by an operator pulling a cord or pushing a button, or it can be automatically activated by equipment when a problem is detected.
 
