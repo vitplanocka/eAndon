@@ -38,7 +38,6 @@ Public Class Andon
         If (Directory.Exists(Application.StartupPath & "/Data") = False) Then
             Directory.CreateDirectory(Application.StartupPath & "/Data")
         End If
-
         ' Set watcher path to current folder
         watcher2.Path = Application.StartupPath & "/Data"
 
@@ -184,7 +183,11 @@ Public Class Andon
         Dim fri As FileInfo
         For Each fri In fiArr
             oldFile = DateDiff(DateInterval.Minute, Convert.ToDateTime(File.GetLastWriteTime("Data/" & fri.ToString)), DateTime.Now) > maxDelay
-            If Not oldFile Then File.SetLastWriteTime("Data/" & fri.ToString, DateTime.Now)
+            If Not oldFile Then
+                ' Raise a new FileSystemEventArgs even with the changed file
+                Dim fileSEA As New FileSystemEventArgs(WatcherChangeTypes.Changed, fri.DirectoryName, fri.Name)
+                UpdateFields(sender, fileSEA)
+            End If
         Next fri
 
         If soundOn = True Then LabelSound.Text = "Sound is on" Else LabelSound.Text = "Sound is off"
@@ -293,6 +296,7 @@ Public Class Andon
                     alarmWorsened = False
                 End If
             Next
+
             For i = 0 To nOfLines - 1
                 ' Remove previous marking of last alarm 
                 Dim myLabel As Label = CType(Controls("prioLabel" & i), Label)
@@ -305,6 +309,7 @@ Public Class Andon
             End If
         End If
 
+        ' Remove last alarm label if all alarms have been solved
         Dim someAlarmsExist As Boolean
         For i = 0 To nOfLines - 1
             Dim myLabel As Label = CType(Controls("prioLabel" & i), Label)
@@ -320,13 +325,11 @@ Public Class Andon
 
     Private Sub Watcher2_Changed(sender As Object, e As FileSystemEventArgs) Handles watcher2.Changed
         ' If text file in the watched folder is created or rewritten, call update function
-        If e.Name.Substring(0, 8) = "terminal" Then
-            Try
-                UpdateFields(sender, e)
-            Catch ex As Exception
-                Debug.WriteLine("Exception : " + ex.StackTrace)
-            End Try
-        End If
+        Try
+            UpdateFields(sender, e)
+        Catch ex As Exception
+            Debug.WriteLine("Exception : " + ex.StackTrace)
+        End Try
     End Sub
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
