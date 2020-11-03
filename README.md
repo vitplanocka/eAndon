@@ -4,9 +4,9 @@ Implementation of a simple electronic/software Andon system to be used in a prod
 The program can be configured to display a range of different problems (technical issues, quality issues, material supply issues, …) and can be also configured to display various configurations of workstations and display screens.
 The program runs on Windows OS and can be used in a situation where there are computer terminals near the production workstations on the shopfloor that can be used to trigger alarms when problems occur at the workstations.
 
-* [What is Andon?](#What is Andon?)
+* [What is Andon?](#What-is-Andon)
 
-* [Features and limitations](#Features and limitations)
+* [Features and limitations](#Features-and-limitations)
 
 * [Installation](#Installation)
 
@@ -43,19 +43,19 @@ There is one or more dashboards (TV display in a production hall, laptop compute
 
 ## Features and limitations
 1)	Features of the system
-•	Allows operator to trigger a number of different alarms (the software allows from 1 – 10 alarm types)
-•	Alarms are displayed on one or more dashboard which can be placed in communal areas (e.g. TV placed on the shopfloor visible to all) or dedicated team areas (e.g. maintenance team’s workshop)
-•	Alarms are displayed in a way to give to Production management a quick overview about the status of the production process
-•	Priority (bottleneck) lines are highlighted on the dashboards, allowing prioritization of the actions
-•	With every alarm, the duration of the alarm is displayed and logged, creating a psychological nudge to solve the abnormal situation as soon as possible
-•	Info text field displayed on both the dashboard and the terminal programs allows to communicate to operators and support personnel current production targets and results or other important information
-•	The number of terminals and dashboards used by the software is not limited. The number of workstations displayed in software is limited only by the space available on the dashboard screens (up to ~60 workstations can be displayed)
-•	The assignment of the workstations to the terminals is defined in a text file. In case that the arrangement of the workstations or terminals changes (e.g. a new workstation is added or a workstation is assigned to a different terminal), this can be easily changed in a text file and is immediately reflected by the terminal programs
-•	Labels and text in the software is included in a text file, can be easily translated to a local language and is immediately reflected in the terminal and dashboard programs
+*	Allows operator to trigger a number of different alarms (the software allows from 1 – 10 alarm types)
+*	Alarms are displayed on one or more dashboard which can be placed in communal areas (e.g. TV placed on the shopfloor visible to all) or dedicated team areas (e.g. maintenance team’s workshop)
+*	Alarms are displayed in a way to give to Production management a quick overview about the status of the production process
+*	Priority (bottleneck) lines are highlighted on the dashboards, allowing prioritization of the actions
+*	With every alarm, the duration of the alarm is displayed and logged, creating a psychological nudge to solve the abnormal situation as soon as possible
+*	Info text field displayed on both the dashboard and the terminal programs allows to communicate to operators and support personnel current production targets and results or other important information
+*	The number of terminals and dashboards used by the software is not limited. The number of workstations displayed in software is limited only by the space available on the dashboard screens (up to ~60 workstations can be displayed)
+*	The assignment of the workstations to the terminals is defined in a text file. In case that the arrangement of the workstations or terminals changes (e.g. a new workstation is added or a workstation is assigned to a different terminal), this can be easily changed in a text file and is immediately reflected by the terminal programs
+*	Labels and text in the software is included in a text file, can be easily translated to a local language and is immediately reflected in the terminal and dashboard programs
 
 2)	Limitations of the system
-•	All alarms must be entered into the program manually by operators or supervisors, the software does not currently support automatic communication with machines on the workstations
-•	Software only works in Windows OS
+*	All alarms must be entered into the program manually by operators or supervisors, the software does not currently support automatic communication with machines on the workstations
+*	Software only works in Windows OS
 
 
 ## Installation
