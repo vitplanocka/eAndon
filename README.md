@@ -4,11 +4,24 @@ Implementation of a simple electronic/software Andon system to be used in a prod
 The program can be configured to display a range of different problems (technical issues, quality issues, material supply issues, …) and can be also configured to display various configurations of workstations and display screens.
 The program runs on Windows OS and can be used in a situation where there are computer terminals near the production workstations on the shopfloor that can be used to trigger alarms when problems occur at the workstations.
 
+* [What is Andon?](#What is Andon?)
+
+* [Features and limitations](#Features and limitations)
+
+* [Installation](#Installation)
+
+* [Instructions](#Instructions)
+
+* [License](#License)
+
+* [Author](#Author)
+
 <img src="https://github.com/vitplanocka/eAndon/blob/master/Screenshots/eAndon_overview.png" alt="Andon_dashboard and terminal application displaying triggered alarms" width="800">
 
-<b>What is Andon?</b>
+## What is Andon?
+Andon is a popular tool used in Lean Manufacturing. It was originally pioneered by Toyota as a method to visualize problems, help create employee's awareness about targets and non-standard conditions, and promote leadership behavior. It is linked with the Jidōka methodology in the Toyota Production system that encourages operators to recognize a deviation from the standard and stop work and call supervisors or support staff who can help solve the deviation.  Most Japanese factories display a variation on the sign「止める・呼ぶ・待つ」- Stop-Call-Wait that reminds operators that this is the expected behavior.
 
-Andon is a popular tool used in Lean Manufacturing. It was originally pioneered by Toyota as a method to visualize problems, help create employee's awareness about targets and non-standard conditions, and promote leadership behavior. It is linked with the Jidōka methodology in the Toyota Production system that encourages operators to recognize a deviation from the standard and stop work and call supervisors or support staff who can help solve the deviation.  In most Japanese factories you will see a variation on the sign「止める・呼ぶ・待つ」- Stop-Call-Wait that reminds operators that this is the expected behavior.
+<img src="https://github.com/vitplanocka/eAndon/blob/master/Screenshots/Stop-call-wait.PNG" alt="Stop-Call-Wait sign">
 
 Originally, the operator would pull the Andon Cord, which was a rope located above the line, but Andon can take many forms. It can be activated by an operator pulling a cord or pushing a button, or it can be automatically activated by equipment when a problem is detected.
 
@@ -18,22 +31,32 @@ Whether used because of part shortage, equipment malfunction, or a safety concer
 
 <b>Electronic/software Andon</b>
 
-Most modern production facilities implement some kind of computer terminals on the shopfloor to record the production data, allow the operators to access the working instructions, etc. Such terminals can also be used effectively to run an Andon software so that it is not necessary to use physical systems (e.g. an Andon Cord or specialized industrial solutions consisting of custom electronics with buttons and visual displays). The advantage of the electronic/software system is the cost (in case terminals and display screens already exist on the shopfloor, they can be used to run also the software Andon) and flexibility - new types of alarms or new workstations can be added quickly without additional costs.
+Most modern production facilities implement some kind of computer terminals on the shop floor to record the production data, allow the operators to access the working instructions, etc. Such terminals can also be used effectively to run an Andon software so that it is not necessary to use physical systems (e.g. an Andon Cord or specialized industrial solutions consisting of custom electronics with buttons and visual displays). The advantage of the electronic/software system is the cost (in case terminals and display screens already exist on the shop floor, they can be used to run also the software Andon) and flexibility - new types of alarms or new workstations can be added quickly without additional costs.
 
 <b>Diagram of the eAndon</b>
 
 The illustration below shows a typical setup where there are several networked terminals (each running a separate Andon terminal application), each terminal handles one or more workstations.
-There is one or more dashboards (TV display in a production hall, laptop computer used by factory staff, …) that display the total shopfloor overview.
+There is one or more dashboards (TV display in a production hall, laptop computer used by factory staff, …) that display the total shop floor overview.
 
 <img src="https://github.com/vitplanocka/eAndon/blob/master/Screenshots/Andon_diagram.png" alt="Diagram of Andon_dashboard and terminals" width="700">
 
-* [Installation](#Installation)
 
-* [Instructions](#Instructions)
+## Features and limitations
+1)	Features of the system
+•	Allows operator to trigger a number of different alarms (the software allows from 1 – 10 alarm types)
+•	Alarms are displayed on one or more dashboard which can be placed in communal areas (e.g. TV placed on the shopfloor visible to all) or dedicated team areas (e.g. maintenance team’s workshop)
+•	Alarms are displayed in a way to give to Production management a quick overview about the status of the production process
+•	Priority (bottleneck) lines are highlighted on the dashboards, allowing prioritization of the actions
+•	With every alarm, the duration of the alarm is displayed and logged, creating a psychological nudge to solve the abnormal situation as soon as possible
+•	Info text field displayed on both the dashboard and the terminal programs allows to communicate to operators and support personnel current production targets and results or other important information
+•	The number of terminals and dashboards used by the software is not limited. The number of workstations displayed in software is limited only by the space available on the dashboard screens (up to ~60 workstations can be displayed)
+•	The assignment of the workstations to the terminals is defined in a text file. In case that the arrangement of the workstations or terminals changes (e.g. a new workstation is added or a workstation is assigned to a different terminal), this can be easily changed in a text file and is immediately reflected by the terminal programs
+•	Labels and text in the software is included in a text file, can be easily translated to a local language and is immediately reflected in the terminal and dashboard programs
 
-* [License](#License)
+2)	Limitations of the system
+•	All alarms must be entered into the program manually by operators or supervisors, the software does not currently support automatic communication with machines on the workstations
+•	Software only works in Windows OS
 
-* [Author](#Author)
 
 ## Installation
 The binaries provided in the release section come with a preconfigured setup that includes:
