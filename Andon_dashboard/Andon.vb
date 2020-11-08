@@ -179,12 +179,12 @@ Public Class Andon
         Dim di As New DirectoryInfo("Data/")
         ' Get a reference to each file in that directory.
         Dim fiArr As FileInfo() = di.GetFiles()
-        ' Display the names of the files.
+        ' Display the names of the files
         Dim fri As FileInfo
         For Each fri In fiArr
             oldFile = DateDiff(DateInterval.Minute, Convert.ToDateTime(File.GetLastWriteTime("Data/" & fri.ToString)), DateTime.Now) > maxDelay
             If Not oldFile Then
-                ' Raise a new FileSystemEventArgs even with the changed file
+                ' Raise a new FileSystemEventArgs event with the changed file
                 Dim fileSEA As New FileSystemEventArgs(WatcherChangeTypes.Changed, fri.DirectoryName, fri.Name)
                 UpdateFields(sender, fileSEA)
             End If

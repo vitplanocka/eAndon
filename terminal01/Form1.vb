@@ -244,7 +244,7 @@ Public Class Form1
 	End Sub
 
 
-	Private Sub LogAlarmInfo(line As String, controlObj As String, color As String, alarmLength As Long)
+	Private Sub LogAlarmInfo(line As String, controlObj As String, color As String, alarmLength As Double)
 		Try
 			Dim alarmType As Integer
 			Using outputFile As New StreamWriter("Logs/alarmlog_" & terminalName & ".txt", True)
@@ -253,11 +253,11 @@ Public Class Form1
 					alarmType = alarmTypes
 				Else alarmType = (CInt(controlObj.Remove(0, 9)) Mod alarmTypes)
 				End If
-				sb.Append("Event DateTime : " & DateTime.Now & ";")
-				sb.Append(" Line : " & line & ";")
-				sb.Append(" Alarm type : " & alarmType & ";")
-				sb.Append(" New Color : " & color & ";")
-				sb.Append(" Length of alarm (minutes) : " & alarmLength)
+				sb.Append("Event DateTime | " & DateTime.Now & ";")
+				sb.Append(" Workstation | " & line & ";")
+				sb.Append(" Alarm type | " & alarmType & ";")
+				sb.Append(" New Color | " & color & ";")
+				sb.Append(" Length of alarm (minutes) | " & alarmLength)
 				outputFile.WriteLine(sb.ToString())
 			End Using
 			Exit Try
@@ -280,7 +280,7 @@ Public Class Form1
 						alarmEndDateTime(i, j) = DateTime.Now
 						myBox.Text = ""
 						PictureBoxLogo.Select()
-						LogAlarmInfo(workstationLabels(displayedLines(i), 1), myBox.Name, workstationStatus(i, j), DateDiff(DateInterval.Minute, alarmStartDateTime(i, j), alarmEndDateTime(i, j)))
+						LogAlarmInfo(workstationLabels(displayedLines(i), 1), myBox.Name, workstationStatus(i, j), DateDiff(DateInterval.Second, alarmStartDateTime(i, j), alarmEndDateTime(i, j)) / 60)
 					Else                                          ' We are switching from green to yellow or red alarm
 						AlarmTypeForm.StartPosition = FormStartPosition.CenterParent
 						AlarmTypeForm.ShowDialog()
