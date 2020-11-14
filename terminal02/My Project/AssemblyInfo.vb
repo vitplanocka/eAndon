@@ -8,17 +8,17 @@ Imports System.Runtime.InteropServices
 
 ' Zkontrolujte hodnoty atributů sestavení.
 
-<Assembly: AssemblyTitle("terminal02")>
+<Assembly: AssemblyTitle("terminal01")>
 <Assembly: AssemblyDescription("")>
 <Assembly: AssemblyCompany("")>
-<Assembly: AssemblyProduct("terminal02")>
+<Assembly: AssemblyProduct("terminal01")>
 <Assembly: AssemblyCopyright("Copyright ©  2020")>
 <Assembly: AssemblyTrademark("")>
 
 <Assembly: ComVisible(False)>
 
 'Následující GUID se používá pro ID knihovny typů, pokud je tento projekt vystavený pro COM.
-<Assembly: Guid("a8804361-b557-45be-9f30-4df7f709482b")>
+<Assembly: Guid("545ad0a8-e559-41f5-a1ad-c6fe6420cffd")>
 
 ' Informace o verzi sestavení se skládá z těchto čtyř hodnot:
 '

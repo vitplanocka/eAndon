@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{4A829F6E-B20C-493F-A0C6-35EDC4C92FF0}</ProjectGuid>
+    <ProjectGuid>{C2C86EED-24B8-4790-9DD0-D9EF5E8B29C5}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <StartupObject>terminal03.My.MyApplication</StartupObject>
     <RootNamespace>terminal03</RootNamespace>
@@ -21,7 +21,7 @@
     <DebugType>full</DebugType>
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\Andon_dashboard\bin\Release\</OutputPath>
     <DocumentationFile>terminal03.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>

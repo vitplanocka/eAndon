@@ -18,8 +18,8 @@ Public Class Form1
 	Public alarmTypesString(4) As String                     ' Labels for the Alarm_type form
 	Public greenName, yellowName, redName As String          ' Names for the green, yellow and red status
 
-	ReadOnly AlarmTypeForm As New Alarm_type                      ' Initialize the Alarm_Type form
-	ReadOnly AlOverview As New AlarmOverview                      ' Initialize the AlarmOverview form
+	ReadOnly AlarmTypeForm As New Alarm_type                 ' Initialize the Alarm_Type form
+	ReadOnly AlOverview As New AlarmOverview                 ' Initialize the AlarmOverview form
 
 	Private Sub Andon_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load  ' Things to do when app starts
 
@@ -209,9 +209,6 @@ Public Class Form1
 			newbox5.Text = workstationLabels(displayedLines(i), 2)
 			newbox5.BorderStyle = BorderStyle.FixedSingle
 			newbox5.BackColor = Color.FromArgb(240, 240, 240)
-			AddHandler newbox5.MouseEnter, AddressOf Label_MouseEnter
-			AddHandler newbox5.MouseLeave, AddressOf Label_MouseLeave
-			AddHandler newbox5.Click, AddressOf LineLabelClicked
 			Controls.Add(newbox5)
 		Next
 
@@ -280,7 +277,7 @@ Public Class Form1
 		AlOverview.RichTextBox1.Text = ""
 		For i As Integer = 0 To workstationCount - 1
 			Dim myBox As Label = CType(Me.Controls("lineLabel" & i & "1"), Label)
-			If sender Is myBox Then clickedWorkstationLine = i
+			If sender.Name = myBox.Name Then clickedWorkstationLine = i
 		Next
 		clickedWorkstationName = workstationLabels(displayedLines(clickedWorkstationLine), 1)
 		AlOverview.Label1.Text = clickedWorkstationName
