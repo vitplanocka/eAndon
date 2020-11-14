@@ -256,9 +256,9 @@ Partial Class Andon
         Me.Label1.Location = New System.Drawing.Point(18, 111)
         Me.Label1.MinimumSize = New System.Drawing.Size(0, 28)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(121, 28)
+        Me.Label1.Size = New System.Drawing.Size(138, 28)
         Me.Label1.TabIndex = 2
-        Me.Label1.Text = "Alarm length"
+        Me.Label1.Text = "Alarm duration"
         Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'PictureBox1

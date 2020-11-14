@@ -48,6 +48,7 @@ There is one or more dashboards (TV display in a production hall, laptop compute
 *	Alarms are displayed in a way to give to Production management a quick overview about the status of the production process
 *	Priority (bottleneck) lines are highlighted on the dashboards, allowing prioritization of the actions
 *	With every alarm, the duration of the alarm is displayed and logged, creating a psychological nudge to solve the abnormal situation as soon as possible
+* Clicking the workstation number or name opens a window showing the history of alarms and their durations
 *	Info text field displayed on both the dashboard and the terminal programs allows to communicate to operators and support personnel current production targets and results or other important information
 *	The number of terminals and dashboards used by the software is not limited. The number of workstations displayed in software is limited only by the space available on the dashboard screens (up to ~60 workstations can be displayed)
 *	The assignment of the workstations to the terminals is defined in a text file. In case that the arrangement of the workstations or terminals changes (e.g. a new workstation is added or a workstation is assigned to a different terminal), this can be easily changed in a text file and is immediately reflected by the terminal programs

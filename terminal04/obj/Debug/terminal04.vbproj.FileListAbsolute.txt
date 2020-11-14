@@ -9,3 +9,5 @@ C:\Users\plano\Source\Repos\eAndon\terminal04\obj\Debug\terminal04.vbproj.CoreCo
 C:\Users\plano\Source\Repos\eAndon\terminal04\obj\Debug\terminal04.exe
 C:\Users\plano\Source\Repos\eAndon\terminal04\obj\Debug\terminal04.xml
 C:\Users\plano\Source\Repos\eAndon\terminal04\obj\Debug\terminal04.pdb
+C:\Users\plano\Source\Repos\eAndon\terminal04\obj\Debug\terminal04.AlarmOverview.resources
+C:\Users\plano\Source\Repos\eAndon\terminal04\obj\Debug\terminal04.Alarm_type.resources

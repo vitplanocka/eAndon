@@ -21,7 +21,7 @@
     <DebugType>full</DebugType>
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>bin\Release\</OutputPath>
     <DocumentationFile>Andon_dashboard.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
@@ -76,6 +76,12 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AlarmOverview.designer.vb">
+      <DependentUpon>AlarmOverview.vb</DependentUpon>
+    </Compile>
+    <Compile Include="AlarmOverview.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Andon.Designer.vb">
       <DependentUpon>Andon.vb</DependentUpon>
     </Compile>
@@ -100,6 +106,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="AlarmOverview.resx">
+      <DependentUpon>AlarmOverview.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Andon.resx">
       <DependentUpon>Andon.vb</DependentUpon>
     </EmbeddedResource>

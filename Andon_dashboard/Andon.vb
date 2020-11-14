@@ -12,21 +12,22 @@
 
 Public Class Andon
 
-    Public nOfLines As Integer = 0                                            ' number of displayed lines
-    Public alarmTypes As Integer = 0                                          ' number of displayed alarm types (columns)
+    Public nOfLines As Integer = 0                                            ' Number of displayed lines
+    Public alarmTypes As Integer = 0                                          ' Number of displayed alarm types (columns)
     Public workstationLabels(nOfLines - 1, 3) As String                       ' #, line number, line name for displayed lines
-    Public nOfPreviousAlarms As Integer                                       ' number of previous displayed alarms 
-    Public nOfAlarms As Integer                                               ' number of displayed alarms
-    Public workstationStatus(nOfLines - 1, alarmTypes - 1) As String          ' current status of alarms for all lines
-    Public previousworkstationStatus(nOfLines - 1, alarmTypes - 1) As String  ' previous status of alarms for all lines
-    Public alarmStartTime(nOfLines - 1, alarmTypes - 1) As Date               ' date of last start of yellow or red alarm
-    Public oldFile As Boolean                                                 ' is the file change date too old to display in dashboard?
-    Public maxDelay As Integer = 60                                           ' text files terminal0*.txt older than x minutes are ignored
-    Public soundOn As Boolean = False                                         ' do alarms play a sound?
-    Public priorityLines(nOfLines) As Integer                                 ' array of lines that are highlighted as priority
-    Public alarmfile As String                                                ' alarm sound filename
-    Public iconLbl(alarmTypes) As String                                      ' labels for alarm types
-    Public iconImgFile(alarmTypes) As String                                  ' image filenames for alarm types  
+    Public nOfPreviousAlarms As Integer                                       ' Number of previous displayed alarms 
+    Public nOfAlarms As Integer                                               ' Number of displayed alarms
+    Public workstationStatus(nOfLines - 1, alarmTypes - 1) As String          ' Current status of alarms for all lines
+    Public previousworkstationStatus(nOfLines - 1, alarmTypes - 1) As String  ' Previous status of alarms for all lines
+    Public alarmStartTime(nOfLines - 1, alarmTypes - 1) As Date               ' Date of last start of yellow or red alarm
+    Public oldFile As Boolean                                                 ' Is the file change date too old to display in dashboard?
+    Public maxDelay As Integer = 60                                           ' Text files terminal0*.txt older than x minutes are ignored
+    Public soundOn As Boolean = False                                         ' Do alarms play a sound?
+    Public priorityLines(nOfLines) As Integer                                 ' Array of lines that are highlighted as priority
+    Public alarmfile As String                                                ' Alarm sound filename
+    Public iconLbl(alarmTypes) As String                                      ' Labels for alarm types
+    Public iconImgFile(alarmTypes) As String                                  ' Image filenames for alarm types 
+    Public greenName, yellowName, redName As String                           ' Names for the green, yellow and red status
 
     Private Sub Andon_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         ' Things to do when app starts
@@ -47,6 +48,13 @@ Public Class Andon
             ' Number of alarm types to display
             Dim lineReader() As String = MyReader.ReadLine().Split(":")
             alarmTypes = CInt(lineReader(1).ToString().Trim().TrimStart())
+            ' Names for the green, yellow and red status
+            lineReader = MyReader.ReadLine().Split(":")
+            greenName = lineReader(1).ToString().Trim().TrimStart()
+            lineReader = MyReader.ReadLine().Split(":")
+            yellowName = lineReader(1).ToString().Trim().TrimStart()
+            lineReader = MyReader.ReadLine().Split(":")
+            redName = lineReader(1).ToString().Trim().TrimStart()
             ' Image file for company logo
             lineReader = MyReader.ReadLine().Split(":")
             PictureBoxLogo.ImageLocation = "Assets/" & lineReader(1).ToString().Trim().TrimStart()

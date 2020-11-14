@@ -32,3 +32,8 @@ C:\Users\plano\Source\Repos\eAndon\Andon_dashboard\obj\Debug\Andon_dashboard.vbp
 C:\Users\plano\Source\Repos\eAndon\Andon_dashboard\obj\Debug\Andon_dashboard.exe
 C:\Users\plano\Source\Repos\eAndon\Andon_dashboard\obj\Debug\Andon_dashboard.xml
 C:\Users\plano\Source\Repos\eAndon\Andon_dashboard\obj\Debug\Andon_dashboard.pdb
+C:\Users\plano\Source\Repos\eAndon\Andon_dashboard\bin\Release\Andon_dashboard.exe.config
+C:\Users\plano\Source\Repos\eAndon\Andon_dashboard\bin\Release\Andon_dashboard.exe
+C:\Users\plano\Source\Repos\eAndon\Andon_dashboard\bin\Release\Andon_dashboard.pdb
+C:\Users\plano\Source\Repos\eAndon\Andon_dashboard\bin\Release\Andon_dashboard.xml
+C:\Users\plano\Source\Repos\eAndon\Andon_dashboard\obj\Debug\Andon_dashboard.AlarmOverview.resources
