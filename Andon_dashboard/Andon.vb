@@ -264,53 +264,60 @@ Public Class Andon
         For i As Integer = 0 To nOfLines - 1             ' Find terminal name that we should use
             If workstationLabels(i, 1) = workstationLabels(displayedLines(clickedWorkstationLine), 1) Then s2 = workstationLabels(i, 3)
         Next
-        Dim s As String() = File.ReadAllLines("Logs/alarmlog_" & s2)
-        Dim alarmLogs(100000, 4) As String              ' Fill this array with alarms from the text file
-        Dim workstationAlarmLogs(100000, 4) As String   ' Filter only alarms relevant for the workstation, calculate alarm durations
-        Dim lineReader() As String
-        Dim linesOfAlarms As Integer = s.GetUpperBound(0)
-        For i = 0 To linesOfAlarms
-            lineReader = s(i).Split(";")
-            For k = 0 To 4
-                alarmLogs(i, k) = lineReader(k).Split("|").Last().Trim()
+
+        If File.Exists("Logs/alarmlog_" & s2) Then
+
+            Dim s As String() = File.ReadAllLines("Logs/alarmlog_" & s2)
+            Dim alarmLogs(100000, 4) As String              ' Fill this array with alarms from the text file
+            Dim workstationAlarmLogs(100000, 4) As String   ' Filter only alarms relevant for the workstation, calculate alarm durations
+            Dim lineReader() As String
+            Dim linesOfAlarms As Integer = s.GetUpperBound(0)
+            For i = 0 To linesOfAlarms
+                lineReader = s(i).Split(";")
+                For k = 0 To 4
+                    alarmLogs(i, k) = lineReader(k).Split("|").Last().Trim()
+                Next
             Next
-        Next
-        Dim lineOfWorkstationAlarmlogs As Integer = 0
-        Dim lineOfAlarmTypes As Integer()
-        ReDim lineOfAlarmTypes(alarmTypes)
-        For i = 0 To alarmTypes - 1
-            lineOfAlarmTypes(i) = -1
-        Next
-        For i = 0 To linesOfAlarms
-            If alarmLogs(i, 1) = clickedWorkstationName Then  ' Does the line in alarmlog belong to the workstation that was clicked?
-                If alarmLogs(i, 3) <> greenName Then            ' It's a beginning of an alarm
-                    For k = 0 To 4
-                        workstationAlarmLogs(lineOfWorkstationAlarmlogs, k) = alarmLogs(i, k)
-                    Next
-                    lineOfAlarmTypes(alarmLogs(i, 2)) = lineOfWorkstationAlarmlogs    ' Increase the appropriate alarm type to the latest line
-                    lineOfWorkstationAlarmlogs += 1
-                Else                                           ' It's a finish of an existing alarm
-                    If lineOfAlarmTypes(alarmLogs(i, 2)) > -1 Then
-                        workstationAlarmLogs(lineOfAlarmTypes(alarmLogs(i, 2)), 4) = Math.Round(CDbl(alarmLogs(i, 4)), 1)
-                        lineOfAlarmTypes(alarmLogs(i, 2)) += 1
+            Dim lineOfWorkstationAlarmlogs As Integer = 0
+            Dim lineOfAlarmTypes As Integer()
+            ReDim lineOfAlarmTypes(alarmTypes)
+            For i = 0 To alarmTypes - 1
+                lineOfAlarmTypes(i) = -1
+            Next
+            For i = 0 To linesOfAlarms
+                If alarmLogs(i, 1) = clickedWorkstationName Then  ' Does the line in alarmlog belong to the workstation that was clicked?
+                    If alarmLogs(i, 3) <> greenName Then            ' It's a beginning of an alarm
+                        For k = 0 To 4
+                            workstationAlarmLogs(lineOfWorkstationAlarmlogs, k) = alarmLogs(i, k)
+                        Next
+                        lineOfAlarmTypes(alarmLogs(i, 2)) = lineOfWorkstationAlarmlogs    ' Increase the appropriate alarm type to the latest line
+                        lineOfWorkstationAlarmlogs += 1
+                    Else                                           ' It's a finish of an existing alarm
+                        If lineOfAlarmTypes(alarmLogs(i, 2)) > -1 Then
+                            workstationAlarmLogs(lineOfAlarmTypes(alarmLogs(i, 2)), 4) = Math.Round(CDbl(alarmLogs(i, 4)), 1)
+                            lineOfAlarmTypes(alarmLogs(i, 2)) += 1
+                        End If
                     End If
                 End If
-            End If
-        Next
+            Next
 
-        ' Write the text to RichTextBox and format it
-        For i = 0 To lineOfWorkstationAlarmlogs - 1
-            FormatInRich(AlOverview.RichTextBox1, "bold", (DateTime.ParseExact(workstationAlarmLogs(i, 0), "s", Nothing).ToString("dd.MM.yyyy HH:mm - ") & DateTime.ParseExact(workstationAlarmLogs(i, 0), "s", Nothing).AddMinutes(workstationAlarmLogs(i, 4)).ToString("HH:mm") & " (" & workstationAlarmLogs(i, 4) & " min)").PadRight(40))
-            FormatInRich(AlOverview.RichTextBox1, "regular", iconLbl(workstationAlarmLogs(i, 2)).PadRight(35))
-            If workstationAlarmLogs(i, 3) = redName Then
-                FormatInRich(AlOverview.RichTextBox1, "red", workstationAlarmLogs(i, 3))
-            ElseIf workstationAlarmLogs(i, 3) = yellowName Then
-                FormatInRich(AlOverview.RichTextBox1, "yellow", workstationAlarmLogs(i, 3))
-            End If
-            AlOverview.RichTextBox1.AppendText(vbNewLine)
-        Next
+            ' Write the text to RichTextBox and format it
+            For i = 0 To lineOfWorkstationAlarmlogs - 1
+                FormatInRich(AlOverview.RichTextBox1, "bold", (DateTime.ParseExact(workstationAlarmLogs(i, 0), "s", Nothing).ToString("dd.MM.yyyy HH:mm - ") & DateTime.ParseExact(workstationAlarmLogs(i, 0), "s", Nothing).AddMinutes(workstationAlarmLogs(i, 4)).ToString("HH:mm") & " (" & workstationAlarmLogs(i, 4) & " min)").PadRight(40))
+                FormatInRich(AlOverview.RichTextBox1, "regular", iconLbl(workstationAlarmLogs(i, 2)).PadRight(35))
+                If workstationAlarmLogs(i, 3) = redName Then
+                    FormatInRich(AlOverview.RichTextBox1, "red", workstationAlarmLogs(i, 3))
+                ElseIf workstationAlarmLogs(i, 3) = yellowName Then
+                    FormatInRich(AlOverview.RichTextBox1, "yellow", workstationAlarmLogs(i, 3))
+                End If
+                AlOverview.RichTextBox1.AppendText(vbNewLine)
+            Next
 
-        AlOverview.Button1.Text = alarmTypesString(3)
+            AlOverview.Button1.Text = alarmTypesString(3)
+
+        Else  ' The alarm log doesn't exist
+            AlOverview.RichTextBox1.AppendText("=== No record found ===")
+        End If
 
         AlOverview.ShowDialog()
     End Sub
