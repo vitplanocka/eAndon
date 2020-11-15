@@ -28,6 +28,10 @@ Public Class Andon
     Public iconLbl(alarmTypes) As String                                      ' Labels for alarm types
     Public iconImgFile(alarmTypes) As String                                  ' Image filenames for alarm types 
     Public greenName, yellowName, redName As String                           ' Names for the green, yellow and red status
+    Public displayedLines(100) As Integer                                     ' Numbers or lines from production_lines.txt displayed on this form
+    Public alarmTypesString(4) As String                                      ' Labels for the Alarm_type form
+
+    ReadOnly AlOverview As New AlarmOverview                                  ' Initialize the AlarmOverview form
 
     Private Sub Andon_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         ' Things to do when app starts
@@ -65,13 +69,15 @@ Public Class Andon
             MyReader.ReadLine()
             ' Labels for the Alarm_type form
             For i = 0 To 3
-                MyReader.ReadLine()
+                lineReader = MyReader.ReadLine().Split(":")
+                alarmTypesString(i) = lineReader(1).ToString().Trim().TrimStart()
             Next
             ' Alarm type descriptions and icons
             ReDim iconLbl(alarmTypes)
             ReDim iconImgFile(alarmTypes)
             For i = 0 To alarmTypes - 1
-                MyReader.ReadLine()
+                lineReader = MyReader.ReadLine().Split(":")
+                iconLbl(i) = lineReader(1).ToString().Trim().TrimStart()
                 lineReader = MyReader.ReadLine().Split(":")
                 iconImgFile(i) = "Assets/" & lineReader(1).ToString().Trim().TrimStart()
             Next
@@ -97,6 +103,8 @@ Public Class Andon
                     workstationLabels(i, 0) = currentRow(0)
                     workstationLabels(i, 1) = currentRow(1)
                     workstationLabels(i, 2) = currentRow(2)
+                    workstationLabels(i, 3) = currentRow(3)
+                    displayedLines(i) = CInt(currentRow(0))
                     i += 1
                 Catch ex As FileIO.MalformedLineException
                     MsgBox("Line " & ex.Message & "is not valid and will be skipped.")
@@ -165,6 +173,9 @@ Public Class Andon
             newbox.BorderStyle = BorderStyle.None
             newbox.BackColor = Color.White
             newbox.SendToBack()
+            AddHandler newbox.MouseEnter, AddressOf Label_MouseEnter
+            AddHandler newbox.MouseLeave, AddressOf Label_MouseLeave
+            AddHandler newbox.Click, AddressOf LineLabelClicked
             Controls.Add(newbox)
         Next
 
@@ -213,6 +224,96 @@ Public Class Andon
 
     End Sub
 
+    Private Sub Label_MouseEnter(sender As Object, e As System.EventArgs)
+        sender.Cursor = Cursors.Hand
+    End Sub
+
+    Private Sub Label_MouseLeave(sender As Object, e As System.EventArgs)
+        sender.Cursor = Cursors.Default
+    End Sub
+
+    Private Sub FormatInRich(ByVal rtb As RichTextBox, formatPar As String, ByVal textr As String)
+        rtb.AppendText(textr)
+        rtb.Select(InStrRev(rtb.Text, textr) - 1, Len(rtb.Text))
+        Dim currentFont As System.Drawing.Font = rtb.SelectionFont
+        If formatPar = "regular" Then
+            rtb.SelectionFont = New Font(currentFont.FontFamily, currentFont.Size, FontStyle.Regular)
+        Else rtb.SelectionFont = New Font(currentFont.FontFamily, currentFont.Size, FontStyle.Bold)
+        End If
+        If formatPar = "regular" Then rtb.SelectionColor = Color.Black
+        If formatPar = "yellow" Then rtb.SelectionColor = Color.Orange
+        If formatPar = "red" Then rtb.SelectionColor = Color.Red
+        rtb.Select(0, 1)
+    End Sub
+
+    Private Sub LineLabelClicked(sender As Object, e As System.EventArgs)
+        ' Line label was clicked, show alarm history
+        Dim clickedWorkstationLine As Integer
+        Dim clickedWorkstationName As String
+
+        AlOverview.RichTextBox1.Text = ""
+        For i As Integer = 0 To nOfLines - 1
+            Dim myBox As Label = CType(Me.Controls("prioLabel" & i), Label)
+            If sender.Name = myBox.Name Then clickedWorkstationLine = i
+        Next
+        clickedWorkstationName = workstationLabels(displayedLines(clickedWorkstationLine), 1)
+        AlOverview.Label1.Text = clickedWorkstationName
+
+        ' Read the alarm log and build up the history of alarms
+        Dim s2 As String = ""
+        For i As Integer = 0 To nOfLines - 1             ' Find terminal name that we should use
+            If workstationLabels(i, 1) = workstationLabels(displayedLines(clickedWorkstationLine), 1) Then s2 = workstationLabels(i, 3)
+        Next
+        Dim s As String() = File.ReadAllLines("Logs/alarmlog_" & s2)
+        Dim alarmLogs(100000, 4) As String              ' Fill this array with alarms from the text file
+        Dim workstationAlarmLogs(100000, 4) As String   ' Filter only alarms relevant for the workstation, calculate alarm durations
+        Dim lineReader() As String
+        Dim linesOfAlarms As Integer = s.GetUpperBound(0)
+        For i = 0 To linesOfAlarms
+            lineReader = s(i).Split(";")
+            For k = 0 To 4
+                alarmLogs(i, k) = lineReader(k).Split("|").Last().Trim()
+            Next
+        Next
+        Dim lineOfWorkstationAlarmlogs As Integer = 0
+        Dim lineOfAlarmTypes As Integer()
+        ReDim lineOfAlarmTypes(alarmTypes)
+        For i = 0 To alarmTypes - 1
+            lineOfAlarmTypes(i) = -1
+        Next
+        For i = 0 To linesOfAlarms
+            If alarmLogs(i, 1) = clickedWorkstationName Then  ' Does the line in alarmlog belong to the workstation that was clicked?
+                If alarmLogs(i, 3) <> greenName Then            ' It's a beginning of an alarm
+                    For k = 0 To 4
+                        workstationAlarmLogs(lineOfWorkstationAlarmlogs, k) = alarmLogs(i, k)
+                    Next
+                    lineOfAlarmTypes(alarmLogs(i, 2)) = lineOfWorkstationAlarmlogs    ' Increase the appropriate alarm type to the latest line
+                    lineOfWorkstationAlarmlogs += 1
+                Else                                           ' It's a finish of an existing alarm
+                    If lineOfAlarmTypes(alarmLogs(i, 2)) > -1 Then
+                        workstationAlarmLogs(lineOfAlarmTypes(alarmLogs(i, 2)), 4) = Math.Round(CDbl(alarmLogs(i, 4)), 1)
+                        lineOfAlarmTypes(alarmLogs(i, 2)) += 1
+                    End If
+                End If
+            End If
+        Next
+
+        ' Write the text to RichTextBox and format it
+        For i = 0 To lineOfWorkstationAlarmlogs - 1
+            FormatInRich(AlOverview.RichTextBox1, "bold", (DateTime.ParseExact(workstationAlarmLogs(i, 0), "s", Nothing).ToString("dd.MM.yyyy HH:mm - ") & DateTime.ParseExact(workstationAlarmLogs(i, 0), "s", Nothing).AddMinutes(workstationAlarmLogs(i, 4)).ToString("HH:mm") & " (" & workstationAlarmLogs(i, 4) & " min)").PadRight(40))
+            FormatInRich(AlOverview.RichTextBox1, "regular", iconLbl(workstationAlarmLogs(i, 2)).PadRight(35))
+            If workstationAlarmLogs(i, 3) = redName Then
+                FormatInRich(AlOverview.RichTextBox1, "red", workstationAlarmLogs(i, 3))
+            ElseIf workstationAlarmLogs(i, 3) = yellowName Then
+                FormatInRich(AlOverview.RichTextBox1, "yellow", workstationAlarmLogs(i, 3))
+            End If
+            AlOverview.RichTextBox1.AppendText(vbNewLine)
+        Next
+
+        AlOverview.Button1.Text = alarmTypesString(3)
+
+        AlOverview.ShowDialog()
+    End Sub
 
     Private Sub UpdateFields(sender As Object, e As FileSystemEventArgs)
         ' Update alarm fields according to the current text files

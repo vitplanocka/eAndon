@@ -18,8 +18,8 @@ Public Class Form1
 	Public alarmTypesString(4) As String                     ' Labels for the Alarm_type form
 	Public greenName, yellowName, redName As String          ' Names for the green, yellow and red status
 
-	ReadOnly AlarmTypeForm As New Alarm_type                      ' Initialize the Alarm_Type form
-	ReadOnly AlOverview As New AlarmOverview                      ' Initialize the AlarmOverview form
+	ReadOnly AlarmTypeForm As New Alarm_type                 ' Initialize the Alarm_Type form
+	ReadOnly AlOverview As New AlarmOverview                 ' Initialize the AlarmOverview form
 
 	Private Sub Andon_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load  ' Things to do when app starts
 
