@@ -306,7 +306,7 @@ Public Class Form1
 					lineOfWorkstationAlarmlogs += 1
 				Else                                           ' It's a finish of an existing alarm
 					If lineOfAlarmTypes(alarmLogs(i, 2)) > -1 Then
-						workstationAlarmLogs(lineOfAlarmTypes(alarmLogs(i, 2)), 4) = Math.Round(CDbl(alarmLogs(i, 4)), 1)
+						workstationAlarmLogs(lineOfAlarmTypes(alarmLogs(i, 2)), 4) = alarmLogs(i, 4)
 						lineOfAlarmTypes(alarmLogs(i, 2)) += 1
 					End If
 				End If
@@ -315,7 +315,7 @@ Public Class Form1
 
 		' Write the text to RichTextBox and format it
 		For i = 0 To lineOfWorkstationAlarmlogs - 1
-			FormatInRich(AlOverview.RichTextBox1, "bold", (DateTime.ParseExact(workstationAlarmLogs(i, 0), "s", Nothing).ToString("dd.MM.yyyy HH:mm - ") & DateTime.ParseExact(workstationAlarmLogs(i, 0), "s", Nothing).AddMinutes(workstationAlarmLogs(i, 4)).ToString("HH:mm") & " (" & workstationAlarmLogs(i, 4) & " min)").PadRight(40))
+			FormatInRich(AlOverview.RichTextBox1, "bold", (DateTime.ParseExact(workstationAlarmLogs(i, 0), "s", Nothing).ToString("dd.MM.yyyy HH:mm - ") & DateTime.ParseExact(workstationAlarmLogs(i, 0), "s", Nothing).AddSeconds(workstationAlarmLogs(i, 4)).ToString("HH:mm") & " (" & CInt(workstationAlarmLogs(i, 4) / 60) & " min)").PadRight(40))
 			FormatInRich(AlOverview.RichTextBox1, "regular", iconLbl(workstationAlarmLogs(i, 2)).PadRight(35))
 			If workstationAlarmLogs(i, 3) = redName Then
 				FormatInRich(AlOverview.RichTextBox1, "red", workstationAlarmLogs(i, 3))
@@ -338,7 +338,7 @@ Public Class Form1
 				sb.Append(" Workstation | " & line & ";")
 				sb.Append(" Alarm type | " & CInt(controlObj.Remove(0, 9)) Mod alarmTypes & ";")
 				sb.Append(" New Color | " & color & ";")
-				sb.Append(" Length of alarm (minutes) | " & alarmLength)
+				sb.Append(" Length of alarm (seconds) | " & CInt(alarmLength * 60))
 				outputFile.WriteLine(sb.ToString())
 			End Using
 			Exit Try
