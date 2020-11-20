@@ -1,7 +1,24 @@
-﻿Imports System.IO
+﻿'TODO:  
+' 
 
-'TODO:  
-' - 
+'PROCESS MAP:
+'
+' - form startup:                                       - form closing:
+'    AndonLoad                                             AndonClose
+'    --> UpdateFields                                     --> LogAlarmInfo
+'        --> LogAlarmInfo
+'
+' - alarm field clicked:                                - line label clicked
+'    UpdateFields                                         LineLabelClicked
+'    --> LogAlarmInfo
+'
+' - periodical automatical updates:
+'    TimerLabelsTick     --> alarm durations
+'    InfoBoxTimerTick    --> InfoBox text
+'    --> UpdateFields
+'        --> LogAlarmInfo
+
+Imports System.IO
 
 Public Class Form1
 	Public terminalName As String = Reflection.Assembly.GetExecutingAssembly().GetName().Name    ' Get name of current file
@@ -21,7 +38,7 @@ Public Class Form1
 	ReadOnly AlarmTypeForm As New Alarm_type                 ' Initialize the Alarm_Type form
 	ReadOnly AlOverview As New AlarmOverview                 ' Initialize the AlarmOverview form
 
-	Private Sub Andon_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load  ' Things to do when app starts
+	Private Sub AndonLoad(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load  ' Things to do when app starts
 
 		' Set form location on the screen to upper left corner
 		Me.Location = New Point(100, 100)
@@ -173,9 +190,9 @@ Public Class Form1
 			newbox2.Text = ""
 			newbox2.BorderStyle = BorderStyle.FixedSingle
 			newbox2.BackColor = Color.White
-			AddHandler newbox2.MouseEnter, AddressOf Label_MouseEnter
-			AddHandler newbox2.MouseLeave, AddressOf Label_MouseLeave
-			AddHandler newbox2.Click, AddressOf Label_Click
+			AddHandler newbox2.MouseEnter, AddressOf LabelMouseEnter
+			AddHandler newbox2.MouseLeave, AddressOf LabelMouseLeave
+			AddHandler newbox2.Click, AddressOf UpdateFields
 			Controls.Add(newbox2)
 		Next
 
@@ -194,8 +211,8 @@ Public Class Form1
 			newbox4.Text = workstationLabels(displayedLines(i), 1)
 			newbox4.BorderStyle = BorderStyle.FixedSingle
 			newbox4.BackColor = Color.FromArgb(240, 240, 240)
-			AddHandler newbox4.MouseEnter, AddressOf Label_MouseEnter
-			AddHandler newbox4.MouseLeave, AddressOf Label_MouseLeave
+			AddHandler newbox4.MouseEnter, AddressOf LabelMouseEnter
+			AddHandler newbox4.MouseLeave, AddressOf LabelMouseLeave
 			AddHandler newbox4.Click, AddressOf LineLabelClicked
 			Controls.Add(newbox4)
 
@@ -238,20 +255,50 @@ Public Class Form1
 		End Try
 
 		' Create initial text file
-		Update_Fields(sender, e)
+		UpdateFields(sender, e)
 	End Sub
 
-	Private Sub Label_Click(sender As Object, e As System.EventArgs)
+	Private Sub AndonClose(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Closing
+		Dim remainingAlarm As Boolean = False
+		For i As Integer = 0 To workstationCount - 1
+			For j As Integer = 0 To alarmTypes - 1
+				Dim myBox As Label = CType(Me.Controls("lineLabel" & i * alarmTypes + j), Label)
+				If workstationStatus(i, j) <> greenName Then    ' We are cancelling a yellow or red alarm
+					workstationStatus(i, j) = greenName
+					LogAlarmInfo(workstationLabels(displayedLines(i), 1), myBox.Name, workstationStatus(i, j), DateDiff(DateInterval.Second, alarmStartDateTime(i, j), Date.Now) / 60)
+					remainingAlarm = True
+				End If
+			Next
+		Next
+
+		If remainingAlarm = True Then           ' If there was a remaining alarm during closing write alarm status to text file
+			Try
+				Using outputFile As New StreamWriter("Data/" & terminalName & ".txt")
+					For i = 0 To workstationCount - 1
+						outputFile.WriteLine(workstationLabels(displayedLines(i), 0))
+						outputFile.WriteLine(workstationLabels(displayedLines(i), 1))
+						Try
+							For j = 0 To alarmTypes - 1
+								outputFile.WriteLine(workstationStatus(i, j))
+								outputFile.WriteLine(alarmStartDateTime(i, j).ToString("s"))  ' Save the alarm date and time in ISO format
+							Next
+						Catch ex As Exception
+							Debug.WriteLine("Exception : " + ex.StackTrace)
+						End Try
+					Next
+				End Using
+				Exit Try
+			Catch ex As Exception
+				Debug.WriteLine("Exception : " + ex.StackTrace)
+			End Try
+		End If
+	End Sub
+
+	Private Sub LabelMouseEnter(sender As Object, e As System.EventArgs)
 		sender.Cursor = Cursors.Hand
-		' If button is clicked, update the fields and change colour
-		Update_Fields(sender, e)
 	End Sub
 
-	Private Sub Label_MouseEnter(sender As Object, e As System.EventArgs)
-		sender.Cursor = Cursors.Hand
-	End Sub
-
-	Private Sub Label_MouseLeave(sender As Object, e As System.EventArgs)
+	Private Sub LabelMouseLeave(sender As Object, e As System.EventArgs)
 		sender.Cursor = Cursors.Default
 	End Sub
 
@@ -281,51 +328,63 @@ Public Class Form1
 		Next
 		clickedWorkstationName = workstationLabels(displayedLines(clickedWorkstationLine), 1)
 		AlOverview.Label1.Text = clickedWorkstationName
+		AlOverview.Button1.Text = alarmTypesString(3)
 
-		' Read the alarm log and build up the history of alarms
-		Dim s As String() = File.ReadAllLines("Logs/alarmlog_" & terminalName & ".txt")
-		Dim alarmLogs(100000, 4) As String              ' Fill this array with alarms from the text file
-		Dim workstationAlarmLogs(100000, 4) As String   ' Filter only alarms relevant for the workstation, calculate alarm durations
-		Dim lineReader() As String
-		Dim linesOfAlarms As Integer = s.GetUpperBound(0)
-		For i = 0 To linesOfAlarms
-			lineReader = s(i).Split(";")
-			For k = 0 To 4
-				alarmLogs(i, k) = lineReader(k).Split("|").Last().Trim()
+		If File.Exists("Logs/alarmlog_" & terminalName & ".txt") Then
+			' Read the alarm log and build up the history of alarms
+			Dim s As String() = File.ReadAllLines("Logs/alarmlog_" & terminalName & ".txt")
+			Dim alarmLogs(100000, 4) As String              ' Fill this array with alarms from the text file
+			Dim workstationAlarmLogs(100000, 5) As String   ' Filter only alarms relevant for the workstation, calculate alarm durations
+			Dim lineReader() As String
+			Dim linesOfAlarms As Integer = s.GetUpperBound(0)
+			Dim j As Integer = 0
+			For i = 0 To linesOfAlarms
+				lineReader = s(i).Split(";")
+				For k = 0 To 4
+					alarmLogs(i, k) = lineReader(k).Split("|").Last().Trim()
+				Next
 			Next
-		Next
-		Dim lineOfWorkstationAlarmlogs As Integer = 0
-		Dim lineOfAlarmTypes As Integer() = {-1, -1, -1, -1, -1}
-		For i = 0 To linesOfAlarms
-			If alarmLogs(i, 1) = clickedWorkstationName Then  ' Does the line in alarmlog belong to the workstation that was clicked?
-				If alarmLogs(i, 3) <> greenName Then            ' It's a beginning of an alarm
-					For k = 0 To 4
-						workstationAlarmLogs(lineOfWorkstationAlarmlogs, k) = alarmLogs(i, k)
-					Next
-					lineOfAlarmTypes(alarmLogs(i, 2)) = lineOfWorkstationAlarmlogs    ' Increase the appropriate alarm type to the latest line
-					lineOfWorkstationAlarmlogs += 1
-				Else                                           ' It's a finish of an existing alarm
-					If lineOfAlarmTypes(alarmLogs(i, 2)) > -1 Then
-						workstationAlarmLogs(lineOfAlarmTypes(alarmLogs(i, 2)), 4) = alarmLogs(i, 4)
-						lineOfAlarmTypes(alarmLogs(i, 2)) += 1
+
+			Dim lineOfWorkstationAlarmlogs As Integer = 0
+			Dim lineOfAlarmTypes As Integer() = {-1, -1, -1, -1, -1}
+			For i = 0 To linesOfAlarms
+				If alarmLogs(i, 1) = clickedWorkstationName Then  ' Does the line in alarmlog belong to the workstation that was clicked?
+					If alarmLogs(i, 3) <> greenName Then            ' It's a beginning of an alarm
+						For k = 0 To 3
+							workstationAlarmLogs(lineOfWorkstationAlarmlogs, k) = alarmLogs(i, k)
+						Next
+						workstationAlarmLogs(lineOfWorkstationAlarmlogs, 4) = DateDiff(DateInterval.Second, DateTime.ParseExact(workstationAlarmLogs(lineOfWorkstationAlarmlogs, 0), "s", Nothing), Date.Now)
+						workstationAlarmLogs(lineOfWorkstationAlarmlogs, 5) = "Open alarm"
+						lineOfAlarmTypes(alarmLogs(i, 2)) = lineOfWorkstationAlarmlogs    ' Increase the appropriate alarm type to the latest line
+						lineOfWorkstationAlarmlogs += 1
+					Else                                           ' It's a finish of an existing alarm
+						If lineOfAlarmTypes(alarmLogs(i, 2)) > -1 Then
+							workstationAlarmLogs(lineOfAlarmTypes(alarmLogs(i, 2)), 4) = Math.Round(CDbl(alarmLogs(i, 4)), 1)
+							workstationAlarmLogs(lineOfAlarmTypes(alarmLogs(i, 2)), 5) = "Closed alarm"
+							lineOfAlarmTypes(alarmLogs(i, 2)) += 1
+						End If
 					End If
 				End If
-			End If
-		Next
+			Next
 
-		' Write the text to RichTextBox and format it
-		For i = 0 To lineOfWorkstationAlarmlogs - 1
-			FormatInRich(AlOverview.RichTextBox1, "bold", (DateTime.ParseExact(workstationAlarmLogs(i, 0), "s", Nothing).ToString("dd.MM.yyyy HH:mm - ") & DateTime.ParseExact(workstationAlarmLogs(i, 0), "s", Nothing).AddSeconds(workstationAlarmLogs(i, 4)).ToString("HH:mm") & " (" & CInt(workstationAlarmLogs(i, 4) / 60) & " min)").PadRight(40))
-			FormatInRich(AlOverview.RichTextBox1, "regular", iconLbl(workstationAlarmLogs(i, 2)).PadRight(35))
-			If workstationAlarmLogs(i, 3) = redName Then
-				FormatInRich(AlOverview.RichTextBox1, "red", workstationAlarmLogs(i, 3))
-			ElseIf workstationAlarmLogs(i, 3) = yellowName Then
-				FormatInRich(AlOverview.RichTextBox1, "yellow", workstationAlarmLogs(i, 3))
-			End If
-			AlOverview.RichTextBox1.AppendText(vbNewLine)
-		Next
-
-		AlOverview.Button1.Text = alarmTypesString(3)
+			' Write the text to RichTextBox and format it
+			For i = 0 To lineOfWorkstationAlarmlogs - 1
+				If workstationAlarmLogs(i, 5) = "Closed alarm" Then       ' Write start and end time, total duration
+					FormatInRich(AlOverview.RichTextBox1, "bold", (DateTime.ParseExact(workstationAlarmLogs(i, 0), "s", Nothing).ToString("dd.MM.yyyy HH:mm - ") & DateTime.ParseExact(workstationAlarmLogs(i, 0), "s", Nothing).AddSeconds(workstationAlarmLogs(i, 4)).ToString("HH:mm") & " (" & CInt(workstationAlarmLogs(i, 4) / 60) & " min)").PadRight(40))
+				Else                                                      ' Write only the start time and current duration
+					FormatInRich(AlOverview.RichTextBox1, "bold", (DateTime.ParseExact(workstationAlarmLogs(i, 0), "s", Nothing).ToString("dd.MM.yyyy HH:mm - ") & " (" & CInt(workstationAlarmLogs(i, 4) / 60) & " min)").PadRight(40))
+				End If
+				FormatInRich(AlOverview.RichTextBox1, "regular", iconLbl(workstationAlarmLogs(i, 2)).PadRight(35))
+				If workstationAlarmLogs(i, 3) = redName Then
+					FormatInRich(AlOverview.RichTextBox1, "red", workstationAlarmLogs(i, 3))
+				ElseIf workstationAlarmLogs(i, 3) = yellowName Then
+					FormatInRich(AlOverview.RichTextBox1, "yellow", workstationAlarmLogs(i, 3))
+				End If
+				AlOverview.RichTextBox1.AppendText(vbNewLine)
+			Next
+		Else  ' The alarm log doesn't exist
+			AlOverview.RichTextBox1.AppendText("===  no records found ===")
+		End If
 
 		AlOverview.ShowDialog()
 	End Sub
@@ -347,7 +406,8 @@ Public Class Form1
 		End Try
 
 	End Sub
-	Private Sub Update_Fields(sender As Object, e As EventArgs)
+
+	Private Sub UpdateFields(sender As Object, e As EventArgs)
 		' Alarm was clicked, update the fields and export text file
 
 		' If alarm is switched on, set starting time in alarmStartTime and write initial label in text box
@@ -424,11 +484,11 @@ Public Class Form1
 			Exit Try
 		Catch ex As Exception
 			Threading.Thread.Sleep(100)
-			Update_Fields(sender, e)
+			UpdateFields(sender, e)
 		End Try
 	End Sub
 
-	Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
+	Private Sub TimerLabelsTick(sender As Object, e As EventArgs) Handles Timer1.Tick
 		' Periodically update the labels for time since alarm was activated
 		Dim i, j As Integer
 		For i = 0 To workstationCount - 1
@@ -442,9 +502,9 @@ Public Class Form1
 		Next
 	End Sub
 
-	Private Sub Timer2_Tick(sender As Object, e As EventArgs) Handles Timer2.Tick
+	Private Sub InfoBoxTimerTick(sender As Object, e As EventArgs) Handles Timer2.Tick
 		' Periodically refresh the text files so that the status remains visible to the dashboard
-		Update_Fields(sender, e)
+		UpdateFields(sender, e)
 		' Update text in InfoBox
 		Try
 			RichTextBox1.LoadFile("InfoTextForOperators.rtf", RichTextBoxStreamType.RichText)
