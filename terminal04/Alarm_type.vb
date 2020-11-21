@@ -15,7 +15,7 @@
 
     Private Sub PictureBox1_Click(sender As Object, e As EventArgs) Handles PictureBox1.Click
         RadioButton1.Checked = True
-        YellowOrRed = "Yellow"
+        YellowOrRed = Form1.yellowName
         Me.DialogResult = DialogResult.OK
     End Sub
 
@@ -26,17 +26,17 @@
 
     Private Sub PictureBox2_Click(sender As Object, e As EventArgs) Handles PictureBox2.Click
         RadioButton2.Checked = True
-        YellowOrRed = "Red"
+        YellowOrRed = Form1.redName
         Me.DialogResult = DialogResult.OK
     End Sub
 
     Private Sub RadioButton1_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton1.Click
-        YellowOrRed = "Yellow"
+        YellowOrRed = Form1.yellowName
         Me.DialogResult = DialogResult.OK
     End Sub
 
     Private Sub RadioButton2_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton2.Click
-        YellowOrRed = "Red"
+        YellowOrRed = Form1.redName
         Me.DialogResult = DialogResult.OK
     End Sub
 

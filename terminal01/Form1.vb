@@ -235,7 +235,7 @@ Public Class Form1
 		' Initialize everything to green
 		For i = 0 To workstationCount - 1
 			For j = 0 To alarmTypes - 1
-				workstationStatus(i, j) = "Green"
+				workstationStatus(i, j) = greenName
 			Next
 		Next
 		For i = 0 To workstationCount * alarmTypes - 1
@@ -418,8 +418,8 @@ Public Class Form1
 				Dim myBox As Label = CType(Me.Controls("lineLabel" & i * alarmTypes + j), Label)
 				If sender Is myBox Then
 
-					If workstationStatus(i, j) <> "Green" Then    ' We are cancelling a yellow or red alarm
-						workstationStatus(i, j) = "Green"
+					If workstationStatus(i, j) <> greenName Then    ' We are cancelling a yellow or red alarm
+						workstationStatus(i, j) = greenName
 						alarmEndDateTime(i, j) = DateTime.Now
 						myBox.Text = ""
 						PictureBoxLogo.Select()
@@ -428,16 +428,16 @@ Public Class Form1
 						AlarmTypeForm.StartPosition = FormStartPosition.CenterParent
 						AlarmTypeForm.ShowDialog()
 						If AlarmTypeForm.DialogResult = DialogResult.OK Then
-							If AlarmTypeForm.YellowOrRed = "Yellow" Then
-								workstationStatus(i, j) = "Yellow"
+							If AlarmTypeForm.YellowOrRed = yellowName Then
+								workstationStatus(i, j) = yellowName
 								alarmStartDateTime(i, j) = DateTime.Now
 								myBox.Text = "0 min"
 								myBox.ForeColor = Color.Black
 								PictureBoxLogo.Select()
 								LogAlarmInfo(workstationLabels(displayedLines(i), 1), myBox.Name, workstationStatus(i, j), 0)
 							End If
-							If AlarmTypeForm.YellowOrRed = "Red" Then
-								workstationStatus(i, j) = "Red"
+							If AlarmTypeForm.YellowOrRed = redName Then
+								workstationStatus(i, j) = redName
 								alarmStartDateTime(i, j) = DateTime.Now
 								myBox.Text = "0 min"
 								PictureBoxLogo.Select()
@@ -456,11 +456,11 @@ Public Class Form1
 				Dim myBox As Label = CType(Me.Controls("lineLabel" & i * alarmTypes + j), Label)
 				If myBox Is Nothing Then
 				Else
-					If workstationStatus(i, j) = "Green" Then
+					If workstationStatus(i, j) = greenName Then
 						myBox.BackColor = Color.FromArgb(0, 255, 0)
-					ElseIf workstationStatus(i, j) = "Yellow" Then
+					ElseIf workstationStatus(i, j) = yellowName Then
 						myBox.BackColor = Color.FromArgb(255, 192, 0)
-					ElseIf workstationStatus(i, j) = "Red" Then
+					ElseIf workstationStatus(i, j) = redName Then
 						myBox.BackColor = Color.FromArgb(255, 0, 0)
 					End If
 				End If
@@ -500,7 +500,7 @@ Public Class Form1
 			For j = 0 To alarmTypes - 1
 				Dim myBox As Label = CType(Me.Controls("lineLabel" & i * alarmTypes + j), Label)
 				Try
-					If workstationStatus(i, j) = "Yellow" Or workstationStatus(i, j) = "Red" Then myBox.Text = "" & DateDiff(DateInterval.Minute, alarmStartDateTime(i, j), DateTime.Now) & " min"
+					If workstationStatus(i, j) = yellowName Or workstationStatus(i, j) = redName Then myBox.Text = "" & DateDiff(DateInterval.Minute, alarmStartDateTime(i, j), DateTime.Now) & " min"
 				Catch ex As Exception
 					MsgBox("Exception : " + ex.StackTrace)
 				End Try
