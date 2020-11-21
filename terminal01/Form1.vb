@@ -8,7 +8,7 @@
 '    --> UpdateFields                                     --> LogAlarmInfo
 '        --> LogAlarmInfo
 '
-' - alarm field clicked:                                - line label clicked
+' - alarm field clicked:                                - line label clicked:
 '    UpdateFields                                         LineLabelClicked
 '    --> LogAlarmInfo
 '
@@ -251,7 +251,7 @@ Public Class Form1
 		Try
 			RichTextBox1.LoadFile("InfoTextForOperators.rtf", RichTextBoxStreamType.RichText)
 		Catch ex As Exception
-			System.Diagnostics.Debug.WriteLine("Exception : " + ex.StackTrace)
+			MsgBox("Exception : " + ex.StackTrace)
 		End Try
 
 		' Create initial text file
@@ -274,22 +274,24 @@ Public Class Form1
 		If remainingAlarm = True Then           ' If there was a remaining alarm during closing write alarm status to text file
 			Try
 				Using outputFile As New StreamWriter("Data/" & terminalName & ".txt")
+					Dim sb As New System.Text.StringBuilder
 					For i = 0 To workstationCount - 1
-						outputFile.WriteLine(workstationLabels(displayedLines(i), 0))
-						outputFile.WriteLine(workstationLabels(displayedLines(i), 1))
+						sb.AppendLine(workstationLabels(displayedLines(i), 0))
+						sb.AppendLine(workstationLabels(displayedLines(i), 1))
 						Try
 							For j = 0 To alarmTypes - 1
-								outputFile.WriteLine(workstationStatus(i, j))
-								outputFile.WriteLine(alarmStartDateTime(i, j).ToString("s"))  ' Save the alarm date and time in ISO format
+								sb.AppendLine(workstationStatus(i, j))
+								sb.AppendLine(alarmStartDateTime(i, j).ToString("s"))  ' Save the alarm date and time in ISO format
 							Next
 						Catch ex As Exception
-							Debug.WriteLine("Exception : " + ex.StackTrace)
+							MsgBox("Exception : " + ex.StackTrace)
 						End Try
 					Next
+					outputFile.WriteLine(sb)
 				End Using
 				Exit Try
 			Catch ex As Exception
-				Debug.WriteLine("Exception : " + ex.StackTrace)
+				MsgBox("Exception : " + ex.StackTrace)
 			End Try
 		End If
 	End Sub
@@ -402,7 +404,7 @@ Public Class Form1
 			End Using
 			Exit Try
 		Catch ex As Exception
-			MessageBox.Show(ex.Message)
+			MsgBox("Exception : " + ex.StackTrace)
 		End Try
 
 	End Sub
@@ -466,25 +468,28 @@ Public Class Form1
 		Next
 
 		' Write alarm status to text file
+		' Write alarm status to text file
+
 		Try
 			Using outputFile As New StreamWriter("Data/" & terminalName & ".txt")
+				Dim sb As New System.Text.StringBuilder
 				For i = 0 To workstationCount - 1
-					outputFile.WriteLine(workstationLabels(displayedLines(i), 0))
-					outputFile.WriteLine(workstationLabels(displayedLines(i), 1))
+					sb.AppendLine(workstationLabels(displayedLines(i), 0))
+					sb.AppendLine(workstationLabels(displayedLines(i), 1))
 					Try
 						For j = 0 To alarmTypes - 1
-							outputFile.WriteLine(workstationStatus(i, j))
-							outputFile.WriteLine(alarmStartDateTime(i, j).ToString("s"))  ' Save the alarm date and time in ISO format
+							sb.AppendLine(workstationStatus(i, j))
+							sb.AppendLine(alarmStartDateTime(i, j).ToString("s"))  ' Save the alarm date and time in ISO format
 						Next
 					Catch ex As Exception
-
+						MsgBox("Exception : " + ex.StackTrace)
 					End Try
 				Next
+				outputFile.WriteLine(sb)
 			End Using
 			Exit Try
 		Catch ex As Exception
-			Threading.Thread.Sleep(100)
-			UpdateFields(sender, e)
+			MsgBox("Exception : " + ex.StackTrace)
 		End Try
 	End Sub
 
@@ -497,6 +502,7 @@ Public Class Form1
 				Try
 					If workstationStatus(i, j) = "Yellow" Or workstationStatus(i, j) = "Red" Then myBox.Text = "" & DateDiff(DateInterval.Minute, alarmStartDateTime(i, j), DateTime.Now) & " min"
 				Catch ex As Exception
+					MsgBox("Exception : " + ex.StackTrace)
 				End Try
 			Next
 		Next
