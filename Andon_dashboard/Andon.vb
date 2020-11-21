@@ -189,8 +189,8 @@ Public Class Andon
         ' Set everything to green
         For i = 0 To nOfLines - 1
             For j = 0 To alarmTypes - 1
-                workstationStatus(i, j) = "Green"
-                previousworkstationStatus(i, j) = "Green"
+                workstationStatus(i, j) = greenName
+                previousworkstationStatus(i, j) = greenName
             Next
         Next
 
@@ -353,24 +353,24 @@ Public Class Andon
                     Try
                         For i = 0 To alarmTypes - 1
                             Dim myLabel As Label = CType(Me.Controls("lineLabel" & lineNumber * alarmTypes + i), Label)
-                            If workstationStatus(CInt(lineNumber), i) = "Green" Then
+                            If workstationStatus(CInt(lineNumber), i) = greenName Then
                                 myLabel.BackColor = Color.FromArgb(0, 255, 0)
-                            ElseIf workstationStatus(CInt(lineNumber), i) = "Yellow" Then
+                            ElseIf workstationStatus(CInt(lineNumber), i) = yellowName Then
                                 myLabel.BackColor = Color.FromArgb(255, 192, 0)
-                            ElseIf workstationStatus(CInt(lineNumber), i) = "Red" Then
+                            ElseIf workstationStatus(CInt(lineNumber), i) = redName Then
                                 myLabel.BackColor = Color.FromArgb(255, 0, 0)
                             End If
 
                             ' Display time since last alarm in the alarm field
-                            If (workstationStatus(CInt(lineNumber), i) = "Yellow") And (previousworkstationStatus(CInt(lineNumber), i) = "Green") Then   ' it's a new alarm
+                            If (workstationStatus(CInt(lineNumber), i) = yellowName) And (previousworkstationStatus(CInt(lineNumber), i) = greenName) Then   ' it's a new alarm
                                 myLabel.Text = "0 min"
                                 myLabel.ForeColor = Color.Black
                                 PictureBoxLogo.Select() ' Remove the cursor from updated field
-                            ElseIf (workstationStatus(CInt(lineNumber), i) = "Red") And (previousworkstationStatus(CInt(lineNumber), i) = "Green") Then   ' it's a new alarm
+                            ElseIf (workstationStatus(CInt(lineNumber), i) = redName) And (previousworkstationStatus(CInt(lineNumber), i) = greenName) Then   ' it's a new alarm
                                 myLabel.Text = "0 min"
                                 myLabel.ForeColor = Color.White
                                 PictureBoxLogo.Select() ' Remove the cursor from updated field
-                            ElseIf workstationStatus(CInt(lineNumber), i) = "Green" Then  ' remove all labels
+                            ElseIf workstationStatus(CInt(lineNumber), i) = greenName Then  ' remove all labels
                                 myLabel.Text = ""
                                 PictureBoxLogo.Select() ' Remove the cursor from updated field
                             End If
@@ -392,8 +392,8 @@ Public Class Andon
         nOfAlarms = 0
         For i = 0 To nOfLines - 1
             For j = 0 To alarmTypes - 1
-                If workstationStatus(i, j) = "Yellow" Then nOfAlarms += 1
-                If workstationStatus(i, j) = "Red" Then nOfAlarms += 2
+                If workstationStatus(i, j) = yellowName Then nOfAlarms += 1
+                If workstationStatus(i, j) = redName Then nOfAlarms += 2
             Next
         Next
         If nOfAlarms > nOfPreviousAlarms Then
@@ -403,9 +403,8 @@ Public Class Andon
             For i = 0 To nOfLines - 1
                 ' Identify the last alarm
                 For j = 0 To alarmTypes - 1
-                    If (previousworkstationStatus(i, j) = "Green" And workstationStatus(i, j) = "Yellow") Then alarmWorsened = True
-                    If (previousworkstationStatus(i, j) = "Yellow" And workstationStatus(i, j) = "Red") Then alarmWorsened = True
-                    If (previousworkstationStatus(i, j) = "Green" And workstationStatus(i, j) = "Red") Then alarmWorsened = True
+                    If (previousworkstationStatus(i, j) = greenName And workstationStatus(i, j) = yellowName) Then alarmWorsened = True
+                    If (previousworkstationStatus(i, j) = greenName And workstationStatus(i, j) = redName) Then alarmWorsened = True
                 Next
                 If alarmWorsened Then
                     lastAlarmLineNr = i
@@ -431,7 +430,7 @@ Public Class Andon
             Dim myLabel As Label = CType(Controls("prioLabel" & i), Label)
             someAlarmsExist = False
             For j = 0 To alarmTypes - 1
-                If workstationStatus(i, j) <> "Green" Then someAlarmsExist = True
+                If workstationStatus(i, j) <> greenName Then someAlarmsExist = True
             Next
             If Not someAlarmsExist Then myLabel.ForeColor = Color.FromArgb(0, 0, 0)
         Next
@@ -454,7 +453,7 @@ Public Class Andon
         For i = 0 To nOfLines - 1
             For j = 0 To alarmTypes - 1
                 Dim myLabel As Label = CType(Controls("lineLabel" & i * alarmTypes + j), Label)
-                If workstationStatus(i, j) = "Yellow" Or workstationStatus(i, j) = "Red" Then
+                If workstationStatus(i, j) = yellowName Or workstationStatus(i, j) = redName Then
                     If DateDiff(DateInterval.Minute, alarmStartTime(i, j), DateTime.Now) > 9 Then myLabel.Text = DateDiff(DateInterval.Minute, alarmStartTime(i, j), DateTime.Now) Else myLabel.Text = DateDiff(DateInterval.Minute, alarmStartTime(i, j), DateTime.Now) & " min"
                 End If
             Next

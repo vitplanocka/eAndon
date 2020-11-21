@@ -11,4 +11,3 @@ C:\Users\plano\source\repos\eAndon\terminal02\obj\Release\terminal02.vbproj.Core
 C:\Users\plano\source\repos\eAndon\terminal02\obj\Release\terminal02.exe
 C:\Users\plano\source\repos\eAndon\terminal02\obj\Release\terminal02.xml
 C:\Users\plano\source\repos\eAndon\terminal02\obj\Release\terminal02.pdb
-C:\Users\plano\Source\Repos\eAndon\terminal02\obj\Release\terminal02.vbprojAssemblyReference.cache
