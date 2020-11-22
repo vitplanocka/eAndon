@@ -479,7 +479,11 @@ Public Class Form1
 					Try
 						For j = 0 To alarmTypes - 1
 							sb.AppendLine(workstationStatus(i, j))
-							sb.AppendLine(alarmStartDateTime(i, j).ToString("s"))  ' Save the alarm date and time in ISO format
+							If (i = workstationCount - 1) And (j = alarmTypes - 1) Then
+								sb.Append(alarmStartDateTime(i, j).ToString("s"))  ' If it's the last line, we don't want an empty line at the end
+							Else
+								sb.AppendLine(alarmStartDateTime(i, j).ToString("s"))  ' Save the alarm date and time in ISO format
+							End If
 						Next
 					Catch ex As Exception
 						MsgBox("Exception : " + ex.StackTrace)

@@ -8,6 +8,7 @@
 ' - add info field?
 ' - add translations to UI (Legend)
 ' - Adjust height of form dynamically - remove constants
+' - add 100ms delay in UpdateFields before reading the Data files?
 
 
 Public Class Andon
@@ -352,7 +353,7 @@ Public Class Andon
 
                     Try
                         For i = 0 To alarmTypes - 1
-                            Dim myLabel As Label = CType(Me.Controls("lineLabel" & lineNumber * alarmTypes + i), Label)
+                            Dim myLabel As Label = CType(Me.Controls("lineLabel" & CInt(lineNumber) * alarmTypes + i), Label)
                             If workstationStatus(CInt(lineNumber), i) = greenName Then
                                 myLabel.BackColor = Color.FromArgb(0, 255, 0)
                             ElseIf workstationStatus(CInt(lineNumber), i) = yellowName Then
