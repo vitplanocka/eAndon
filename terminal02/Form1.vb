@@ -369,6 +369,10 @@ Public Class Form1
 				End If
 			Next
 
+			If lineOfWorkstationAlarmlogs = 0 Then  ' No alarms to display from the clicked line
+				AlOverview.RichTextBox1.AppendText("===  No record found ===")
+			End If
+
 			' Write the text to RichTextBox and format it
 			For i = 0 To lineOfWorkstationAlarmlogs - 1
 				If workstationAlarmLogs(i, 5) = "Closed alarm" Then       ' Write start and end time, total duration
@@ -468,8 +472,6 @@ Public Class Form1
 		Next
 
 		' Write alarm status to text file
-		' Write alarm status to text file
-
 		Try
 			Using outputFile As New StreamWriter("Data/" & terminalName & ".txt")
 				Dim sb As New System.Text.StringBuilder

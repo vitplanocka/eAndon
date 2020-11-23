@@ -302,6 +302,10 @@ Public Class Andon
                 End If
             Next
 
+            If lineOfWorkstationAlarmlogs = 0 Then  ' No alarms to display from the clicked line
+                AlOverview.RichTextBox1.AppendText("===  No record found ===")
+            End If
+
             ' Write the text to RichTextBox and format it
             For i = 0 To lineOfWorkstationAlarmlogs - 1
                 FormatInRich(AlOverview.RichTextBox1, "bold", (DateTime.ParseExact(workstationAlarmLogs(i, 0), "s", Nothing).ToString("dd.MM.yyyy HH:mm - ") & DateTime.ParseExact(workstationAlarmLogs(i, 0), "s", Nothing).AddSeconds(workstationAlarmLogs(i, 4)).ToString("HH:mm") & " (" & CInt(workstationAlarmLogs(i, 4) / 60) & " min)").PadRight(40))
