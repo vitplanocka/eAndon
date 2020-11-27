@@ -106,7 +106,7 @@ Public Class Form1
 				Try
 					' Read row as an array of strings 
 					currentRow = MyReader.ReadFields()
-					If currentRow(3) = terminalName & ".txt" Then
+					If currentRow(3) = terminalName Then
 						' Parse line into strings '
 						workstationLabels(i, 0) = currentRow(0)
 						workstationLabels(i, 1) = currentRow(1)

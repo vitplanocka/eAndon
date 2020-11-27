@@ -266,9 +266,9 @@ Public Class Andon
             If workstationLabels(i, 1) = workstationLabels(displayedLines(clickedWorkstationLine), 1) Then s2 = workstationLabels(i, 3)
         Next
 
-        If File.Exists("Logs/alarmlog_" & s2) Then
+        If File.Exists("Logs/alarmlog_" & s2 & ".txt") Then
 
-            Dim s As String() = File.ReadAllLines("Logs/alarmlog_" & s2)
+            Dim s As String() = File.ReadAllLines("Logs/alarmlog_" & s2 & ".txt")
             Dim alarmLogs(100000, 4) As String              ' Fill this array with alarms from the text file
             Dim workstationAlarmLogs(100000, 4) As String   ' Filter only alarms relevant for the workstation, calculate alarm durations
             Dim lineReader() As String
