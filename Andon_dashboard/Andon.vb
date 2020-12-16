@@ -1,11 +1,8 @@
 ﻿Imports System.IO
 
 ' TODO:  
-' - create variables for positioning of nameLabels and workstationLabels
 ' - add grid view / lay-out view option
-' - make creation of Terminals dynamic
 ' - instruction box - add colours for Green, Yellow, Red
-' - add info field?
 ' - add translations to UI (Legend)
 ' - Adjust height of form dynamically - remove constants
 ' - add 100ms delay in UpdateFields before reading the Data files?
@@ -46,6 +43,9 @@ Public Class Andon
         End If
         ' Set watcher path to current folder
         watcher2.Path = Application.StartupPath & "/Data"
+
+        ' Set the right sound icon
+        If soundOn Then PictureBoxSound.Image = Image.FromFile("Assets/Soundon.jpg") Else PictureBoxSound.Image = Image.FromFile("Assets/Soundoff.jpg")
 
         ' Read Settings from Text File
         Dim rootpath As String = Application.StartupPath
