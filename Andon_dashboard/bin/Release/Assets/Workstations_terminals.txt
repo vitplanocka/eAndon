@@ -1,0 +1,18 @@
+﻿15
+#;Workstation nr.;Workstation name;Terminal name; 
+0; 010; Line 1;terminal01
+1; 020; Line 2 - Ford;terminal02
+2; 03A; MQB;terminal01
+3; 03B; MQB-II;terminal02
+4; 040; mlbEVO;terminal02
+5; 050; M47;terminal03
+6; 060; Pressing line;terminal04
+7; 070; Next;terminal04
+8; 080; Hybrid line;terminal04
+9; 090; DV2;terminal04
+10; 100; Universal line;terminal04
+11; 110; AML;terminal03
+12; 12E; NGE;terminal04
+13; 130; Universal line 2;terminal04
+14; 140; Finishing line;terminal04
+

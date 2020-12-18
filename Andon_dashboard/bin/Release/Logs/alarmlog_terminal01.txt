@@ -1,0 +1,10 @@
+Event DateTime | 2020-11-20T20:14:42; Workstation | 010; Alarm type | 3; New Color | Red; Length of alarm (seconds) | 0
+Event DateTime | 2020-11-20T20:47:37; Workstation | 010; Alarm type | 3; New Color | Green; Length of alarm (seconds) | 1975
+Event DateTime | 2020-11-20T20:47:43; Workstation | 010; Alarm type | 1; New Color | Yellow; Length of alarm (seconds) | 0
+Event DateTime | 2020-11-20T21:00:29; Workstation | 010; Alarm type | 1; New Color | Green; Length of alarm (seconds) | 766
+Event DateTime | 2020-11-21T20:16:19; Workstation | 010; Alarm type | 2; New Color | Red; Length of alarm (seconds) | 0
+Event DateTime | 2020-11-21T20:16:21; Workstation | 03A; Alarm type | 0; New Color | Yellow; Length of alarm (seconds) | 0
+Event DateTime | 2020-11-21T20:16:22; Workstation | 010; Alarm type | 2; New Color | Green; Length of alarm (seconds) | 3
+Event DateTime | 2020-11-21T20:16:22; Workstation | 03A; Alarm type | 0; New Color | Green; Length of alarm (seconds) | 1
+Event DateTime | 2020-11-22T09:15:26; Workstation | 010; Alarm type | 2; New Color | Red; Length of alarm (seconds) | 0
+Event DateTime | 2020-11-22T09:15:35; Workstation | 010; Alarm type | 2; New Color | Green; Length of alarm (seconds) | 9

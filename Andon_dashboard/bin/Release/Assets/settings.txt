@@ -1,0 +1,31 @@
+﻿Number of alarm types to display in columns in grid view : 5
+Green status name : Green
+Yellow status name : Yellow
+Red status name  : Red
+Image file for company logo : logo.png
+Alarm sound file : alarm.wav
+Instructions (use | for new line) :  --> IN CASE OF A PROBLEM CLICK ON THE APPROPRIATE GREEN FIELD.|  --> ORANGE FIELD MEANS WORKSTATION HAS A PROBLEM BUT IS STILL RUNNING.|  --> RED MEANS THAT THE WORKSTATION HAS STOPPED.|  --> AFTER PROBLEM IS SOLVED, CLICK THE FIELD AGAIN AND CHANGE IT TO GREEN. 
+Label for the alarm type window - "Choose type of problem" : Choose type of problem
+Label for the alarm type window - "Workstation has a problem or is slowed down, but can produce" : Workstation has a problem or is slowed down, but can produce
+Label for the alarm type window - "Workstation has stopped" : Workstation has stopped
+Label for the alarm type window - "Cancel" : Cancel
+Alarm label 1 : Help from Teamleader
+Alarm image file 1 : Icon1.png
+Alarm label 2 : Help from Maintenance
+Alarm image file 2 : Icon2.png
+Alarm label 3 : Help from Quality
+Alarm image file 3 : Icon3.png
+Alarm label 4 : Lack of material
+Alarm image file 4 : Icon4.png
+Alarm label 5 : Packaging needed
+Alarm image file 5 : Icon5.png
+Alarm label 6 : NA
+Alarm image file 6 : NA.png
+Alarm label 7 : NA
+Alarm image file 7 : NA.png
+Alarm label 8 : NA
+Alarm image file 8 : NA.png
+Alarm label 9 : NA
+Alarm image file 9 : NA.png
+Alarm label 10 : NA
+Alarm image file 10 : NA.png
