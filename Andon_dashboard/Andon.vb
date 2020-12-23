@@ -244,7 +244,7 @@ Public Class Andon
         If formatPar = "regular" Then rtb.SelectionColor = Color.Black
         If formatPar = "yellow" Then rtb.SelectionColor = Color.Orange
         If formatPar = "red" Then rtb.SelectionColor = Color.Red
-        rtb.Select(0, 1)
+        rtb.Select(rtb.TextLength, 0)
     End Sub
 
     Private Sub LineLabelClicked(sender As Object, e As System.EventArgs)
