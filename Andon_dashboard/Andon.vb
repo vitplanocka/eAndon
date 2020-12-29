@@ -28,6 +28,7 @@ Public Class Andon
     Public greenName, yellowName, redName As String                           ' Names for the green, yellow and red status
     Public displayedLines(100) As Integer                                     ' Numbers or lines from production_lines.txt displayed on this form
     Public alarmTypesString(4) As String                                      ' Labels for the Alarm_type form
+    Public WatcherChangedCount = 0                                            ' Counter for repeated activations of FileSystemWatcher
 
     ReadOnly AlOverview As New AlarmOverview                                  ' Initialize the AlarmOverview form
 
@@ -330,115 +331,117 @@ Public Class Andon
     Private Sub UpdateFields(sender As Object, e As FileSystemEventArgs)
         ' Update alarm fields according to the current text files
 
+        MsgBox("Sub UpdateFields was triggered at " & Date.Now.Ticks)
+
         ' Copy initial lineStatus state to be able to find out later which lines were updated
         Dim i As Integer
-        For i = 0 To nOfLines - 1
-            For j = 0 To alarmTypes - 1
-                previousworkstationStatus(i, j) = workstationStatus(i, j)
-            Next
-        Next
-
-        '-----------------------------------------------------------------------
-        ' Read updated text file and update relevant fields
-        Dim lineNumber As String
-        Try
-            Using inputFile As New StreamReader(e.FullPath)
-                oldFile = DateDiff(DateInterval.Minute, Convert.ToDateTime(File.GetLastWriteTime(e.FullPath)), DateTime.Now) > maxDelay
-                While Not (inputFile.EndOfStream Or oldFile)
-                    lineNumber = inputFile.ReadLine()
-                    inputFile.ReadLine()
-                    For i = 0 To alarmTypes - 1
-                        Try
-                            workstationStatus(CInt(lineNumber), i) = inputFile.ReadLine()
-                            alarmStartTime(CInt(lineNumber), i) = Date.ParseExact(inputFile.ReadLine(), "s", Nothing)  ' Read date time in ISO format
-                        Catch ex As Exception
-                        End Try
-                    Next
-
-                    Try
-                        For i = 0 To alarmTypes - 1
-                            Dim myLabel As Label = CType(Me.Controls("lineLabel" & CInt(lineNumber) * alarmTypes + i), Label)
-                            If workstationStatus(CInt(lineNumber), i) = greenName Then
-                                myLabel.BackColor = Color.FromArgb(0, 255, 0)
-                            ElseIf workstationStatus(CInt(lineNumber), i) = yellowName Then
-                                myLabel.BackColor = Color.FromArgb(255, 192, 0)
-                            ElseIf workstationStatus(CInt(lineNumber), i) = redName Then
-                                myLabel.BackColor = Color.FromArgb(255, 0, 0)
-                            End If
-
-                            ' Display time since last alarm in the alarm field
-                            If (workstationStatus(CInt(lineNumber), i) = yellowName) And (previousworkstationStatus(CInt(lineNumber), i) = greenName) Then   ' it's a new alarm
-                                myLabel.Text = "0 min"
-                                myLabel.ForeColor = Color.Black
-                                PictureBoxLogo.Select() ' Remove the cursor from updated field
-                            ElseIf (workstationStatus(CInt(lineNumber), i) = redName) And (previousworkstationStatus(CInt(lineNumber), i) = greenName) Then   ' it's a new alarm
-                                myLabel.Text = "0 min"
-                                myLabel.ForeColor = Color.White
-                                PictureBoxLogo.Select() ' Remove the cursor from updated field
-                            ElseIf workstationStatus(CInt(lineNumber), i) = greenName Then  ' remove all labels
-                                myLabel.Text = ""
-                                PictureBoxLogo.Select() ' Remove the cursor from updated field
-                            End If
-                        Next
-                    Catch exz As Exception
-                        Debug.WriteLine("Exception : " + exz.StackTrace)
-                    End Try
-                End While
-            End Using
-        Catch ex As Exception
-            Debug.WriteLine("Exception : " + ex.Message + ". Trace : " + ex.StackTrace)
-        End Try
-        '-----------------------------------------------------------------------
-
-        ' Highlight the line with last alarm
-        Dim lastAlarmLineNr As Integer = -1
-        Dim alarmWorsened As Boolean = False
-        nOfPreviousAlarms = nOfAlarms
-        nOfAlarms = 0
-        For i = 0 To nOfLines - 1
-            For j = 0 To alarmTypes - 1
-                If workstationStatus(i, j) = yellowName Then nOfAlarms += 1
-                If workstationStatus(i, j) = redName Then nOfAlarms += 2
-            Next
-        Next
-        If nOfAlarms > nOfPreviousAlarms Then
-            Dim fpath As String = Application.StartupPath + "/Assets/alarm.wav"
-            If soundOn Then My.Computer.Audio.Play(fpath, AudioPlayMode.Background)
-
             For i = 0 To nOfLines - 1
-                ' Identify the last alarm
                 For j = 0 To alarmTypes - 1
-                    If (previousworkstationStatus(i, j) = greenName And workstationStatus(i, j) = yellowName) Then alarmWorsened = True
-                    If (previousworkstationStatus(i, j) = greenName And workstationStatus(i, j) = redName) Then alarmWorsened = True
+                    previousworkstationStatus(i, j) = workstationStatus(i, j)
                 Next
-                If alarmWorsened Then
-                    lastAlarmLineNr = i
-                    alarmWorsened = False
-                End If
             Next
 
+            '-----------------------------------------------------------------------
+            ' Read updated text file and update relevant fields
+            Dim lineNumber As String
+            Try
+                Using inputFile As New StreamReader(e.FullPath)
+                    oldFile = DateDiff(DateInterval.Minute, Convert.ToDateTime(File.GetLastWriteTime(e.FullPath)), DateTime.Now) > maxDelay
+                    While Not (inputFile.EndOfStream Or oldFile)
+                        lineNumber = inputFile.ReadLine()
+                        inputFile.ReadLine()
+                        For i = 0 To alarmTypes - 1
+                            Try
+                                workstationStatus(CInt(lineNumber), i) = inputFile.ReadLine()
+                                alarmStartTime(CInt(lineNumber), i) = Date.ParseExact(inputFile.ReadLine(), "s", Nothing)  ' Read date time in ISO format
+                            Catch ex As Exception
+                            End Try
+                        Next
+
+                        Try
+                            For i = 0 To alarmTypes - 1
+                                Dim myLabel As Label = CType(Me.Controls("lineLabel" & CInt(lineNumber) * alarmTypes + i), Label)
+                                If workstationStatus(CInt(lineNumber), i) = greenName Then
+                                    myLabel.BackColor = Color.FromArgb(0, 255, 0)
+                                ElseIf workstationStatus(CInt(lineNumber), i) = yellowName Then
+                                    myLabel.BackColor = Color.FromArgb(255, 192, 0)
+                                ElseIf workstationStatus(CInt(lineNumber), i) = redName Then
+                                    myLabel.BackColor = Color.FromArgb(255, 0, 0)
+                                End If
+
+                                ' Display time since last alarm in the alarm field
+                                If (workstationStatus(CInt(lineNumber), i) = yellowName) And (previousworkstationStatus(CInt(lineNumber), i) = greenName) Then   ' it's a new alarm
+                                    myLabel.Text = "0 min"
+                                    myLabel.ForeColor = Color.Black
+                                    PictureBoxLogo.Select() ' Remove the cursor from updated field
+                                ElseIf (workstationStatus(CInt(lineNumber), i) = redName) And (previousworkstationStatus(CInt(lineNumber), i) = greenName) Then   ' it's a new alarm
+                                    myLabel.Text = "0 min"
+                                    myLabel.ForeColor = Color.White
+                                    PictureBoxLogo.Select() ' Remove the cursor from updated field
+                                ElseIf workstationStatus(CInt(lineNumber), i) = greenName Then  ' remove all labels
+                                    myLabel.Text = ""
+                                    PictureBoxLogo.Select() ' Remove the cursor from updated field
+                                End If
+                            Next
+                        Catch exz As Exception
+                            Debug.WriteLine("Exception : " + exz.StackTrace)
+                        End Try
+                    End While
+                End Using
+            Catch ex As Exception
+                Debug.WriteLine("Exception : " + ex.Message + ". Trace : " + ex.StackTrace)
+            End Try
+            '-----------------------------------------------------------------------
+
+            ' Highlight the line with last alarm
+            Dim lastAlarmLineNr As Integer = -1
+            Dim alarmWorsened As Boolean = False
+            nOfPreviousAlarms = nOfAlarms
+            nOfAlarms = 0
             For i = 0 To nOfLines - 1
-                ' Remove previous marking of last alarm 
-                Dim myLabel As Label = CType(Controls("prioLabel" & i), Label)
-                myLabel.ForeColor = Color.FromArgb(0, 0, 0)
+                For j = 0 To alarmTypes - 1
+                    If workstationStatus(i, j) = yellowName Then nOfAlarms += 1
+                    If workstationStatus(i, j) = redName Then nOfAlarms += 2
+                Next
             Next
-            ' Mark last alarm
-            If lastAlarmLineNr > -1 Then
-                Dim myLabel2 As Label = CType(Controls("prioLabel" & lastAlarmLineNr), Label)
-                myLabel2.ForeColor = Color.FromArgb(255, 0, 0)
-            End If
-        End If
+            If nOfAlarms > nOfPreviousAlarms Then
+                Dim fpath As String = Application.StartupPath + "/Assets/alarm.wav"
+                If soundOn Then My.Computer.Audio.Play(fpath, AudioPlayMode.Background)
 
-        ' Remove last alarm label if all alarms have been solved
-        Dim someAlarmsExist As Boolean
-        For i = 0 To nOfLines - 1
-            Dim myLabel As Label = CType(Controls("prioLabel" & i), Label)
-            someAlarmsExist = False
-            For j = 0 To alarmTypes - 1
-                If workstationStatus(i, j) <> greenName Then someAlarmsExist = True
+                For i = 0 To nOfLines - 1
+                    ' Identify the last alarm
+                    For j = 0 To alarmTypes - 1
+                        If (previousworkstationStatus(i, j) = greenName And workstationStatus(i, j) = yellowName) Then alarmWorsened = True
+                        If (previousworkstationStatus(i, j) = greenName And workstationStatus(i, j) = redName) Then alarmWorsened = True
+                    Next
+                    If alarmWorsened Then
+                        lastAlarmLineNr = i
+                        alarmWorsened = False
+                    End If
+                Next
+
+                For i = 0 To nOfLines - 1
+                    ' Remove previous marking of last alarm 
+                    Dim myLabel As Label = CType(Controls("prioLabel" & i), Label)
+                    myLabel.ForeColor = Color.FromArgb(0, 0, 0)
+                Next
+                ' Mark last alarm
+                If lastAlarmLineNr > -1 Then
+                    Dim myLabel2 As Label = CType(Controls("prioLabel" & lastAlarmLineNr), Label)
+                    myLabel2.ForeColor = Color.FromArgb(255, 0, 0)
+                End If
+            End If
+
+            ' Remove last alarm label if all alarms have been solved
+            Dim someAlarmsExist As Boolean
+            For i = 0 To nOfLines - 1
+                Dim myLabel As Label = CType(Controls("prioLabel" & i), Label)
+                someAlarmsExist = False
+                For j = 0 To alarmTypes - 1
+                    If workstationStatus(i, j) <> greenName Then someAlarmsExist = True
+                Next
+                If Not someAlarmsExist Then myLabel.ForeColor = Color.FromArgb(0, 0, 0)
             Next
-            If Not someAlarmsExist Then myLabel.ForeColor = Color.FromArgb(0, 0, 0)
-        Next
 
     End Sub
 
@@ -446,7 +449,12 @@ Public Class Andon
     Private Sub Watcher2_Changed(sender As Object, e As FileSystemEventArgs) Handles watcher2.Changed
         ' If text file in the watched folder is created or rewritten, call update function
         Try
-            UpdateFields(sender, e)
+            WatcherChangedCount += 1
+            If WatcherChangedCount = 1 Then
+                UpdateFields(sender, e)
+            Else
+                WatcherChangedCount = 0
+            End If
         Catch ex As Exception
             Debug.WriteLine("Exception : " + ex.StackTrace)
         End Try
