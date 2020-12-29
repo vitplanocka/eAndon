@@ -28,7 +28,6 @@ Public Class Andon
     Public greenName, yellowName, redName As String                           ' Names for the green, yellow and red status
     Public displayedLines(100) As Integer                                     ' Numbers or lines from production_lines.txt displayed on this form
     Public alarmTypesString(4) As String                                      ' Labels for the Alarm_type form
-    Public WatcherChangedCount = 0                                            ' Counter for repeated activations of FileSystemWatcher
 
     ReadOnly AlOverview As New AlarmOverview                                  ' Initialize the AlarmOverview form
 
@@ -331,8 +330,6 @@ Public Class Andon
     Private Sub UpdateFields(sender As Object, e As FileSystemEventArgs)
         ' Update alarm fields according to the current text files
 
-        MsgBox("Sub UpdateFields was triggered at " & Date.Now.Ticks)
-
         ' Copy initial lineStatus state to be able to find out later which lines were updated
         Dim i As Integer
             For i = 0 To nOfLines - 1
@@ -449,12 +446,7 @@ Public Class Andon
     Private Sub Watcher2_Changed(sender As Object, e As FileSystemEventArgs) Handles watcher2.Changed
         ' If text file in the watched folder is created or rewritten, call update function
         Try
-            WatcherChangedCount += 1
-            If WatcherChangedCount = 1 Then
-                UpdateFields(sender, e)
-            Else
-                WatcherChangedCount = 0
-            End If
+            UpdateFields(sender, e)
         Catch ex As Exception
             Debug.WriteLine("Exception : " + ex.StackTrace)
         End Try
