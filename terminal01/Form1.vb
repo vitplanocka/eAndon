@@ -370,7 +370,7 @@ Public Class Form1
 			Next
 
 			If lineOfWorkstationAlarmlogs = 0 Then  ' No alarms to display from the clicked line
-				AlOverview.RichTextBox1.AppendText("===  No record found ===")
+				AlOverview.RichTextBox1.AppendText("===  No record found ===" & vbNewLine)
 			End If
 
 			' Write the text to RichTextBox and format it
@@ -389,7 +389,7 @@ Public Class Form1
 				AlOverview.RichTextBox1.AppendText(vbNewLine)
 			Next
 		Else  ' The alarm log doesn't exist
-			AlOverview.RichTextBox1.AppendText("===  no records found ===")
+			AlOverview.RichTextBox1.AppendText("===  no records found ===" & vbNewLine)
 		End If
 
 		AlOverview.ShowDialog()

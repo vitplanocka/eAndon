@@ -303,7 +303,7 @@ Public Class Andon
             Next
 
             If lineOfWorkstationAlarmlogs = 0 Then  ' No alarms to display from the clicked line
-                AlOverview.RichTextBox1.AppendText("===  No record found ===")
+                AlOverview.RichTextBox1.AppendText("===  No record found ===" & vbNewLine)
             End If
 
             ' Write the text to RichTextBox and format it
@@ -321,7 +321,7 @@ Public Class Andon
             AlOverview.Button1.Text = alarmTypesString(3)
 
         Else  ' The alarm log doesn't exist
-            AlOverview.RichTextBox1.AppendText("=== No record found ===")
+            AlOverview.RichTextBox1.AppendText("=== No record found ===" & vbNewLine)
         End If
 
         AlOverview.ShowDialog()
