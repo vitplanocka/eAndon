@@ -119,5 +119,3 @@ Location: Prague, Czechia
 GitHub: https://github.com/vitplanocka
 
 LinkedIn: https://www.linkedin.com/in/vitplanocka/
-
-Website:  http://vitplanocka.eu
