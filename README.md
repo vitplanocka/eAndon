@@ -1,6 +1,11 @@
 # eAndon
 
 Implementation of a simple electronic/software Andon system to be used in a production company (factory) to communicate and visualize problems occurring at workstations or production lines.
+
+> **Note: [This repository has been superseded by a new version of the Andon application, which can be found at https://github.com/vitplanocka/eAndon-MVC # eAndon. Please refer to the new repository for the latest updates and features.]**
+
+
+
 The program can be configured to display a range of different problems (technical issues, quality issues, material supply issues, …) and can be also configured to display various configurations of workstations and display screens.
 The program runs on Windows OS and can be used in a situation where there are computer terminals near the production workstations on the shopfloor that can be used to trigger alarms when problems occur at the workstations.
 
